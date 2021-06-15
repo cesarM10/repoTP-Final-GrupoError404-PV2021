@@ -11,7 +11,7 @@ public class TpFinalError404Pv2021Application {
 		//Profesor: Ariel Vega - Correo: avega@fi.unju.edu.ar
 
 				/*
-				 * INTEGRANTES GRUPO ERROR:
+				 * INTEGRANTES GRUPO ERROR404:
 				 * 
 				 * Gaspar, Alvaro Emanuel
 				 * Mercado, Cesar David
