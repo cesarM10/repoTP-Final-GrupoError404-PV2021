@@ -1,0 +1,44 @@
+@charset "utf-8";
+body{
+background: -prefix-linear-gradient(left, black, yellow);
+background: linear-gradient(to right, yellow, black);
+
+}
+
+
+img {
+  max-width: 100%;
+    border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+
+.card:hover {
+  transform: scale(1.1);
+   cursor: pointer;
+}
+
+.card {
+  transition: transform 0.2s ease;
+}
+
+.card {
+  box-shadow: 0 4px 6px 0 rgba(22, 22, 26, 0.18);
+  border-radius: 15px;
+
+  border: 15px;
+}
+
+a img:hover{
+	transform:scale(1.2);
+}
+
+div ul li a:hover{
+	transform:scale(1.2);
+}
+#imgB img{
+	
+    height:120 px; 
+    width: 600 px;
+	
+}
