@@ -3,19 +3,31 @@ package ar.edu.unju.fi.tpfinal.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Qualifier;*/
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
+/*import org.springframework.validation.BindingResult;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;*/
 
-//import ar.edu.unju.fi.tp6.model.Producto;
-//import ar.edu.unju.fi.tp6.service.IProductoService;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import ar.edu.unju.fi.tpfinal.model.Product;
+import ar.edu.unju.fi.tpfinal.service.IProductService;
 
 public class ProductController {
+
+	/* @Autowired
+	@Qualifier("productServiceMysql")
+	private IProductService productService;*/
+	 
+	@GetMapping("/product/nuevo")
+	public String getNuevoProductPage(Model model) {
+		//model.addAttribute("product", productService.getProduct());
+		return "alta_product";
+	}
 	/*
 	 @Autowired
 	@Qualifier("productoServiceMysql")
