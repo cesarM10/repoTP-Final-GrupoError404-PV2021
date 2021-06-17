@@ -21,7 +21,7 @@ public class CustomerServiceImp implements ICustomerService {
 	public void generarTablaCustomer() {
 		// TODO Auto-generated method stub
 		customerList= TablaCustomer.listaCustomer;
-	customerList.add(new Customer(1221.12,qq,sfs,cdzcvfv,qq,qq,vsf,cdcd,fvfs,12,vv,wswa,2.1));
+//	customerList.add(new Customer(1221.12,qq,sfs,cdzcvfv,qq,qq,vsf,cdcd,fvfs,12,vv,wswa,2.1)); * :v chale
 		
 		LOGGER.info("METHOD: generarTablaCustomer - creo primer customer por defecto" + customerList.get(customerList.size()-1));
 	}
