@@ -17,10 +17,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * @author Alvaro
+ * @author Erro404
  *
  */
-@Component ( "customerObject" )
+@Component ("customerObject")
 @Entity
 @Table(name = "customers")
 public class Customer {
@@ -36,7 +36,7 @@ public class Customer {
 	private String contactLastName;
 	
 	@Column(name = "cus_contactFistrName", nullable = false) 
-	private String contactFistrName;
+	private String contactFirstName;
 	
 	@Column(name = "cus_phone", nullable = false) 
 	private String phone;
@@ -62,7 +62,7 @@ public class Customer {
 	@Autowired
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "emp_employee_number") 
-	private Employee salesRepEmployeeNumber;
+	private Employee salesRepEmployeeNumber;//int
 	
 	@Column(name = "cus_creditLimit") 
 	private double creditLimit;
@@ -76,14 +76,17 @@ public class Customer {
 	}
 
 
-	public Customer(Long customerNumber, String customerName, String contactLastName, String contactFistrName,
+	
+
+
+	public Customer(Long customerNumber, String customerName, String contactLastName, String contactFirstName,
 			String phone, String addressLine1, String addressLine2, String city, String state, int postalCode,
 			String country, Employee salesRepEmployeeNumber, double creditLimit) {
 		super();
 		this.customerNumber = customerNumber;
 		this.customerName = customerName;
 		this.contactLastName = contactLastName;
-		this.contactFistrName = contactFistrName;
+		this.contactFirstName = contactFirstName;
 		this.phone = phone;
 		this.addressLine1 = addressLine1;
 		this.addressLine2 = addressLine2;
@@ -94,6 +97,9 @@ public class Customer {
 		this.salesRepEmployeeNumber = salesRepEmployeeNumber;
 		this.creditLimit = creditLimit;
 	}
+
+
+
 
 
 	public Long getCustomerNumber() {
@@ -126,13 +132,16 @@ public class Customer {
 	}
 
 
-	public String getContactFistrName() {
-		return contactFistrName;
+
+
+
+	public String getContactFirstName() {
+		return contactFirstName;
 	}
 
 
-	public void setContactFistrName(String contactFistrName) {
-		this.contactFistrName = contactFistrName;
+	public void setContactFirstName(String contactFirstName) {
+		this.contactFirstName = contactFirstName;
 	}
 
 
@@ -229,11 +238,14 @@ public class Customer {
 	@Override
 	public String toString() {
 		return "Customer [customerNumber=" + customerNumber + ", customerName=" + customerName + ", contactLastName="
-				+ contactLastName + ", contactFistrName=" + contactFistrName + ", phone=" + phone + ", addressLine1="
+				+ contactLastName + ", contactFirstName=" + contactFirstName + ", phone=" + phone + ", addressLine1="
 				+ addressLine1 + ", addressLine2=" + addressLine2 + ", city=" + city + ", state=" + state
 				+ ", postalCode=" + postalCode + ", country=" + country + ", salesRepEmployeeNumber="
 				+ salesRepEmployeeNumber + ", creditLimit=" + creditLimit + "]";
 	}
+
+
+	
 	
 	
 	
