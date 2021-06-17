@@ -42,9 +42,6 @@ public class Employee {
 	@Column(name = "emp_email", nullable = false)
 	private String email;
 	
-	@Column(name = "emp_officeCode", nullable = false)
-	private String officeCode;
-	
 	@Autowired
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "emp_reportsTo")
@@ -63,14 +60,13 @@ public class Employee {
 	}
 
 	public Employee(Long employeeNumber, String lastName, String firstName, String extension, String email,
-			String officeCode, Employee reportsTo, String jobTitle, Office office) {
+			Employee reportsTo, String jobTitle, Office office) {
 		super();
 		this.employeeNumber = employeeNumber;
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.extension = extension;
 		this.email = email;
-		this.officeCode = officeCode;
 		this.reportsTo = reportsTo;
 		this.jobTitle = jobTitle;
 		this.office = office;
@@ -116,14 +112,6 @@ public class Employee {
 		this.email = email;
 	}
 
-	public String getOfficeCode() {
-		return officeCode;
-	}
-
-	public void setOfficeCode(String officeCode) {
-		this.officeCode = officeCode;
-	}
-
 	public Employee getReportsTo() {
 		return reportsTo;
 	}
@@ -151,12 +139,10 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [employeeNumber=" + employeeNumber + ", lastName=" + lastName + ", firstName=" + firstName
-				+ ", extension=" + extension + ", email=" + email + ", officeCode=" + officeCode + ", reportsTo="
-				+ reportsTo + ", jobTitle=" + jobTitle + ", office=" + office + "]";
+				+ ", extension=" + extension + ", email=" + email + ", reportsTo=" + reportsTo + ", jobTitle="
+				+ jobTitle + ", office=" + office + "]";
 	}
 
-	
-
-	
+		
 	
 }
