@@ -7,10 +7,10 @@ import ar.edu.unju.fi.tpfinal.model.Customer;
 
 
 public interface ICustomerService {
-	public void generarTablaCliente();
+	public void generarTablaCustomer();
 	
-	public void agregarCliente(Customer cliente);
+	public void agregarCustomer(Customer customer);
 	
-	public List<Customer> obtenerClientes();
+	public List<Customer> obtenerCustomer();
 
 }

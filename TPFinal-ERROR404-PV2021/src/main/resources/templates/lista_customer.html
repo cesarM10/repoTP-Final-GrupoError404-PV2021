@@ -6,7 +6,7 @@
 		<title>Clientes</title>
 		<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0-1/css/bootstrap.min.css}">
 		<link rel="stylesheet" th:href="@{/css/style.css}">
-		
+		<link rel="shortcut icon" href="/image/iconos/c5.png"><!-- icono de la pestaña -->
 	</head>
 	<body>
 	
@@ -36,24 +36,28 @@
 									<th>T. Ult. compra</th>
 									<th>T.F. de Nac.</th>
 									<th>T. prox. cumple</th>
-																	
+									<th>T. prox. cumple</th>								
 								</tr>
 							</thead>
 							<tbody>
-								<tr id="miTablaContenido" th:each = "cli:${cliente}">
-									<td th:text="${cli.tipoDocumento}"></td>
-									<td th:text="${cli.nroDocumento}"></td>
-									<td th:text="${cli.nombreApellido}"></td>
-									<td th:text="${cli.email}"></td>
-									<td th:text="${cli.password}"></td>
-									<td th:text="${#temporals.format(cli.fechaNacimiento,'dd/MM/yyyy')}"> </td>
-									<td th:text="${cli.getEdad}"></td>
-									<td th:text="${cli.codigoAreaTelefono} + ' - ' + ${cli.nroTelefono}"> </td>
-									<td th:text="${#temporals.format(cli.fechaUltimaCompra,'dd/MM/yyyy')}"> </td>
+								<tr id="miTablaContenido" th:each = "cust:${customer}">
+								<!--	<td th:text="${cust.customerNumber}"></td>  -->
+									<td th:text="${cust.customerName}"></td>
+									<td th:text="${cust.contactLastName}"></td>
+									<td th:text="${cust.contactFistrName}"></td>
+									<td th:text="${cust.phone}"></td>
 									
-									<td th:text="${cli.calculoTiempoUltimaCompra}"></td>
-									<td th:text="${cli.calculoTiempoDesdeNacimiento} + ' dias'"></td>
-									<td th:text="${cli.calculoTiempoHastaCumple}"></td>																		
+									<td th:text="${cust.addressLine1}"></td>
+									<td th:text="${cust.addressLine2}"></td>
+									<td th:text="${cust.city}"></td>
+									<td th:text="${cust.state}"></td>
+									<td th:text="${cust.postalCode}"></td>
+									
+									<td th:text="${cust.country}"></td>
+								<!-- <td th:text="${cust.salesRepEmployeeNumber}"></td>  -->	
+									<td th:text="${cust.creditLimit}"></td>
+									
+																										
 									
 									
 								</tr> 
