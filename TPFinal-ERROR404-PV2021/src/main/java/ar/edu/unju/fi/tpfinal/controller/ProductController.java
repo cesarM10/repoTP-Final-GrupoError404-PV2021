@@ -15,7 +15,8 @@ import org.springframework.web.servlet.ModelAndView;*/
 import org.springframework.web.bind.annotation.GetMapping;
 
 import ar.edu.unju.fi.tpfinal.model.Product;
-import ar.edu.unju.fi.tpfinal.service.IProductService;
+//import ar.edu.unju.fi.tpfinal.service.IProductService;
+
 
 public class ProductController {
 
