@@ -33,7 +33,7 @@ public class CustomerController {
 	
 	@PostMapping("/cliente/guardar")
 	public ModelAndView agregarCustomerPage(@ModelAttribute("customer")Customer customer) {
-		ModelAndView model = new ModelAndView("alta_customer");
+		ModelAndView model = new ModelAndView("lista_customer");
 		if (customerService.obtenerCustomer() == null) {
 			customerService.generarTablaCustomer();
 		}
@@ -46,7 +46,7 @@ public class CustomerController {
 	
 	@GetMapping("/cliente/listado")
 	public ModelAndView getCustomerPage() {
-		ModelAndView model = new ModelAndView("alta_customer");
+		ModelAndView model = new ModelAndView("lista_customer");
 		if (customerService.obtenerCustomer() == null) {
 			customerService.generarTablaCustomer();
 		}
