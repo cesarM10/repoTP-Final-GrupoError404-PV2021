@@ -3,13 +3,17 @@
  */
 package ar.edu.unju.fi.tpfinal.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -35,6 +39,9 @@ public class Productline {  //7658
 	
 	@Column(name = "pli_image")
 	private  byte[] image;//mediumblob
+	
+	@OneToMany(mappedBy ="productline", cascade= CascadeType.ALL, orphanRemoval=true)
+	private List <Product> products = new ArrayList<Product>();
 	
 	
 	public Productline() {
