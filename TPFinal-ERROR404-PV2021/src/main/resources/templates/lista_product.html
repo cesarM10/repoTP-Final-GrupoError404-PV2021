@@ -45,7 +45,12 @@
 									<td th:text="${prod.productDescription}"></td>
 									<td th:text="${prod.quantityInStock}"></td>
 									<td th:text="${prod.buyPrice}"></td>
-									<td th:text="${prod.MSRP}"></td> 		 
+									<td th:text="${prod.MSRP}"></td> 
+									
+									<td>
+										<a th:href="@{/producto/editar/}+${prod.productCode}" class="btn btn-warning">Editar</a>
+										<a th:href="@{/producto/eliminar/}+${prod.productCode}" class="btn btn-danger">Eliminar</a>
+									</td>		 
 								</tr> 
 							</tbody>
 						
