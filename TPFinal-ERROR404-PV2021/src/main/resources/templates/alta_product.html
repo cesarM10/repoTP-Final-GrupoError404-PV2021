@@ -17,21 +17,23 @@
 		
 				<div class="col-sm12 col-md" style="border: solid;">
 					<h1 style="font-family: century gothic">Alta de Producto</h1> 
-					<form  >  
+					<form  th:action="@{/producto/guardar}" method="post" th:object="${product}" >  
 						 <!-- productCode -->
 							<div class="form-group row">
 							    <label for="productCode" class="col-sm-2 col-form-label">Codigo de producto</label>
 							    <div class="col-sm-10">
-							      <input type="number" class="form-control" id="productCode"   >
+							      <input type="number" class="form-control" id="productCode" th:field="*{productCode}" placeholder="Ingrese"  >
 							    </div>
 							</div>
 							<!-- productName -->
 							<div class="form-group row">
 							    <label for="productName" class="col-sm-2 col-form-label">Nombre del Producto</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" id="productName" >
+							      <input type="text" class="form-control" id="productName" th:field="*{productName}" placeholder="Ingrese"  >
 							    </div>
 							</div>
+							
+							
 							<!-- productline  añadir lista desplegable para insetar eso-->
 							<div class="form-group row">
 							    <label for="productline" class="col-sm-2 col-form-label">línea de producto</label>
@@ -39,48 +41,51 @@
 							      <input type="text" class="form-control" id="productline"  >
 							    </div>
 							</div>
+							
+							
 							<!-- productScale -->
 							<div class="form-group row">
 							    <label for="productScale" class="col-sm-2 col-form-label">Escala de producto</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" id="productScale"  >
+							      <input type="text" class="form-control" id="productScale" th:field="*{productScale}" placeholder="Ingrese"  >
 							    </div>
 							</div>
 							<!-- productVendor -->
 							<div class="form-group row">
 							    <label for="productVendor" class="col-sm-2 col-form-label">vendedor de productos</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" id="productVendor"  >
+							      <input type="text" class="form-control" id="productVendor" th:field="*{productVendor}" placeholder="Ingrese"  >
 							    </div>
 							</div>
 							<!-- productDescription -->
 							<div class="form-group row">
 							    <label for="productDescription" class="col-sm-2 col-form-label">Descripcion del producto</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" id="productDescription"  >
+							      <input type="text" class="form-control" id="productDescription" th:field="*{productDescription}" placeholder="Ingrese"  >
 							    </div> 
 							</div>
 							<!-- quantityInStock -->
 							<div class="form-group row">
 							    <label for="quantityInStock" class="col-sm-2 col-form-label">Cantidad en inventario</label>
 							    <div class="col-sm-10">
-							      <input type="number" class="form-control" id="quantityInStock"  >
+							      <input type="number" class="form-control" id="quantityInStock" th:field="*{quantityInStock}" placeholder="Ingrese"  >
 							    </div> 
 							</div>
 							<!-- buyPrice -->
 							<div class="form-group row">
 							    <label for="buyPrice" class="col-sm-2 col-form-label">Precio de compra</label>
 							    <div class="col-sm-10">
-							      <input type="number" class="form-control" id="buyPrice"  >
+							      <input type="number" class="form-control" id="buyPrice" th:field="*{buyPrice}" placeholder="Ingrese"  >
 							    </div> 
 							</div>
 							<!-- buyPrice -->
 							 <div class="form-group row">
 							    <label for="MSRP" class="col-sm-2 col-form-label">MSRP</label>
 							    <div class="col-sm-10">
-							      <input type="number" class="form-control" id="MSRP"  >
+							      <input type="number" class="form-control" id="MSRP" th:field="*{MSRP}" placeholder="Ingrese"  >
 							    </div>
 							</div>
+								<button type="submit" class="btn btn-outline-dark">Enviar</button>
 					</form>
 					
 					 
