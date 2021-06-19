@@ -36,9 +36,9 @@ public class CustomerController {
 	private ICustomerService customerService;
 	
 	
-///	@Autowired
-//	@Qualifier("EmployedServiceMysql")
-//	private IEmployeeService employeeService;
+	@Autowired
+	@Qualifier("employeeServiceMysql")
+	private IEmployeeService employeeService;
 	/*
 	@Autowired
 	@Qualifier("customerUtilService")
@@ -62,7 +62,7 @@ public class CustomerController {
 	public String getNuevoCustomerPage(Model model){//(){
 		model.addAttribute("customer",customerService.getCustomer());
 
-	//	model.addAttribute("lista_employee",employeeService.getEmployee());//retorna el numero de la lista de employee
+		model.addAttribute("employees",employeeService.obtenerEmployees());//retorna el numero de la lista de employee
 		return "alta_customer";
 	}
 	
@@ -125,7 +125,7 @@ public class CustomerController {
 		
 		model.addObject("customer", customer);
 		
-	//	model.addObject("lista_employee", employeeService.obtenerEmployees());
+		model.addObject("employees", employeeService.obtenerEmployees());
 		
 		return model;
 	}
@@ -133,8 +133,10 @@ public class CustomerController {
 	@GetMapping("/cliente/eliminar/{customerNumber}")
 	public ModelAndView getCustomerDeletePage(@PathVariable(value = "customerNumber")Long customerNumber) {
 		ModelAndView model = new ModelAndView("redirect:/cliente/listado");
+		
 		customerService.eliminarCustomer(customerNumber);
 		
+		model.addObject("customer",customerService.obtenerCustomer());
 		return model;
 	}
 	 

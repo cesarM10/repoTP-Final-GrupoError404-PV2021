@@ -132,19 +132,30 @@
 							
 							
 							
-							<!-- Ingreso Producto 
+							<!-- Ingreso Producto -->
 						<div class="form-group ">
-							<label for="employee" class="col-sm-2 col-form-label">Número de Empleado del Representante de Ventas</label>
-						    <select id="employee" th:field="*{employee.employeeNumber}">
+							<label for="salesRepEmployeeNumber" class="col-sm-2 col-form-label">Número de </label>
+						    <select id="salesRepEmployeeNumber" th:field="*{salesRepEmployeeNumber.employeeNumber}">
 						      <option th:each = "e : ${employees}" selected
 						      th:value="${e.employeeNumber}"
-						      th:text="${e.employeeNumber} + ' - ' + ${e.lastName}"
+						      th:text="${e.employeeNumber }+ ' - ' + ${e.lastName}"
 						      th:selected="false"
 						      />
 						    </select>
 						</div>
 						
-						-->
+			<!--  		<div class="form-group ">
+								<label for="officeCode" class="col-sm-2 col-form-label">Oficina</label>
+							    <select id="officeCode" th:field="*{office.officeCode}">
+							      <option th:each = "off : ${offices}" selected
+							      th:value="${off.officeCode}"
+							      th:text="${off.city} + ' - ' + ${off.state} + ' - ' + ${off.country}"
+							      th:selected="false"
+							      />
+							    </select>
+							   
+							</div> -->	
+						
 						
 						
 							
