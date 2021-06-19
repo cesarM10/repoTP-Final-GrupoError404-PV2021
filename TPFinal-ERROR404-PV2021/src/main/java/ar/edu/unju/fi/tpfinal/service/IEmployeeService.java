@@ -13,9 +13,6 @@ public interface IEmployeeService {
 	
 	public void eliminarEmployee(Long empoyeeNumber);
 	
-
-	public Employee updateNuemeroDeEmpleado(Long employeeNumber);//F
-
 	public List<Employee> listaEmployeeSeleccionado();
 	
 	public List<Employee> buscarEmployeePorEmployeeNumber(Long employeeNumber);
