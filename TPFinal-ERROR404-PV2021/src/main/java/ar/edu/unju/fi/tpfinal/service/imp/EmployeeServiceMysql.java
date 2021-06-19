@@ -11,6 +11,8 @@ import ar.edu.unju.fi.tpfinal.service.IEmployeeService;
 
 @Service("employeeServiceMysql")
 public class EmployeeServiceMysql implements IEmployeeService{
+	
+	
 
 	@Autowired
 	private Employee employee = new Employee();
@@ -40,6 +42,13 @@ public class EmployeeServiceMysql implements IEmployeeService{
 	public void eliminarEmployee(Long empoyeeNumber) {
 		employeeRepository.deleteByEmployeeNumber(empoyeeNumber);
 		
+	}
+
+	@Override
+	public Employee updateNuemeroDeEmpleado(Long employeeNumber) {
+		// TODO Auto-generated method stub
+		Employee employee = employeeRepository.deleteByEmployeeNumber(employeeNumber);
+		return employee;
 	}
 
 	

@@ -2,12 +2,15 @@ package ar.edu.unju.fi.tpfinal.controller;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +18,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.tpfinal.model.Customer;
+import ar.edu.unju.fi.tpfinal.model.Employee;
 import ar.edu.unju.fi.tpfinal.service.ICustomerService;
+import ar.edu.unju.fi.tpfinal.service.IEmployeeService;
 import ar.edu.unju.fi.tpfinal.service.imp.CustomerServiceImp;
 
 @Controller
@@ -29,6 +34,11 @@ public class CustomerController {
 	@Autowired
 	@Qualifier("customerServiceMysql")
 	private ICustomerService customerService;
+	
+	
+	@Autowired
+	@Qualifier("EmployedServiceMysql")
+	private IEmployeeService employeeService;
 	/*
 	@Autowired
 	@Qualifier("customerUtilService")
@@ -52,21 +62,46 @@ public class CustomerController {
 	public String getNuevoCustomerPage(Model model){//(){
 		model.addAttribute("customer",customerService.getCustomer());
 
+		model.addAttribute("lista_employee",employeeService.getEmployee());//retorna el numero de la lista de employee
 		return "alta_customer";
 	}
 	
 	@PostMapping("/cliente/guardar")
-	public ModelAndView agregarCustomerPage(@ModelAttribute("customer")Customer customer) {
-		ModelAndView model = new ModelAndView("lista_customer");
+ //	public ModelAndView agregarCustomerPage(@ModelAttribute("customer")Customer customer) {
+	public ModelAndView agregarCustomerPage(@Valid @ModelAttribute("customer")Customer customer, BindingResult resultadoValidacion) {
+	//	ModelAndView model = new ModelAndView("lista_customer");
+		LOGGER.info("Metodo: guardando... --");
+		ModelAndView model;
 /*	if (customerService.obtenerCustomer() == null) { //isEmpty()
 			customerService.generarTablaCustomer();
 		}
 */		
-		customerService.agregarCustomer(customer);
+		if (resultadoValidacion.hasErrors()) { //En la validacion Si Encontro errores
+			model = new ModelAndView("alta_customer");
+			
+			model.addObject("lista_employee", employeeService.obtenerEmployees());//datos de employees
+			
+			return  model;
+		}else {//En la validacion no encontro errores
+			model = new ModelAndView("lista_customer");
+			
+			
+			Employee employee = employeeService.updateNuemeroDeEmpleado(customer.getCustomerNumber());
+			customer.setSalesRepEmployeeNumber(employee);
+			
+			LOGGER.info("PASA O NO PASA --"+employee);
+			
+			customerService.agregarCustomer(customer);
+			model.addObject("customer", customerService.getCustomer());//
+		//	model.addObject("customer", customerService.obtenerCustomer());
+			model.addObject("alta_customer", customerService.obtenerCustomer());
+			LOGGER.info(employeeService.obtenerEmployees());
+				return model;
+		}
 		
-		
-		model.addObject("customer", customerService.obtenerCustomer());
-		return model;
+	//	customerService.agregarCustomer(customer);	
+	//	model.addObject("customer", customerService.obtenerCustomer());
+	//	return model;
 	}
 	
 	@GetMapping("/cliente/listado")
@@ -89,6 +124,9 @@ public class CustomerController {
 		Optional <Customer> customer = customerService.getCustomerPorId(customerNumber);
 		
 		model.addObject("customer", customer);
+		
+		model.addObject("lista_employee", employeeService.obtenerEmployees());
+		
 		return model;
 	}
 	

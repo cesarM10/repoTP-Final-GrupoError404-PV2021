@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,33 +32,57 @@ public class Customer {
 	@Column(name = "cus_customer_number")	
 	private Long customerNumber;
 	
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 3, max = 150,  message = "El campo Nombre de Cliente debe tener como minimo 3 caracteres.")
 	@Column(name = "cus_customerName", nullable = false) 
 	private String customerName;
 	
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 3, max = 150,  message = "El campo Apellido de contacto debe tener como minimo 3 caracteres.")
 	@Column(name = "cus_contactLastName", nullable = false) 
 	private String contactLastName;
 	
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 3, max = 150,  message = "El campo Nombre de contacto debe tener como minimo 3 caracteres.")
 	@Column(name = "cus_contactFistrName", nullable = false) 
 	private String contactFirstName;
 	
+	
+	@NotEmpty(message = "El campo no debe estar vacio.")
 	@Column(name = "cus_phone", nullable = false) 
 	private String phone;
 	
+	
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 3, max = 150,  message = "El campo Dirección Línea 1 debe tener como minimo 3 caracteres.")
 	@Column(name = "cus_addressLine1", nullable = false) 
 	private String addressLine1;
 	
+	
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 3, max = 150,  message = "El campo Dirección Línea 2 debe tener como minimo 3 caracteres.")
 	@Column(name = "cus_addressLine2") 
 	private String addressLine2;
 	
+	
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 3, max = 150,  message = "El campo Ciudad debe tener como minimo 3 caracteres.")
 	@Column(name = "cus_city", nullable = false) 
 	private String city;
 	
+	
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 3, max = 150,  message = "El campo Estado debe tener como minimo 3 caracteres.")
 	@Column(name = "cus_state") 
 	private String state;
 	
+	//@NotEmpty(message = "El campo no debe estar vacio.")
+	@Min(value = 1, message = "El campo no debe ser negativo")
 	@Column(name = "cus_postalCode") 
 	private int postalCode;
 	
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 3, max = 150,  message = "El campo Pais debe tener como minimo 3 caracteres.")
 	@Column(name = "cus_country", nullable = false) 
 	private String country;
 	
@@ -64,6 +91,8 @@ public class Customer {
 	@JoinColumn(name = "emp_employee_number") 
 	private Employee salesRepEmployeeNumber;//int
 	
+	//@NotEmpty(message = "El campo no debe estar vacio.")
+	@Min(value = 1, message = "El campo no debe ser negativo")
 	@Column(name = "cus_creditLimit") 
 	private double creditLimit;
 	 
