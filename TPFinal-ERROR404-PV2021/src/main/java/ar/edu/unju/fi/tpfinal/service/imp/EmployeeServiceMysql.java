@@ -14,7 +14,7 @@ import ar.edu.unju.fi.tpfinal.service.IEmployeeService;
 
 @Service("employeeServiceMysql")
 public class EmployeeServiceMysql implements IEmployeeService{
- borrar_modificar_cliente_V1
+ 
 	
 	
 
@@ -23,7 +23,7 @@ public class EmployeeServiceMysql implements IEmployeeService{
 	
 	List<Employee> employeeSeleccionado = new ArrayList<Employee>();
 	
-master
+
 	@Autowired
 	private Employee employee = new Employee();
 	
@@ -55,12 +55,11 @@ master
 	}
 
 	@Override
- borrar_modificar_cliente_V1
 	public Employee updateNuemeroDeEmpleado(Long employeeNumber) {
 		// TODO Auto-generated method stub
 		Employee employee = employeeRepository.deleteByEmployeeNumber(employeeNumber);
 		return employee;
-
+	}
 	public List<Employee> listaEmployeeSeleccionado() {
 		
 		return employeeSeleccionado;

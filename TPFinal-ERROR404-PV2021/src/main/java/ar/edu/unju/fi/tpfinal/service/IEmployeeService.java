@@ -13,7 +13,7 @@ public interface IEmployeeService {
 	
 	public void eliminarEmployee(Long empoyeeNumber);
 	
- borrar_modificar_cliente_V1
+
 	public Employee updateNuemeroDeEmpleado(Long employeeNumber);
 
 	public List<Employee> listaEmployeeSeleccionado();

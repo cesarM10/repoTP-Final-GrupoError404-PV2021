@@ -63,4 +63,22 @@ public class EmployeeServiceImp implements IEmployeeService {
 		return e;
 	}
 
+	@Override
+	public List<Employee> listaEmployeeSeleccionado() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Employee> buscarEmployeePorEmployeeNumber(Long employeeNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void quitarEmployeeListaSeleccionado(Long employeeNumber) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
