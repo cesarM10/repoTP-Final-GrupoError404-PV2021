@@ -49,19 +49,19 @@ public class EmployeeServiceImp implements IEmployeeService {
 		
 	}
 
-	@Override
-	public Employee updateNuemeroDeEmpleado(Long employeeNumber) {
+//	@Override
+//	public Employee updateNuemeroDeEmpleado(Long employeeNumber) {
 		// TODO Auto-generated method stub
-		Employee e=new Employee();
+//		Employee e=new Employee();
 		
-		for (Employee emp : employeeList) {
-			if(emp.getEmployeeNumber() == employeeNumber) {
+//		for (Employee emp : employeeList) {
+//			if(emp.getEmployeeNumber() == employeeNumber) {
 			//	prod.setStock(prod.getStock()-cantidad);
-				e = emp;
-			}
-		}
-		return e;
-	}
+//				e = emp;
+//			}
+//		}
+//		return e;
+//	}
 
 	@Override
 	public List<Employee> listaEmployeeSeleccionado() {
@@ -79,6 +79,12 @@ public class EmployeeServiceImp implements IEmployeeService {
 	public void quitarEmployeeListaSeleccionado(Long employeeNumber) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Employee updateNuemeroDeEmpleado(Long employeeNumber) { //F
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
