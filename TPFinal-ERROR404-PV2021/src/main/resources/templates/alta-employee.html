@@ -21,12 +21,12 @@
 					<h1 style="font-family: century gothic">Alta de un nuevo empleado</h1>
 						
 							<div class="col-md-8 justify-content-left">
-								<form th:action="@{/employee/busqueda}" th:object="${employee}" method="GET" >
+								<form th:action="@{/employee/busqueda}" th:object="${employeeB}" method="GET" >
 									
 									<div class="form-group row">
 										<label for="employeeNumber" class="col-sm-3 col-form-label">A cargo de: </label>
 										<div class="col-sm-5">
-											<input type="number" class="form-control" id="employeeNumber" th:field="*{employeeNumber}" placeholder="Ingrese legajo">
+											<input type="number" class="form-control" id="employeeNumber" th:field="*{employeeNumber}">
 										</div>
 										
 										<button type="submit" class="btn btn-success">Buscar</button>
@@ -130,10 +130,10 @@
 							    
 							</div>
 							
-							
+							<!-- 
 							<div class="form-group ">
-								<label for="office.officeCode" class="col-sm-2 col-form-label">Oficina</label>
-							    <select id="office.officeCode" th:field="*{office.officeCode}">
+								<label for="officeCode" class="col-sm-2 col-form-label">Oficina</label>
+							    <select id="officeCode" th:field="*{office.officeCode}">
 							      <option th:each = "off : ${offices}" selected
 							      th:value="${off.officeCode}"
 							      th:text="${off.city} + ' - ' + ${off.state} + ' - ' + ${off.country}"
@@ -141,7 +141,7 @@
 							      />
 							    </select>
 							   
-							</div>
+							</div>  -->
 							
 							
 							

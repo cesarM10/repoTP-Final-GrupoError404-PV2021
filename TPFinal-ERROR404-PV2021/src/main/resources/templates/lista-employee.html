@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
+		<title>Lista Empleados</title>
+		<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0-1/css/bootstrap.min.css}">
+		<link rel="stylesheet" th:href="@{/css/style.css}">
+		<link rel="stylesheet" th:href="@{/css/atn.css}">
+        <link rel="shortcut icon" href="/image/infectado.png">
+	</head>
+	<body>
+	
+		<header th:replace="layout/header :: header"></header>
+	
+		<div class="container">
+						
+			<div > 
+				<h1 style="font-family: century gothic;">Lista de Empleados</h1>
+			</div>
+			
+			<div class="row">
+					<div class="col-sm-12 col-md-10"> 
+						<div class="scrollme">
+						<table class="table table-responsive table-hover" style="text-align: center; background-color: gray; color: white;">
+							<thead style="background-color: black;"> 
+								<tr id="miTablaEncabezado">
+									
+									
+									<th>ID Empleado</th>
+									<th>Apellido </th>
+									<th>Nombre</th>
+									<th>Extension</th>
+									<th>Email</th>
+									<th>Titulo</th>
+									<th>A cargo de</th>
+									<th>Oficina</th>
+									<th>Acciones </th>
+																	
+								</tr>
+							</thead>
+							<tbody>
+								<tr id="miTablaContenido" th:each = "emps:${employees}">
+									
+									<td th:text="${emps.employeeNumber}"></td>
+									<td th:text="${emps.lastName}"></td>
+									<td th:text="${emps.firstName}"></td>
+									<td th:text="${emps.extension}"> </td>
+									<td th:text="${emps.email}"> </td>
+									<td th:text="${emps.jobTitle}"> </td>
+									<td th:text="${emps.reportsTo.employeeNumber}"> </td>
+									<td th:text="${emps.office.officeCode}"> </td>																
+									
+									 
+									<td>
+										<a th:href="@{/employee/editar/}+${emps.employeeNumber}" class="btn btn-warning">Editar</a>
+										<a th:href="@{/cliente/eliminar/}+${emps.employeeNumber}" class="btn btn-danger">Eliminar</a>
+									</td>
+									
+								</tr> 
+							</tbody>
+						
+						</table>
+						</div>
+					</div>
+			
+					<div class="col col-md-2">
+						<aside th:replace="layout/publicidad :: publicidad"></aside>
+					</div>
+				</div>
+			
+		</div><br>
+			
+		<footer th:replace="layout/footer :: footer"></footer>
+		<script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+		<script type="text/javascript" th:src="@{/webjars/popper.js/1.16.1-lts/popper.min.js}"></script>
+		<script type="text/javascript" th:src="@{/webjars/bootstrap/4.6.0-1/js/bootstrap.min.js}"></script>
+	</body>
+</html>

@@ -34,6 +34,7 @@ public class EmployeeController {
 	
 	@GetMapping("/employee/nuevo")
 	public String getNuevoEmployeePage(Model model) {
+		model.addAttribute("employeeB", employeeService.getEmployee());
 		model.addAttribute("employee", employeeService.getEmployee());
 		model.addAttribute("offices", officeService.obtenerOffices());
 		model.addAttribute("employeeSelecionado", employeeService.listaEmployeeSeleccionado());
@@ -42,32 +43,45 @@ public class EmployeeController {
 	
 	@PostMapping("/employee/guardar")
 	public ModelAndView agregarEmployeePage(@ModelAttribute("employee")Employee employee) {
-		ModelAndView modelv = new ModelAndView("alta-employee");
+		LOGGER.info("ENTRO A GUARDAR");
+		ModelAndView modelv = new ModelAndView("lista-employee");
 		
-		if(employeeService.listaEmployeeSeleccionado().isEmpty()) {
-			employee.setReportsTo(employeeService.getEmployee());
-		}else {
+		//if(employeeService.listaEmployeeSeleccionado().isEmpty()) {
+			//employee.setReportsTo(employeeService.getEmployee());
+		//}else {
 			
-			employee.setReportsTo(employeeService.listaEmployeeSeleccionado().get(employeeService.listaEmployeeSeleccionado().size()-1));
+			employee.setReportsTo(employeeService.listaEmployeeSeleccionado().get(0));
 			
-		}
-		Employee employee1 = new Employee();
-		employee1 = employee;
-		for (Office office : officeService.obtenerOffices()) {
+		//}
+		LOGGER.info("PASO EL IF");
+		//Employee employee1 = new Employee();
+		
+		//employee1 = employee;
+		//LOGGER.info("LO QUE VA A GUARDAR" + employee1);
+		/*for (Office office : officeService.obtenerOffices()) {
 			if(office.getOfficeCode() == employee.getOffice().getOfficeCode()) {
-				employee1.setOffice(office);
+				employee.setOffice(office);
 			}
-		}
-		employeeService.agregarEmployee(employee1);
-		
+		}*/
+		employeeService.agregarEmployee(employee);
+		LOGGER.info("PASO EL GUARDAR");
 		modelv.addObject("employees", employeeService.obtenerEmployees());
 		return modelv;
+	}
+	
+	@GetMapping("/employee/listado")
+	public ModelAndView getEmployeesPage() {
+		ModelAndView model = new ModelAndView("lista-employee");
+		
+		model.addObject("employees", employeeService.obtenerEmployees());
+		return model;
 	}
 	
 	@GetMapping("/employee/busqueda")
 	public String getBuscarEmployeeConFiltro(@RequestParam(value = "employeeNumber")Long employeeNumber, Model model) {
 		LOGGER.info("METODO - - BUSCAR");
 		model.addAttribute("employee", employeeService.getEmployee()); 
+		model.addAttribute("employeeB", employeeService.getEmployee());
 		model.addAttribute("employeeSeleccionado", employeeService.buscarEmployeePorEmployeeNumber(employeeNumber));
 		LOGGER.info("METODO - - BUSCAR - - PASO");
 		
@@ -80,7 +94,7 @@ public class EmployeeController {
 		ModelAndView model = new ModelAndView("alta-employee");
 		employeeService.quitarEmployeeListaSeleccionado(employeeNumber);
 		model.addObject("employee", employeeService.getEmployee());
-		
+		model.addObject("employeeB", employeeService.getEmployee());
 		model.addObject("employeeSeleccionado", employeeService.listaEmployeeSeleccionado());
 		
 		model.addObject("offices", officeService.obtenerOffices());

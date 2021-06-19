@@ -14,16 +14,10 @@ import ar.edu.unju.fi.tpfinal.service.IEmployeeService;
 
 @Service("employeeServiceMysql")
 public class EmployeeServiceMysql implements IEmployeeService{
- 
-	
-	
-
-
 	private static final Log LOGGER = LogFactory.getLog(EmployeeServiceMysql.class);
 	
 	List<Employee> employeeSeleccionado = new ArrayList<Employee>();
 	
-
 	@Autowired
 	private Employee employee = new Employee();
 	
@@ -55,12 +49,6 @@ public class EmployeeServiceMysql implements IEmployeeService{
 	}
 
 	@Override
-	public Employee updateNuemeroDeEmpleado(Long employeeNumber) {
-	//	// TODO Auto-generated method stub
-	
-	//	Employee employee = employeeRepository.deleteByEmployeeNumber(employeeNumber);
-		return null;// employee;
-	}
 	public List<Employee> listaEmployeeSeleccionado() {
 		
 		return employeeSeleccionado;
@@ -72,7 +60,7 @@ public class EmployeeServiceMysql implements IEmployeeService{
 			
 		}else {
 			employeeSeleccionado = employeeRepository.findByEmployeeNumber(employeeNumber);
-			LOGGER.info("ENTRO POR VALOR INGRESADO" + employeeSeleccionado.toString());
+			LOGGER.info("ENTRO POR VALOR INGRESADO");
 		}
 		
 		return employeeSeleccionado;
@@ -86,9 +74,9 @@ public class EmployeeServiceMysql implements IEmployeeService{
 			}
 		}
 		
-
 	}
 
 	
 
 }
+

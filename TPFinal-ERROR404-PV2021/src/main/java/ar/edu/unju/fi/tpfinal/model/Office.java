@@ -3,15 +3,11 @@
  */
 package ar.edu.unju.fi.tpfinal.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -53,8 +49,9 @@ public class Office {
 	@Column(name = "off_territory", nullable = false)
 	private String territory;
 	
-	@OneToMany(mappedBy = "office")
-	private List<Employee> employees = new ArrayList<Employee>();
+	//@OneToMany(mappedBy = "office")
+	//private List<Employee> employees = new ArrayList<Employee>();
+	
 	
 	public Office() {
 		// TODO Auto-generated constructor stub
@@ -152,6 +149,7 @@ public class Office {
 				+ addressLine1 + ", addressLine2=" + addressLine2 + ", state=" + state + ", country=" + country
 				+ ", postalCode=" + postalCode + ", territory=" + territory + "]";
 	}
+
 	
 	
 }
