@@ -36,9 +36,9 @@ public class CustomerController {
 	private ICustomerService customerService;
 	
 	
-	@Autowired
-	@Qualifier("EmployedServiceMysql")
-	private IEmployeeService employeeService;
+///	@Autowired
+//	@Qualifier("EmployedServiceMysql")
+//	private IEmployeeService employeeService;
 	/*
 	@Autowired
 	@Qualifier("customerUtilService")
@@ -62,7 +62,7 @@ public class CustomerController {
 	public String getNuevoCustomerPage(Model model){//(){
 		model.addAttribute("customer",customerService.getCustomer());
 
-		model.addAttribute("lista_employee",employeeService.getEmployee());//retorna el numero de la lista de employee
+	//	model.addAttribute("lista_employee",employeeService.getEmployee());//retorna el numero de la lista de employee
 		return "alta_customer";
 	}
 	
@@ -79,23 +79,23 @@ public class CustomerController {
 		if (resultadoValidacion.hasErrors()) { //En la validacion Si Encontro errores
 			model = new ModelAndView("alta_customer");
 			
-			model.addObject("lista_employee", employeeService.obtenerEmployees());//datos de employees
+		//	model.addObject("lista_employee", employeeService.obtenerEmployees());//datos de employees
 			
 			return  model;
 		}else {//En la validacion no encontro errores
 			model = new ModelAndView("lista_customer");
 			
 			
-			Employee employee = employeeService.updateNuemeroDeEmpleado(customer.getCustomerNumber());
-			customer.setSalesRepEmployeeNumber(employee);
+	//		Employee employee = employeeService.updateNuemeroDeEmpleado(customer.getCustomerNumber());
+	//		customer.setSalesRepEmployeeNumber(employee);
 			
-			LOGGER.info("PASA O NO PASA --"+employee);
+	//		LOGGER.info("PASA O NO PASA --"+employee);
 			
 			customerService.agregarCustomer(customer);
-			model.addObject("customer", customerService.getCustomer());//
+		//	model.addObject("customer", customerService.getCustomer());//
 		//	model.addObject("customer", customerService.obtenerCustomer());
 			model.addObject("alta_customer", customerService.obtenerCustomer());
-			LOGGER.info(employeeService.obtenerEmployees());
+	//		LOGGER.info(employeeService.obtenerEmployees());
 				return model;
 		}
 		
@@ -125,7 +125,7 @@ public class CustomerController {
 		
 		model.addObject("customer", customer);
 		
-		model.addObject("lista_employee", employeeService.obtenerEmployees());
+	//	model.addObject("lista_employee", employeeService.obtenerEmployees());
 		
 		return model;
 	}
@@ -142,3 +142,4 @@ public class CustomerController {
 	 
 
 }
+

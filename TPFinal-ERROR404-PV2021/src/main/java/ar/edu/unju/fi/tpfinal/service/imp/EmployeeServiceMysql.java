@@ -56,9 +56,10 @@ public class EmployeeServiceMysql implements IEmployeeService{
 
 	@Override
 	public Employee updateNuemeroDeEmpleado(Long employeeNumber) {
-		// TODO Auto-generated method stub
-		Employee employee = employeeRepository.deleteByEmployeeNumber(employeeNumber);
-		return employee;
+	//	// TODO Auto-generated method stub
+	
+	//	Employee employee = employeeRepository.deleteByEmployeeNumber(employeeNumber);
+		return null;// employee;
 	}
 	public List<Employee> listaEmployeeSeleccionado() {
 		
