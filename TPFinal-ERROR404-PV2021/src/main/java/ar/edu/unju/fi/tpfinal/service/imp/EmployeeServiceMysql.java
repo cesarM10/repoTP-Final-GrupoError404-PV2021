@@ -14,10 +14,16 @@ import ar.edu.unju.fi.tpfinal.service.IEmployeeService;
 
 @Service("employeeServiceMysql")
 public class EmployeeServiceMysql implements IEmployeeService{
+ borrar_modificar_cliente_V1
+	
+	
+
+
 	private static final Log LOGGER = LogFactory.getLog(EmployeeServiceMysql.class);
 	
 	List<Employee> employeeSeleccionado = new ArrayList<Employee>();
 	
+master
 	@Autowired
 	private Employee employee = new Employee();
 	
@@ -49,6 +55,12 @@ public class EmployeeServiceMysql implements IEmployeeService{
 	}
 
 	@Override
+ borrar_modificar_cliente_V1
+	public Employee updateNuemeroDeEmpleado(Long employeeNumber) {
+		// TODO Auto-generated method stub
+		Employee employee = employeeRepository.deleteByEmployeeNumber(employeeNumber);
+		return employee;
+
 	public List<Employee> listaEmployeeSeleccionado() {
 		
 		return employeeSeleccionado;
@@ -74,6 +86,7 @@ public class EmployeeServiceMysql implements IEmployeeService{
 			}
 		}
 		
+
 	}
 
 	
