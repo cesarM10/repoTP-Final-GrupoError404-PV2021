@@ -20,6 +20,61 @@
 				<div class="col-sm-12 col-md" style="border: solid;">
 					<h1 style="font-family: century gothic">Alta de un nuevo empleado</h1>
 						
+							<div class="col-md-8 justify-content-left">
+								<form th:action="@{/employee/busqueda}" th:object="${employee}" method="GET" >
+									
+									<div class="form-group row">
+										<label for="employeeNumber" class="col-sm-3 col-form-label">A cargo de: </label>
+										<div class="col-sm-5">
+											<input type="number" class="form-control" id="employeeNumber" th:field="*{employeeNumber}" placeholder="Ingrese legajo">
+										</div>
+										
+										<button type="submit" class="btn btn-success">Buscar</button>
+									</div> 
+																		
+									
+								</form>
+							</div>
+							
+			
+							
+							<div class="col-sm-12 col-md-10"> 
+								<div class="scrollme">
+								<table class="table table-responsive table-hover" style="text-align: center; background-color: gray; color: white;">
+									<thead style="background-color: black;"> 
+										<tr id="miTablaEncabezado">
+											<th>ID Empleado</th>
+											<th>Apellido</th>
+											<th>Nombre</th>
+											<th>Extension</th>
+											<th>Lugar de Oficina</th>
+											<th>Titulo</th>
+											
+										
+											<th>Acciones </th>
+											
+										</tr>
+									</thead>
+									<tbody>
+										<tr id="miTablaContenido" th:each = "empS:${employeeSeleccionado}">
+											<td th:text="${empS.getEmployeeNumber()}"></td>
+											<td th:text="${empS.lastName}"></td>
+											<td th:text="${empS.firstName}"></td>
+											<td th:text="${empS.extension}"></td>
+											<td th:text="${empS.office.city}"></td>
+											<td th:text="${empS.jobTitle}"></td>
+										
+											<td>
+												<a th:href="@{/employee/quitaropcion/}+${empS.employeeNumber}" class="btn btn-danger">Quitar</a>
+											</td>
+										</tr> 
+									</tbody>
+								
+								</table>
+								</div>
+							</div>
+						
+						
 						<form th:action="@{/employee/guardar}" method="post" th:object="${employee}" >
 							
 							<input type="hidden" th:field="*{employeeNumber}">  
@@ -77,11 +132,11 @@
 							
 							
 							<div class="form-group ">
-								<label for="office" class="col-sm-2 col-form-label">Oficina</label>
-							    <select id="office" th:field="*{office.officeCode}">
+								<label for="office.officeCode" class="col-sm-2 col-form-label">Oficina</label>
+							    <select id="office.officeCode" th:field="*{office.officeCode}">
 							      <option th:each = "off : ${offices}" selected
 							      th:value="${off.officeCode}"
-							      th:text="${off.city} + ' - ' + ${off.state} + ' - $' + ${off.country}"
+							      th:text="${off.city} + ' - ' + ${off.state} + ' - ' + ${off.country}"
 							      th:selected="false"
 							      />
 							    </select>
@@ -89,65 +144,13 @@
 							</div>
 							
 							
-							<div class="col-md-8 justify-content-left">
-								<form th:action="@{/employee/busqueda}" th:object="${employee}" method="GET" >
-									
-									<div class="form-group row">
-										<label for="employeeNumber" class="col-sm-3 col-form-label">ID Empleado </label>
-										<div class="col-sm-5">
-											<input type="number" class="form-control" id="employeeNumber" th:field="*{employeeNumber}">
-										</div>
-									</div> 
-																		
-									
-									<button type="submit" class="btn btn-success">Buscar</button> 
-								
-								</form>
-							</div>
 							
-							<div > 
-								<h1 style="font-family: century gothic;">Lista de Empleados</h1>
-							</div>
-							
-							<div class="col-sm-12 col-md-10"> 
-								<div class="scrollme">
-								<table class="table table-responsive table-hover" style="text-align: center; background-color: gray; color: white;">
-									<thead style="background-color: black;"> 
-										<tr id="miTablaEncabezado">
-											<th>ID Empleado</th>
-											<th>Apellido</th>
-											<th>Nombre</th>
-											<th>Extension</th>
-											<th>Lugar de Oficina</th>
-											<th>Titulo</th>
-											
-										
-											<th>Acciones </th>
-											
-										</tr>
-									</thead>
-									<tbody>
-										<tr id="miTablaContenido" th:each = "empS:${employeeSeleccionados}">
-											<td th:text="${empS.employeeNumber}"></td>
-											<td th:text="${empS.lastName}"></td>
-											<td th:text="${empS.firstName}"></td>
-											<td th:text="${empS.extension}"></td>
-											<td th:text="${empS.office.city}"></td>
-											<td th:text="${empS.jobTitle}"></td>
-										
-											<td>
-												<a th:href="@{/employee/quitaropcion/}+${empS.employeeNumber}" class="btn btn-danger">Quitar</a>
-											</td>
-										</tr> 
-									</tbody>
-								
-								</table>
-								</div>
-							</div>
 																
 							<button type="submit" class="btn btn-primary btn-sm">Guardar</button>
 						
 						</form>
+						
+							
 				</div>
 					
 				<div class="Col col-md-2">
