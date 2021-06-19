@@ -60,7 +60,7 @@ public class EmployeeServiceMysql implements IEmployeeService{
 			
 		}else {
 			employeeSeleccionado = employeeRepository.findByEmployeeNumber(employeeNumber);
-			LOGGER.info("ENTRO POR VALOR INGRESADO" + employeeSeleccionado.toString());
+			LOGGER.info("ENTRO POR VALOR INGRESADO");
 		}
 		
 		return employeeSeleccionado;
