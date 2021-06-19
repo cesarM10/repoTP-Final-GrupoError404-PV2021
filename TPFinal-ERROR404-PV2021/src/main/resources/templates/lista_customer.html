@@ -36,7 +36,11 @@
 									<th>Estado</th>
 									<th>Codigo Postal</th>
 									<th>Pais</th>
-								<!-- <th>Número de Empleado del Representante de Ventas</th>  -->	
+									
+									
+							   <th>Número de Empleado del Representante de Ventas</th> 
+								   
+								    	
 									<th>Limite de Credito</th>	
 								<!-- seccion donde ira los botones de modificar y eliminar -->
 									<th>Acciones </th>							
@@ -55,9 +59,15 @@
 									<td th:text="${cust.city}"></td>
 									<td th:text="${cust.state}"></td>
 									<td th:text="${cust.postalCode}"></td>
+									
+							<!--  	<td th:text="${cust.employee.getemployeeNumber}"></td> -->	
+									
 									<td th:text="${cust.country}"></td>
 									
-								<!-- <td th:text="${cust.salesRepEmployeeNumber}"></td>  -->	
+								<td th:text="${cust.salesRepEmployeeNumber.employeeNumber}"></td> 	
+								
+								
+								
 									<td th:text="${cust.creditLimit}"></td>
 									
 									<td>
