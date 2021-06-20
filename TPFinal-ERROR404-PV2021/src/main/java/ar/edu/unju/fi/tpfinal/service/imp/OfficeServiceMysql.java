@@ -41,4 +41,10 @@ public class OfficeServiceMysql implements IOfficeService{
 		
 	}
 
+	@Override
+	public Office getOfficePorCodigo(Long officeCode) {
+		Office office = officeRepository.findByOfficeCode(officeCode);
+		return office;
+	}
+
 }

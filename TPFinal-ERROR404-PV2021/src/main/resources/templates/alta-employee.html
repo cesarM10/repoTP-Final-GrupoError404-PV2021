@@ -130,18 +130,18 @@
 							    
 							</div>
 							
-							<!-- 
+							 
 							<div class="form-group ">
-								<label for="officeCode" class="col-sm-2 col-form-label">Oficina</label>
-							    <select id="officeCode" th:field="*{office.officeCode}">
-							      <option th:each = "off : ${offices}" selected
-							      th:value="${off.officeCode}"
-							      th:text="${off.city} + ' - ' + ${off.state} + ' - ' + ${off.country}"
+								<label for="office" class="col-sm-2 col-form-label">Oficina</label>
+							    <select id="office" name= "office" th:field="*{office.officeCode}">
+							      <option th:each = "offis : ${offices}" selected
+							      th:value="${offis.officeCode}"
+							      th:text="${offis.officeCode} + ' - ' + ${offis.city} + ' - ' + ${offis.state} + ' - ' + ${offis.country}"
 							      th:selected="false"
 							      />
 							    </select>
 							   
-							</div>  -->
+							</div>  
 							
 							
 							

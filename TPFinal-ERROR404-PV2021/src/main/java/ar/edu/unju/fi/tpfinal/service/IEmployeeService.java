@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.tpfinal.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import ar.edu.unju.fi.tpfinal.model.Employee;
 
@@ -18,5 +19,8 @@ public interface IEmployeeService {
 	public List<Employee> buscarEmployeePorEmployeeNumber(Long employeeNumber);
 	
 	public void quitarEmployeeListaSeleccionado(Long employeeNumber);
+	
+	public Optional <Employee> getEmployeePorEmployeeNumber(Long employeeNumber);
 
+	
 }

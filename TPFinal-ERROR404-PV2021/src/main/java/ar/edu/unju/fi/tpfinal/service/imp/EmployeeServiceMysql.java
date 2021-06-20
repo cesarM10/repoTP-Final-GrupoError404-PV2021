@@ -2,6 +2,7 @@ package ar.edu.unju.fi.tpfinal.service.imp;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -44,8 +45,7 @@ public class EmployeeServiceMysql implements IEmployeeService{
 
 	@Override
 	public void eliminarEmployee(Long empoyeeNumber) {
-		employeeRepository.deleteByEmployeeNumber(empoyeeNumber);
-		
+		employeeRepository.deleteById(empoyeeNumber);
 	}
 
 	@Override
@@ -76,7 +76,11 @@ public class EmployeeServiceMysql implements IEmployeeService{
 		
 	}
 
-	
+	@Override
+	public Optional<Employee> getEmployeePorEmployeeNumber(Long employeeNumber) {
+		Optional<Employee> employee = employeeRepository.findById(employeeNumber);
+		return employee;
+	}
 
 }
 

@@ -9,5 +9,6 @@ import ar.edu.unju.fi.tpfinal.model.Employee;
 public interface IEmployeeRepository extends CrudRepository<Employee, Long>{
 	public Employee deleteByEmployeeNumber(Long employeeNumber);
 	
-	public List<Employee> findByEmployeeNumber(Long employeeNumber); 
+	public List<Employee> findByEmployeeNumber(Long employeeNumber);
+
 }
