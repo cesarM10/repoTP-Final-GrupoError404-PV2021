@@ -49,12 +49,12 @@
 									<td th:text="${emps.email}"> </td>
 									<td th:text="${emps.jobTitle}"> </td>
 									<td th:text="${emps.reportsTo.employeeNumber}"> </td>
-									<td th:text="${emps.office.officeCode}"> </td>																
+									<td th:text="${emps.office.officeCode}"> </td> 														
 									
 									 
 									<td>
 										<a th:href="@{/employee/editar/}+${emps.employeeNumber}" class="btn btn-warning">Editar</a>
-										<a th:href="@{/cliente/eliminar/}+${emps.employeeNumber}" class="btn btn-danger">Eliminar</a>
+										<a th:href="@{/employee/eliminar/}+${emps.employeeNumber}" class="btn btn-danger">Eliminar</a>
 									</td>
 									
 								</tr> 

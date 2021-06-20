@@ -12,4 +12,6 @@ public interface IOfficeService {
 	public List<Office> obtenerOffices();
 	
 	public void eliminarOffice(Long officeCode);
+	
+	public Office getOfficePorCodigo(Long OfficeCode);
 }
