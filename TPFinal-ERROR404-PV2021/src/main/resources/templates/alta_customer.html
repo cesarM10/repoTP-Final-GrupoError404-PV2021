@@ -65,7 +65,7 @@
 							  <div class="form-group row">
 							     <label for="phone" class="col-sm-2 col-form-label">Telefono</label>
 								     <div class="col-sm-10">
-								        <input type="text" class="form-control" id="phone" th:field="*{phone}" placeholder="Ingrese telefono...">
+								        <input type="number" class="form-control" id="phone" th:field="*{phone}">
 								    </div>
 <!-- en caso de error de V. -->		<div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></div>									    
 							    </div>

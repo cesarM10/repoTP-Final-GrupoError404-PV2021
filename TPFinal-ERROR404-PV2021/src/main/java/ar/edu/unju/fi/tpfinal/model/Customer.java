@@ -48,9 +48,9 @@ public class Customer {
 	private String contactFirstName;
 	
 	
-	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Min(value = 1, message = "El campo no debe ser negativo")
 	@Column(name = "cus_phone", nullable = false) 
-	private String phone;
+	private int phone;
 	
 	
 	@NotEmpty(message = "El campo no debe estar vacio.")
@@ -109,7 +109,7 @@ public class Customer {
 
 
 	public Customer(Long customerNumber, String customerName, String contactLastName, String contactFirstName,
-			String phone, String addressLine1, String addressLine2, String city, String state, int postalCode,
+			int phone, String addressLine1, String addressLine2, String city, String state, int postalCode,
 			String country, Employee salesRepEmployeeNumber, double creditLimit) {
 		super();
 		this.customerNumber = customerNumber;
@@ -174,12 +174,12 @@ public class Customer {
 	}
 
 
-	public String getPhone() {
+	public int getPhone() {
 		return phone;
 	}
 
 
-	public void setPhone(String phone) {
+	public void setPhone(int phone) {
 		this.phone = phone;
 	}
 

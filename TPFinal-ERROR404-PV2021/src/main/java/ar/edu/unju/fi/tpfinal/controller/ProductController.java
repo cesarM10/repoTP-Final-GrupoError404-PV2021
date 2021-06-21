@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
  
 import ar.edu.unju.fi.tpfinal.model.Product;
 import ar.edu.unju.fi.tpfinal.service.IProductService;
+import ar.edu.unju.fi.tpfinal.service.IProductlineService;
 
 @Controller
 public class ProductController {
@@ -36,10 +37,15 @@ public class ProductController {
 	@Qualifier("productServiceMysql")
 	private IProductService productService;
 	
+	@Autowired
+	@Qualifier("productlineServiceMysql")
+	private IProductlineService productlineService;
+	
 	@GetMapping("/producto/nuevo")
 	public String getNuevoProductPage(Model model) {
 		//model.addAttribute(product);
 		model.addAttribute("product", productService.getProduct());//.getCliente());
+		model.addAttribute("productLines", productlineService.obtenerProductosline());
 		return "alta_product";
 	}
 	
@@ -74,6 +80,7 @@ public class ProductController {
 		Optional <Product> product = productService.getProductPorId(id);
 		
 		model.addObject("product", product);
+		model.addObject("productLines", productlineService.obtenerProductosline());
 		return model;
 	}
 	
