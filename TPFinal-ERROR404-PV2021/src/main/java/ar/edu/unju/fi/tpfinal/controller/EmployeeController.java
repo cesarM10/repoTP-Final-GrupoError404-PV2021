@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.tpfinal.model.Employee;
-
+import ar.edu.unju.fi.tpfinal.model.Office;
 import ar.edu.unju.fi.tpfinal.service.IEmployeeService;
 import ar.edu.unju.fi.tpfinal.service.IOfficeService;
 import ar.edu.unju.fi.tpfinal.service.imp.EmployeeServiceMysql;
@@ -56,7 +56,8 @@ public class EmployeeController {
 		//}else {
 		//RESOLVER QUE NO CAPTURA EL officeCode EN employee.
 		LOGGER.info("AQUI AQUI AQUI AQUI AQUI AQUI AQUI" + employee);
-		employee.setOffice(officeService.getOfficePorCodigo(1L));	
+		Optional<Office> officeOp= officeService.getOfficePorCodigo(1L);
+		employee.setOffice(officeOp.get());	
 		employee.setReportsTo(employeeService.listaEmployeeSeleccionado().get(0));
 			
 		//}

@@ -12,10 +12,6 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-/**
- * @author Alvaro
- *
- */
 @Component("officeObject")
 @Entity
 @Table(name = "offices")
@@ -28,8 +24,8 @@ public class Office {
 	@Column(name = "off_city", nullable = false)
 	private String city;
 	
-	@Column(name = "off_phone", nullable = false)
-	private String phone;
+	@Column(name = "off_phone")
+	private int phone;
 	
 	@Column(name = "off_addressLine1", nullable = false)
 	private String addressLine1;
@@ -57,7 +53,7 @@ public class Office {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Office(Long officeCode, String city, String phone, String addressLine1, String addressLine2, String state,
+	public Office(Long officeCode, String city, int phone, String addressLine1, String addressLine2, String state,
 			String country, String postalCode, String territory) {
 		super();
 		this.officeCode = officeCode;
@@ -87,11 +83,11 @@ public class Office {
 		this.city = city;
 	}
 
-	public String getPhone() {
+	public int getPhone() {
 		return phone;
 	}
 
-	public void setPhone(String phone) {
+	public void setPhone(int phone) {
 		this.phone = phone;
 	}
 

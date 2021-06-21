@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>Registro Oficina</title>
+		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
+		<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0-1/css/bootstrap.min.css}">
+		<link rel="stylesheet" th:href="@{/css/style.css}">
+		<link rel="stylesheet" th:href="@{/css/atn.css}">
+		<link rel="shortcut icon" href="/image/infectado.png">
+	</head>
+	
+	<body>
+		<header th:replace="layout/header :: header"></header>
+			
+		
+		<div class="container">
+			<div class="row col-sm-12 col-md">
+		
+				<div class="col-sm-12 col-md" style="border: solid;">
+					<h1 style="font-family: century gothic">Alta de una oficina</h1>
+						<!-- 
+							<div class="col-sm-12 col-md-10"> 
+								<div class="scrollme">
+								<table class="table table-responsive table-hover" style="text-align: center; background-color: gray; color: white;">
+									<thead style="background-color: black;"> 
+										<tr id="miTablaEncabezado">
+											<th>Ciudad</th>
+											<th>Telefono</th>
+											<th>Direccion 1</th>
+											<th>Direccion 2</th>
+											<th>Provincia</th>
+											<th>Pais</th>
+											<th>Codigo Postal</th>
+											<th>Departamento</th>
+											
+										
+											<th>Acciones </th>
+											
+										</tr>
+									</thead>
+									<tbody>
+										<tr id="miTablaContenido" th:each = "empS:${employeeSeleccionado}">
+											<td th:text="${empS.getEmployeeNumber()}"></td>
+											<td th:text="${empS.lastName}"></td>
+											<td th:text="${empS.firstName}"></td>
+											<td th:text="${empS.extension}"></td>
+											<td th:text="${empS.office.city}"></td>
+											<td th:text="${empS.jobTitle}"></td>
+										
+											<td>
+												<a th:href="@{/employee/quitaropcion/}+${empS.employeeNumber}" class="btn btn-danger">Quitar</a>
+											</td>
+										</tr> 
+									</tbody>
+								
+								</table>
+								</div>
+							</div> -->
+						
+						
+						<form th:action="@{/office/guardar}" method="post" th:object="${office}" >
+							
+							<input type="hidden" th:field="*{officeCode}">  
+							<!--  <input type="hidden" th:field="*{office.officeCode}"> -->
+							
+							<div class="form-group row">
+							    <label for="city" class="col-sm-2 col-form-label">Ciudad</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" id="city" th:field="*{city}" placeholder="Ingrese la ciudad..." >
+							    </div>
+							    
+							    <!--  <div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></div> -->
+							    
+							</div>
+							
+							<div class="form-group row">
+							    <label for="phone" class="col-sm-2 col-form-label">Telefono</label>
+							    <div class="col-sm-10">
+							      <input type="number" class="form-control" id="phone" th:field="*{phone}" >
+							    </div>
+							    
+							    <!--  <div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('phone')}" th:errors="*{city}"></div> -->
+							    
+							</div>
+							
+							<div class="form-group row">
+							    <label for="addressLine1" class="col-sm-2 col-form-label">Direccion 1</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" id="addressLine1" th:field="*{addressLine1}" placeholder="Ingrese direccion...">
+							    </div>
+							    
+							    <!--  <div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('addressLine1')}" th:errors="*{addressLine1}"></div> -->
+							    
+							</div>
+							
+							<div class="form-group row">
+							    <label for="addressLine2" class="col-sm-2 col-form-label">Direccion 2</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" id="addressLine2" th:field="*{addressLine2}" placeholder="Ingrese direccion...">
+							    </div>
+							    
+							    <!--  <div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div> -->
+							    
+							</div>
+							
+							<div class="form-group row">
+							    <label for="state" class="col-sm-2 col-form-label">Provincia</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" id="state" th:field="*{state}" placeholder="Ingrese la provincia...">
+							    </div>
+							    
+							    <!--  <div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('state')}" th:errors="*{state}"></div> -->
+							    
+							</div>
+							
+							<div class="form-group row">
+							    <label for="country" class="col-sm-2 col-form-label">País</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" id="country" th:field="*{country}" placeholder="Ingrese pais...">
+							    </div>
+							    
+							    <!--  <div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></div> -->
+							    
+							</div>
+							
+							<div class="form-group row">
+							    <label for="postalCode" class="col-sm-2 col-form-label">Codigo Postal</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" id="postalCode" th:field="*{postalCode}" placeholder="Ingrese el codigo postal...">
+							    </div>
+							    
+							    <!--  <div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}"></div> -->
+							    
+							</div>
+							
+							<div class="form-group row">
+							    <label for="territory" class="col-sm-2 col-form-label">Departamento</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" id="territory" th:field="*{territory}" placeholder="Ingrese el departamento...">
+							    </div>
+							    
+							    <!--  <div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('territory')}" th:errors="*{territory}"></div> -->
+							    
+							</div>
+							 
+							
+							
+							
+							
+																
+							<button type="submit" class="btn btn-primary btn-sm">Guardar</button>
+						
+						</form>
+						
+							
+				</div>
+					
+				<div class="Col col-md-2">
+					<aside th:replace="layout/publicidad :: publicidad"></aside>
+				</div>
+			</div>	
+		</div><br>
+		<footer th:replace="layout/footer :: footer"></footer>
+	
+		<script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+		<script type="text/javascript" th:src="@{/webjars/popper.js/1.16.1-lts/popper.min.js}"></script>
+		<script type="text/javascript" th:src="@{/webjars/bootstrap/4.6.0-1/js/bootstrap.min.js}"></script>
+	</body>
+</html>
