@@ -46,7 +46,7 @@ public class Order {
 	@Autowired
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cus_customer_number")
-	private Customer customer;;
+	private Customer customer;
 	
 		
 	/**
