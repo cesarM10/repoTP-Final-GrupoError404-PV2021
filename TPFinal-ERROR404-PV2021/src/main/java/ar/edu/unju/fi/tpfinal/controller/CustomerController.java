@@ -38,24 +38,7 @@ public class CustomerController {
 	@Autowired
 	@Qualifier("employeeServiceMysql")
 	private IEmployeeService employeeService;
-	/*
-	@Autowired
-	@Qualifier("customerUtilService")
-	private ICustomerService customerService;
-	
-	@Autowired
-	@Qualifier("customerObject")
-	private Customer customer;
-	
-	
-	
-	@GetMapping("/cliente/nuevo")
-	public String getNuevoCustomerPage(Model model){//(){
-		model.addAttribute("customer",customer);
 
-		return "alta_customer";
-	}
-	*/
 	
 	@GetMapping("/cliente/nuevo")
 	public String getNuevoCustomerPage(Model model){//(){
@@ -66,75 +49,50 @@ public class CustomerController {
 	}
 	
 	@PostMapping("/cliente/guardar")
- //	public ModelAndView agregarCustomerPage(@ModelAttribute("customer")Customer customer) {
+ 
 	public ModelAndView agregarCustomerPage(@Valid @ModelAttribute("customer")Customer customer, BindingResult resultadoValidacion) {
-	//	ModelAndView model = new ModelAndView("lista_customer");
+	
 		LOGGER.info("Metodo: guardando... --");
 		ModelAndView model;
-/*	if (customerService.obtenerCustomer() == null) { //isEmpty()
-			customerService.generarTablaCustomer();
-		}
-*/		
+		
 		if (resultadoValidacion.hasErrors()) { //En la validacion Si Encontro errores
 			model = new ModelAndView("alta_customer");
 			
-		//	model.addObject("lista_employee", employeeService.obtenerEmployees());//datos de employees
+		
 			
 			return  model;
 		}else {//En la validacion no encontro errores
-			model = new ModelAndView("lista_customer");
-			
-			
-	//		Employee employee = employeeService.updateNuemeroDeEmpleado(customer.getCustomerNumber());
-	//		customer.setSalesRepEmployeeNumber(employee);
-			
-	//		LOGGER.info("PASA O NO PASA --"+employee);
-			
-			customerService.agregarCustomer(customer);
-		//	model.addObject("customer", customerService.getCustomer());//
-		//	model.addObject("customer", customerService.obtenerCustomer());
+			model = new ModelAndView("lista_customer");	
+			customerService.agregarCustomer(customer);	
 			model.addObject("alta_customer", customerService.obtenerCustomer());
-	//		LOGGER.info(employeeService.obtenerEmployees());
 				return model;
 		}
-		
-	//	customerService.agregarCustomer(customer);	
-	//	model.addObject("customer", customerService.obtenerCustomer());
-	//	return model;
+	
 	}
 	
 	@GetMapping("/cliente/listado")
 	public ModelAndView getCustomerPage() {
-		ModelAndView model = new ModelAndView("lista_customer");
-/*	if (customerService.obtenerCustomer() == null) { //isEmpty()
-			customerService.generarTablaCustomer();
-		}
-*/		
+		ModelAndView model = new ModelAndView("lista_customer");		
 		model.addObject("customer",customerService.obtenerCustomer());	
 		return model;
 	}
 	
-	//eliminar y modificar
+	//ELIMINAR Y MODIFICAR
 	
-	@GetMapping("/cliente/editar/{customerNumber}")
+	@GetMapping("/cliente/editar/{customerNumber}") //customerNumber es nuestro identicador que es de tipo Long
 	public ModelAndView getCustomerEditPage(@PathVariable(value = "customerNumber")Long customerNumber) {
 		LOGGER.info("METODO - - EDITAR CUSTOMER");
 		ModelAndView model = new ModelAndView("alta_customer");
 		Optional <Customer> customer = customerService.getCustomerPorId(customerNumber);
-		
 		model.addObject("customer", customer);
-		
 		model.addObject("employees", employeeService.obtenerEmployees());
-		
 		return model;
 	}
 	
 	@GetMapping("/cliente/eliminar/{customerNumber}")
 	public ModelAndView getCustomerDeletePage(@PathVariable(value = "customerNumber")Long customerNumber) {
-		ModelAndView model = new ModelAndView("redirect:/cliente/listado");
-		
+		ModelAndView model = new ModelAndView("redirect:/cliente/listado"); //una vez eliminado volveremos a la lista 
 		customerService.eliminarCustomer(customerNumber);
-		
 		model.addObject("customer",customerService.obtenerCustomer());
 		return model;
 	}
