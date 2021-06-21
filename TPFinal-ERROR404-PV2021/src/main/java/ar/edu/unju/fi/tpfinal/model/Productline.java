@@ -40,8 +40,8 @@ public class Productline {  //7658
 	@Column(name = "pli_image")
 	private  byte[] image;//mediumblob
 	
-	@OneToMany(mappedBy ="productline", cascade= CascadeType.ALL, orphanRemoval=true)
-	private List <Product> products = new ArrayList<Product>();
+	@OneToMany(mappedBy ="productline", cascade= CascadeType.ALL, orphanRemoval=true)//controlar
+	private List <Product> products = new ArrayList<Product>();//controlar
 	
 	
 	public Productline() {

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>Linea de Producto</title>
+		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
+		<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0-1/css/bootstrap.min.css}">
+		<link rel="stylesheet" th:href="@{/css/atn.css}">
+	</head>
+	
+	<body>
+		<header th:replace="layout/header :: header"></header>
+	
+		<div class="container">
+						
+			<div > 
+				<h1 style="font-family: century gothic">Lista de Linea de Productos</h1>
+			</div>
+			
+			<div class="row">
+					<div class="col-sm-12 col-md-10"> 
+						<div class="scrollme">
+						<table class="table table-responsive table-hover" style="text-align: center; background-color: gray; color: white;">
+							<thead style="background-color: black;"> 
+								<tr id="miTablaEncabezado">
+									<th>linea de producto</th>
+									<th>texto de descripcion</th>
+									<th>html Descripcion </th>
+									<th>Imagen</th> 						
+								</tr>
+							</thead>
+							<tbody>
+								<tr id="miTablaContenido" th:each = "pli:${productline}"> 
+									<td th:text="${pli.productLine}"></td>
+									<td th:text="${pli.textDescription}"></td>
+									<td th:text="${pli.htmlDescription}"></td> 
+									<!--td th:text="${pli.image}"></td--> 
+									<td><img  src="${pli.image}" alt="image" class="img-thumbnail"></td>
+									
+									<td>
+										<a th:href="@{/productoline/editar/}+${pli.productLine}" class="btn btn-warning">Editar</a>
+										<a th:href="@{/productoline/eliminar/}+${pli.productLine}" class="btn btn-danger">Eliminar</a>
+									</td>		 
+								</tr> 
+							</tbody>
+						
+						</table>
+						</div>
+					</div>
+			
+					<div class="col col-md-2">
+						<aside th:replace="layout/publicidad :: publicidad"></aside>
+					</div>
+				</div>
+			
+		</div><br>
+			
+		<footer th:replace="layout/footer :: footer"></footer>
+		<script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+		<script type="text/javascript" th:src="@{/webjars/popper.js/1.16.1-lts/popper.min.js}"></script>
+		<script type="text/javascript" th:src="@{/webjars/bootstrap/4.6.0-1/js/bootstrap.min.js}"></script>
+	</body>
+</html>
