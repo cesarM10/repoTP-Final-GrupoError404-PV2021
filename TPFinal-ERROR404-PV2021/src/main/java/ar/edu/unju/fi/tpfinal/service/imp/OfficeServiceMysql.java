@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.tpfinal.service.imp;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class OfficeServiceMysql implements IOfficeService{
 	private IOfficeRepository officeRepository;
 	
 	@Override
-	public void agregarEmployee(Office office) {
+	public void agregarOffice(Office office) {
 		officeRepository.save(office);
 		
 	}
@@ -37,13 +38,13 @@ public class OfficeServiceMysql implements IOfficeService{
 
 	@Override
 	public void eliminarOffice(Long officeCode) {
-		officeRepository.deleteByOfficeCode(officeCode);
+		officeRepository.deleteById(officeCode);
 		
 	}
 
 	@Override
-	public Office getOfficePorCodigo(Long officeCode) {
-		Office office = officeRepository.findByOfficeCode(officeCode);
+	public Optional<Office> getOfficePorCodigo(Long officeCode) {
+		Optional<Office> office = officeRepository.findById(officeCode);
 		return office;
 	}
 

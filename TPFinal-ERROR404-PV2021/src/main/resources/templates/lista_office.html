@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<title>Oficinas</title>
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0-1/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="stylesheet" th:href="@{/css/atn.css}">
+	<link rel="shortcut icon" href="/image/infectado.png">
+</head>
+	<body>
+		<header th:replace="layout/header :: header"></header>
+		
+		<div class="container">
+			
+			<div > 
+				<h1 style="font-family: century gothic;">Lista de Oficinas</h1>
+			</div>
+			
+			<div class="row">
+					<div class="col-sm-12 col-md-10"> 
+						<div class="scrollme">
+						<table class="table table-responsive table-hover" style="text-align: center; background-color: gray; color: white;">
+							<thead style="background-color: black;"> 
+								<tr id="miTablaEncabezado">
+									<th>ID Oficina</th>
+									<th>Ciudad</th>
+									<th>Telefono</th>
+									<th>Direccion 1</th>
+									<th>Direccion 2</th>
+									<th>Provincia</th>
+									<th>Pais</th>
+									<th>Codigo Postal</th>
+									<th>Departamento</th>
+											
+										
+									<th>Acciones </th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								<tr id="miTablaContenido" th:each = "offis:${offices}">
+									<td th:text="${offis.officeCode}"></td>
+									<td th:text="${offis.city}"></td>
+									<td th:text="${offis.phone}"></td>
+									<td th:text="${offis.addressLine1}"></td>
+									<td th:text="${offis.addressLine2}"></td>
+									<td th:text="${offis.state}"></td>
+									<td th:text="${offis.country}"></td>
+									<td th:text="${offis.postalCode}"></td>
+									<td th:text="${offis.territory}"></td>
+								
+									<td>
+										<a th:href="@{/office/editar/}+${offis.officeCode}" class="btn btn-warning">Editar</a>
+										<a th:href="@{/office/eliminar/}+${offis.officeCode}" class="btn btn-danger">Eliminar</a>
+									</td>
+								</tr> 
+							</tbody>
+						
+						</table>
+						</div>
+					</div>
+			
+					<div class="col col-md-2">
+						<aside th:replace="layout/publicidad :: publicidad"></aside>
+					</div>
+				</div>
+			
+		</div>
+		<br><br><br><br><br><br><br>
+		<footer th:replace="layout/footer :: footer"></footer>
+		
+		<script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+		<script type="text/javascript" th:src="@{/webjars/popper.js/1.16.1-lts/popper.min.js}"></script>
+		<script type="text/javascript" th:src="@{/webjars/bootstrap/4.6.0-1/js/bootstrap.min.js}"></script>	
+	</body>
+</html>
