@@ -25,6 +25,7 @@
 						<table class="table table-responsive table-hover" style="text-align: center; background-color: gray; color: white;">
 							<thead style="background-color: black;"> 
 								<tr id="miTablaEncabezado">
+								  
 									<th>Numero de Cliente</th>
 									<th>Nombre de Cliente</th>
 									<th>Apellido de contacto </th>
@@ -42,12 +43,13 @@
 								   
 								    	
 									<th>Limite de Credito</th>	
-								<!-- seccion donde ira los botones de modificar y eliminar -->
+								<!-- Secciön donde ira los botones de modificar y eliminar -->
 									<th>Acciones </th>							
 								</tr>
 							</thead>
 							<tbody>
 								<tr id="miTablaContenido" th:each = "cust:${customer}">
+								    <!-- fila muesta la interacción -->
 									<td th:text="${cust.customerNumber}"></td>  
 									<td th:text="${cust.customerName}"></td>
 									<td th:text="${cust.contactLastName}"></td>
@@ -59,23 +61,17 @@
 									<td th:text="${cust.city}"></td>
 									<td th:text="${cust.state}"></td>
 									<td th:text="${cust.postalCode}"></td>
-									
-									
 									<td th:text="${cust.country}"></td>
 									
-								<td th:text="${cust.salesRepEmployeeNumber.employeeNumber}"></td> 	
-								
-								
-								
+									<!-- en la lista se mostrara el numero de empleado -->
+							    	<td th:text="${cust.salesRepEmployeeNumber.employeeNumber}"></td> 	
 									<td th:text="${cust.creditLimit}"></td>
 									
+									<!-- Se mostrara los botones de editar y eliminar -->
 									<td>
 										<a th:href="@{/cliente/editar/}+${cust.customerNumber}" class="btn btn-warning">Editar</a>
 										<a th:href="@{/cliente/eliminar/}+${cust.customerNumber}" class="btn btn-danger">Eliminar</a>
-									</td>
-																										
-									
-									
+									</td>			
 								</tr> 
 							</tbody>
 						

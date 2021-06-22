@@ -28,7 +28,7 @@ import org.springframework.stereotype.Component;
 @Table(name = "customers")
 public class Customer {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //clave primaria.
 	@Column(name = "cus_customer_number")	
 	private Long customerNumber;
 	
