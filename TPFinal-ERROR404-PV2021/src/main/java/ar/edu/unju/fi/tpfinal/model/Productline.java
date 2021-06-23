@@ -13,8 +13,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Component;
 
@@ -31,13 +34,20 @@ public class Productline {  //7658
 	@Column(name = "pli_product_line")
 	private  Long productLine;
 	
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 3, max = 150,  message = "El campo de la Descripcion debe tener como minimo 3 caracteres.")
 	@Column(name = "pli_textDescription")
 	private  String textDescription;
 	
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 30, max = 150,  message = "El campo del HTML debe tener como minimo 30 caracteres.")
 	@Column(name = "pli_htmlDescription")
 	private  String htmlDescription;
 	
-	@Column(name = "pli_image")
+	@NotEmpty(message = "El campo no debe estar vacio.") 
+	@Lob
+	@Column(columnDefinition = "MEDIUMBLOB")
+    //@Column(name = "pli_image")
 	private  byte[] image;//mediumblob
 	
 	@OneToMany(mappedBy ="productline", cascade= CascadeType.ALL, orphanRemoval=true)//controlar
