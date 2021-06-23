@@ -18,19 +18,20 @@
 				<div class="col-sm12 col-md" style="border: solid;">
 					<h1 style="font-family: century gothic">Alta de Producto</h1> 
 					<form  th:action="@{/producto/guardar}" method="post" th:object="${product}" >  
-						 <!-- productCode -->
+						 <!-- productCode >
 							<div class="form-group row">
 							    <label for="productCode" class="col-sm-2 col-form-label">Codigo de producto</label>
 							    <div class="col-sm-10">
 							      <input type="number" class="form-control" id="productCode" th:field="*{productCode}" placeholder="Ingrese"  >
 							    </div>
-							</div>
+							</div-->
 							<!-- productName -->
 							<div class="form-group row">
 							    <label for="productName" class="col-sm-2 col-form-label">Nombre del Producto</label>
 							    <div class="col-sm-10">
 							      <input type="text" class="form-control" id="productName" th:field="*{productName}" placeholder="Ingrese"  >
-							    </div>
+							   	    </div>
+ <div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"></div>
 							</div>
 							
 							
@@ -59,6 +60,7 @@
 							    <div class="col-sm-10">
 							      <input type="text" class="form-control" id="productScale" th:field="*{productScale}" placeholder="Ingrese"  >
 							    </div>
+ <div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('productScale')}" th:errors="*{productScale}"></div>
 							</div>
 							<!-- productVendor -->
 							<div class="form-group row">
@@ -66,27 +68,31 @@
 							    <div class="col-sm-10">
 							      <input type="text" class="form-control" id="productVendor" th:field="*{productVendor}" placeholder="Ingrese"  >
 							    </div>
+ <div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('productVendor')}" th:errors="*{productVendor}"></div>
 							</div>
 							<!-- productDescription -->
 							<div class="form-group row">
 							    <label for="productDescription" class="col-sm-2 col-form-label">Descripcion del producto</label>
 							    <div class="col-sm-10">
 							      <input type="text" class="form-control" id="productDescription" th:field="*{productDescription}" placeholder="Ingrese"  >
-							    </div> 
+							   </div>
+ <div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('productDescription')}" th:errors="*{productDescription}"></div> 
 							</div>
 							<!-- quantityInStock -->
 							<div class="form-group row">
 							    <label for="quantityInStock" class="col-sm-2 col-form-label">Cantidad en inventario</label>
 							    <div class="col-sm-10">
 							      <input type="number" class="form-control" id="quantityInStock" th:field="*{quantityInStock}" placeholder="Ingrese"  >
-							    </div> 
+							    </div>
+ <div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('quantityInStock')}" th:errors="*{quantityInStock}"></div> 
 							</div>
 							<!-- buyPrice -->
 							<div class="form-group row">
 							    <label for="buyPrice" class="col-sm-2 col-form-label">Precio de compra</label>
 							    <div class="col-sm-10">
 							      <input type="number" class="form-control" id="buyPrice" th:field="*{buyPrice}" step="0.01" >
-							    </div> 
+							     </div> 
+ <div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('buyPrice')}" th:errors="*{buyPrice}"></div>
 							</div>
 							<!-- buyPrice -->
 							 <div class="form-group row">
@@ -94,6 +100,7 @@
 							    <div class="col-sm-10">
 							      <input type="number" class="form-control" id="MSRP" th:field="*{MSRP}" step="0.01" >
 							    </div>
+ <div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('MSRP')}" th:errors="*{MSRP}"></div>
 							</div>
 								<button type="submit" class="btn btn-outline-dark">Enviar</button>
 					</form>
