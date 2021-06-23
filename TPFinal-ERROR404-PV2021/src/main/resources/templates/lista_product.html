@@ -42,7 +42,14 @@
 								<tr id="miTablaContenido" th:each = "prod:${product}"> 
 									<td th:text="${prod.productCode}"></td>
 									<td th:text="${prod.productName}"></td>
-									<td th:text="${prod.productline.textDescription}"></td>
+									
+									<!-- td th:text="${prod.productline.textDescription}"></td-->
+									<td>
+									<span th:each="prl:${prod.productline}">
+											<p th:text="${prl.productLine}+' - '+${prl.textDescription}"></p>
+										</span>
+									</td>
+									
 									<td th:text="${prod.productScale}"></td>
 									<td th:text="${prod.productVendor}"></td>
 									<td th:text="${prod.productDescription}"></td>
