@@ -45,7 +45,7 @@ public class ProductlineController {
 	}
 	
 	@PostMapping("/productoline/guardar")
-	public ModelAndView agregarProductolinePage(@Valid @ModelAttribute("productoline")Productline productline, BindingResult resultadoValidacion) {
+	public ModelAndView agregarProductolinePage(@Valid @ModelAttribute("productline")Productline productline, BindingResult resultadoValidacion) {
 
 		/*if (productService.obtenerProductos() == null) {
 			productService.generarTablaProducto();
@@ -59,7 +59,7 @@ public class ProductlineController {
 		ModelAndView model;
 		if(resultadoValidacion.hasErrors()) { //encontró errores.
 			model = new ModelAndView("alta_productline");
-			model.addObject("productline", productline); 	
+			//model.addObject("productline", productlineService.getProductline()); 	
 			return model;
 		}else { //no encontró errores.
 			model = new ModelAndView("lista_productline");

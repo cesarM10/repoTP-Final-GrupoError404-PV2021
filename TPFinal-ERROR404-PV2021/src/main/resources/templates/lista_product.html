@@ -29,7 +29,7 @@
 									<th>Nombre del Producto</th>
 									<th>línea de producto </th>
 									<th>Escala de producto</th>
-									<th>vendedor de productos</th>
+									<th>Marca</th>
 									<th>Descripcion del producto</th>
 									<th>Cantidad en inventario</th>
 									<th>Precio de compra</th>
@@ -39,16 +39,17 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr id="miTablaContenido" th:each = "prod:${product}"> 
+								<tr id="miTablaContenido" th:each = "prod:${productLines}"> 
 									<td th:text="${prod.productCode}"></td>
 									<td th:text="${prod.productName}"></td>
 									
 									<!-- td th:text="${prod.productline.textDescription}"></td-->
-									<td>
+									<!--   <td>
 									<span th:each="prl:${prod.productline}">
 											<p th:text="${prl.productLine}+' - '+${prl.textDescription}"></p>
-										</span>
-									</td>
+									</span>
+									</td> -->
+									<td th:text="${prod.productline.productLine}"> </td>
 									
 									<td th:text="${prod.productScale}"></td>
 									<td th:text="${prod.productVendor}"></td>

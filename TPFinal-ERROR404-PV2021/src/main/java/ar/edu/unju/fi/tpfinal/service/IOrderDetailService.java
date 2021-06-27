@@ -13,4 +13,6 @@ public interface IOrderDetailService {
 	public List<OrderDetail> obtenerOrderDetails();
 	
 	public void eliminarOrderDetail(Long id);
+	
+	public List<OrderDetail> buscarProductosPorOrderNumber(int orderLineNumber);
 }

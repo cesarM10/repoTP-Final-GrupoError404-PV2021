@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.tpfinal.controller;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -17,9 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.fi.tpfinal.model.Order;
 import ar.edu.unju.fi.tpfinal.model.OrderDetail;
 import ar.edu.unju.fi.tpfinal.model.OrderDetailsID;
+import ar.edu.unju.fi.tpfinal.model.Payment;
+import ar.edu.unju.fi.tpfinal.model.PaymentsID;
 import ar.edu.unju.fi.tpfinal.service.ICustomerService;
 import ar.edu.unju.fi.tpfinal.service.IOrderDetailService;
 import ar.edu.unju.fi.tpfinal.service.IOrderService;
+import ar.edu.unju.fi.tpfinal.service.IPaymentService;
 import ar.edu.unju.fi.tpfinal.service.IProductService;
 import ar.edu.unju.fi.tpfinal.service.imp.ProductServiceMysql;
 
@@ -42,6 +46,10 @@ public class CompraController {
 	@Autowired
 	@Qualifier("customerServiceMysql")
 	private ICustomerService customerService;
+	
+	@Autowired
+	@Qualifier("paymentServiceMysql")
+	private IPaymentService paymentService;
 	
 	@GetMapping("/compra/nueva/orden")
 	public String getNuevaCompraPage(Model model) {
@@ -90,7 +98,8 @@ public class CompraController {
 		LOGGER.info("paso la asignacion del ID");
 		orderDetail.setId(id);
 		orderDetail.setPriceEach(productService.listaDeProductos().get(0).getMSRP());
-		orderDetail.setOrderLineNumber(1);
+		int i = Math.toIntExact(orderService.obtenerOrder().get(orderService.obtenerOrder().size()-1).getOrderNumber());
+		orderDetail.setOrderLineNumber(i);
 		
 		orderDetailService.agregarOrderDetail(orderDetail);
 		
@@ -110,5 +119,23 @@ public class CompraController {
 		LOGGER.info("METODO - - BUSCAR - - PASO");
 		
 		return "alta_compra";
+	}
+	
+	@GetMapping("/compra/carrito")
+	public String mostrarCarritoDeCompra(Model model) {
+		List<OrderDetail> listaEnCarrito = orderDetailService.buscarProductosPorOrderNumber(orderDetailService.obtenerOrderDetails().get(orderDetailService.obtenerOrderDetails().size()-1).getOrderLineNumber());
+		double totalAPagar = 0;
+		for (OrderDetail orderDetail : listaEnCarrito) {
+			totalAPagar = orderDetail.getSubTotal() + totalAPagar;
+		}
+		
+		PaymentsID id = new PaymentsID(listaEnCarrito.get(0).getId().getOrderNumber().getCustomer(), "AA");
+		Payment payment = new Payment(id, LocalDate.now(), totalAPagar);
+		paymentService.agregarPayment(payment);
+		
+		model.addAttribute("orderDetail", orderDetailService.buscarProductosPorOrderNumber(orderDetailService.obtenerOrderDetails().get(orderDetailService.obtenerOrderDetails().size()-1).getOrderLineNumber()));
+		model.addAttribute("total", totalAPagar);
+		
+		return "carrito_compra";
 	}
 }

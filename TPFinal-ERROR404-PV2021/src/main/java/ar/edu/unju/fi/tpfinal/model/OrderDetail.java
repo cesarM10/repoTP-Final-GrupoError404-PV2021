@@ -81,6 +81,14 @@ public class OrderDetail implements Serializable{  //410
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	public double getSubTotal() {
+		double subTotal = 0;
+		
+		subTotal = this.getPriceEach() * this.getQuantityOrdered();
+		
+		return subTotal;
+	}
 
 	@Override
 	public String toString() {
