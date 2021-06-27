@@ -39,15 +39,18 @@ public class Payment implements Serializable{
 	 * @param paymentDate
 	 * @param amount
 	 */
-	public Payment(LocalDate paymentDate, double amount) {
+	public Payment(PaymentsID id, LocalDate paymentDate, double amount) {
 		super();
+		this.id = id;
 		this.paymentDate = paymentDate;
 		this.amount = amount;
 	}
+	
 	@Override
 	public String toString() {
 		return "Payment [paymentDate=" + paymentDate + ", amount=" + amount + "]";
 	}
+	
 	/**
 	 * @return the paymentDate
 	 */

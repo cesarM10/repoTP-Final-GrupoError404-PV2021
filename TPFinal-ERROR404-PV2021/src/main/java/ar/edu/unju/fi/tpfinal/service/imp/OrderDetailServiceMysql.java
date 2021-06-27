@@ -41,6 +41,12 @@ public class OrderDetailServiceMysql implements IOrderDetailService{
 		orderDetailRepository.deleteById(id);
 	}
 
+	@Override
+	public List<OrderDetail> buscarProductosPorOrderNumber(int orderLineNumber) {
+		List<OrderDetail> productosEnOrder = orderDetailRepository.findByOrderLineNumber(orderLineNumber);
+		return productosEnOrder;
+	}
+
 	
 
 }

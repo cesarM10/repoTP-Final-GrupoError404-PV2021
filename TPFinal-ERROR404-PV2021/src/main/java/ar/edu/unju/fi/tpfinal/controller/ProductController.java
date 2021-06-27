@@ -18,13 +18,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
  
 import ar.edu.unju.fi.tpfinal.model.Product;
+import ar.edu.unju.fi.tpfinal.model.Productline;
 import ar.edu.unju.fi.tpfinal.service.IProductService;
 import ar.edu.unju.fi.tpfinal.service.IProductlineService;
-import ar.edu.unju.fi.tpfinal.service.imp.ProductServiceImp;
+import ar.edu.unju.fi.tpfinal.service.imp.ProductServiceMysql;
 
 @Controller
 public class ProductController {
-	private static final Log LOGGER = LogFactory.getLog(ProductServiceImp.class);	
+	private static final Log LOGGER = LogFactory.getLog(ProductServiceMysql.class);	
 	
 	/*@GetMapping("/producto/nuevo")
 	public String getNuevoProductoPage(){ 
@@ -35,10 +36,10 @@ public class ProductController {
  	/*@Autowired
 	@Qualifier("productUtilService")
 	private IProductService productService;
-	
+	*/
 	@Autowired
 	@Qualifier("productObject")
-	private Product product;*/
+	private Product product;
 	
 	@Autowired
 	@Qualifier("productServiceMysql")
@@ -51,13 +52,13 @@ public class ProductController {
 	@GetMapping("/producto/nuevo")
 	public String getNuevoProductPage(Model model) {
 		//model.addAttribute(product);
-		model.addAttribute("product", productService.getProduct());//.getCliente());
+		model.addAttribute("product", product);//.getCliente());
 		model.addAttribute("productLines", productlineService.obtenerProductosline());
 		return "alta_product";
 	}
 	
 	@PostMapping("/producto/guardar")
-	public ModelAndView agregarProductoPage(@Valid@ModelAttribute("producto")Product product, BindingResult resultadoValidacion) {
+	public ModelAndView agregarProductoPage(@Valid @ModelAttribute("product")Product product, BindingResult resultadoValidacion) {
 		/*if (productService.obtenerProductos() == null) {
 			productService.generarTablaProducto();
 		}*/
@@ -67,18 +68,22 @@ public class ProductController {
 		
 		model.addObject("product", productService.obtenerProductos());
 		return model;*/
-		LOGGER.info("Metodo: guardando... --");
+		//LOGGER.info("Metodo: guardando... --");
 		ModelAndView model;
+				
 		if(resultadoValidacion.hasErrors()) { //encontró errores.
 			model = new ModelAndView("alta_product");
-			model.addObject("product", product); 	
+			//model.addObject("product", productService.getProduct());	
+			model.addObject("productLines", productlineService.obtenerProductosline());
+			LOGGER.info("Metodo: encontro error... --" + product);
 			return model;
 		}else { //no encontró errores.
 			model = new ModelAndView("lista_product");
-			
+			LOGGER.info("Metodo: no encontro error... --");
 			productService.agregarProducto(product);
 			
-			model.addObject("product", productService.obtenerProductos());
+			model.addObject("productLines", productService.obtenerProductos());
+			
 			return model;
 		}
 	} 
@@ -90,7 +95,7 @@ public class ProductController {
 			productService.generarTablaProducto();
 		}*/
 		
-		model.addObject("product", productService.obtenerProductos());
+		model.addObject("productLines", productService.obtenerProductos());
 		return model;
 	}
 	
