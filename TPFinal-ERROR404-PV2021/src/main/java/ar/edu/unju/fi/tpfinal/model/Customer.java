@@ -28,39 +28,39 @@ import org.springframework.stereotype.Component;
 @Table(name = "customers")
 public class Customer {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //clave primaria.
 	@Column(name = "cus_customer_number")	
 	private Long customerNumber;
 	
 	@NotEmpty(message = "El campo no debe estar vacio.")
-	@Size(min = 3, max = 150,  message = "El campo Nombre de Cliente debe tener como minimo 3 caracteres.")
+	@Size(min = 3, max = 150,  message = "El campo debe tener como minimo 3 caracteres...")
 	@Column(name = "cus_customerName", nullable = false) 
 	private String customerName;
 	
 	@NotEmpty(message = "El campo no debe estar vacio.")
-	@Size(min = 3, max = 150,  message = "El campo Apellido de contacto debe tener como minimo 3 caracteres.")
+	@Size(min = 3, max = 150,  message = "El campo debe tener como minimo 3 caracteres...")
 	@Column(name = "cus_contactLastName", nullable = false) 
 	private String contactLastName;
 	
 	@NotEmpty(message = "El campo no debe estar vacio.")
-	@Size(min = 3, max = 150,  message = "El campo Nombre de contacto debe tener como minimo 3 caracteres.")
+	@Size(min = 3, max = 150,  message = "El debe tener como minimo 3 caracteres.")
 	@Column(name = "cus_contactFistrName", nullable = false) 
 	private String contactFirstName;
 	
 	
-	@Min(value = 1, message = "El campo no debe ser negativo")
+	@Min(value = 1, message = "El Campo no debe ser negativo")
 	@Column(name = "cus_phone", nullable = false) 
 	private int phone;
 	
 	
 	@NotEmpty(message = "El campo no debe estar vacio.")
-	@Size(min = 3, max = 150,  message = "El campo Dirección Línea 1 debe tener como minimo 3 caracteres.")
+	@Size(min = 3, max = 150,  message = "El Campo debe tener como minimo 3 caracteres.")
 	@Column(name = "cus_addressLine1", nullable = false) 
 	private String addressLine1;
 	
 	
 	@NotEmpty(message = "El campo no debe estar vacio.")
-	@Size(min = 3, max = 150,  message = "El campo Dirección Línea 2 debe tener como minimo 3 caracteres.")
+	@Size(min = 3, max = 150,  message = "El Campo debe tener como minimo 3 caracteres.")
 	@Column(name = "cus_addressLine2") 
 	private String addressLine2;
 	
@@ -87,11 +87,11 @@ public class Customer {
 	private String country;
 	
 	@Autowired
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "emp_employee_number") 
-	private Employee salesRepEmployeeNumber;//int
+	@ManyToOne(fetch = FetchType.LAZY)//el tipo de ralación.
+	@JoinColumn(name = "emp_employee_number") //nombre de la columna.
+	private Employee salesRepEmployeeNumber;//
 	
-	//@NotEmpty(message = "El campo no debe estar vacio.")
+	
 	@Min(value = 1, message = "El campo no debe ser negativo")
 	@Column(name = "cus_creditLimit") 
 	private double creditLimit;

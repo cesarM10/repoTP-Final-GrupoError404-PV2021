@@ -12,6 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,29 +33,41 @@ public class Product {
 	@Column(name = "pro_product_code")
 	private Long productCode;
 	
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 3, max = 150,  message = "El campo de Nombre del Producto debe tener como minimo 3 caracteres.")
 	@Column(name = "pro_productName", nullable = false)
 	private String productName;
 	
+	@Valid  // validacion del campo relacioado
 	@Autowired
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "pli_product_line")
 	private Productline productline;
 	
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 3, max = 150,  message = "El campo de Nombre del Producto debe tener como minimo 3 caracteres.")
 	@Column(name = "pro_productScale", nullable = false)
 	private String productScale;
 	
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 3, max = 150,  message = "El campo de Nombre del Producto debe tener como minimo 3 caracteres.")
 	@Column(name = "pro_productVendor", nullable = false)
 	private String productVendor;
 	
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 3, max = 150,  message = "El campo de Nombre del Producto debe tener como minimo 3 caracteres.")
 	@Column(name = "pro_productDescription", nullable = false)
 	private String productDescription;
 	
+	@Min(value = 1, message = "El campo no debe ser negativo")
 	@Column(name = "pro_quantityInStock", nullable = false)
 	private int quantityInStock;
 	
+	@Min(value = 1, message = "El campo no debe ser negativo")
 	@Column(name = "pro_buyPrice", nullable = false)
 	private double buyPrice;
 	
+	@Min(value = 1, message = "El campo no debe ser negativo")
 	@Column(name = "pro_MSRP", nullable = false)
 	private double MSRP;
 	

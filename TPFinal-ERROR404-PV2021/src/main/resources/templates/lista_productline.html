@@ -26,8 +26,10 @@
 									<th>linea de producto</th>
 									<th>texto de descripcion</th>
 									<th>html Descripcion </th>
+
 									<th>Imagen</th>
 									<th>Acciones</th> 						
+
 								</tr>
 							</thead>
 							<tbody>
@@ -36,7 +38,7 @@
 									<td th:text="${pli.textDescription}"></td>
 									<td th:text="${pli.htmlDescription}"></td> 
 									<!--td th:text="${pli.image}"></td--> 
-									<td><img  src="${pli.image}" alt="image" class="img-thumbnail"></td>
+									<td><img  th:alt="${pli.image}" src="${pli.image}" alt="image" class="img-thumbnail"></td>
 									
 									<td>
 										<a th:href="@{/productoline/editar/}+${pli.productLine}" class="btn btn-warning">Editar</a>

@@ -22,7 +22,7 @@ import ar.edu.unju.fi.tpfinal.service.ICustomerService;
 import ar.edu.unju.fi.tpfinal.service.IEmployeeService;
 import ar.edu.unju.fi.tpfinal.service.imp.CustomerServiceImp;
 
-@Controller
+@Controller //anotacion especial Controller
 public class CustomerController {
 	
 	
@@ -31,51 +31,31 @@ public class CustomerController {
 	
 	
 	@Autowired
-	@Qualifier("customerServiceMysql")
-	private ICustomerService customerService;
+	@Qualifier("customerServiceMysql")//implementador para comunicar con la BD.
+	private ICustomerService customerService; //inyeccion de la capa de Service Customer.
 	
 	
 	@Autowired
-	@Qualifier("employeeServiceMysql")
-	private IEmployeeService employeeService;
-	/*
-	@Autowired
-	@Qualifier("customerUtilService")
-	private ICustomerService customerService;
-	
-	@Autowired
-	@Qualifier("customerObject")
-	private Customer customer;
-	
-	
+	@Qualifier("employeeServiceMysql")//implementador para comunicar con la BD.
+	private IEmployeeService employeeService;//inyeccion de la capa de Service Employee.
+
 	
 	@GetMapping("/cliente/nuevo")
-	public String getNuevoCustomerPage(Model model){//(){
-		model.addAttribute("customer",customer);
+	public String getNuevoCustomerPage(Model model){ //nombre del metodo getNuevoCustomerPage
+		model.addAttribute("customer",customerService.getCustomer());//inyeccion(envio) del objeto customer. 
 
-		return "alta_customer";
-	}
-	*/
-	
-	@GetMapping("/cliente/nuevo")
-	public String getNuevoCustomerPage(Model model){//(){
-		model.addAttribute("customer",customerService.getCustomer());
-
-		model.addAttribute("employees",employeeService.obtenerEmployees());//retorna el numero de la lista de employee
-		return "alta_customer";
+		model.addAttribute("employees",employeeService.obtenerEmployees());//retorna  la lista de employee.
+		return "alta_customer"; //nombre de la pagina html.
 	}
 	
-	@PostMapping("/cliente/guardar")
- //	public ModelAndView agregarCustomerPage(@ModelAttribute("customer")Customer customer) {
+	@PostMapping("/cliente/guardar")//petición PostMapping.
+	                                      //objeto del tipo Customer
 	public ModelAndView agregarCustomerPage(@Valid @ModelAttribute("customer")Customer customer, BindingResult resultadoValidacion) {
-	//	ModelAndView model = new ModelAndView("lista_customer");
 		LOGGER.info("Metodo: guardando... --");
 		ModelAndView model;
-/*	if (customerService.obtenerCustomer() == null) { //isEmpty()
-			customerService.generarTablaCustomer();
-		}
-*/		
+		
 		if (resultadoValidacion.hasErrors()) { //En la validacion Si Encontro errores
+
 			model = new ModelAndView("alta_customer");
 			//model.addObject("customer",customerService.getCustomer());
 
@@ -98,48 +78,38 @@ public class CustomerController {
 			model.addObject("customer", customerService.obtenerCustomer());
 			
 	//		LOGGER.info(employeeService.obtenerEmployees());
+
 				return model;
 		}
-		
-	//	customerService.agregarCustomer(customer);	
-	//	model.addObject("customer", customerService.obtenerCustomer());
-	//	return model;
+	
 	}
 	
+	//LISTADO
 	@GetMapping("/cliente/listado")
 	public ModelAndView getCustomerPage() {
-		ModelAndView model = new ModelAndView("lista_customer");
-/*	if (customerService.obtenerCustomer() == null) { //isEmpty()
-			customerService.generarTablaCustomer();
-		}
-*/		
-		model.addObject("customer",customerService.obtenerCustomer());	
+		ModelAndView model = new ModelAndView("lista_customer");		
+		model.addObject("customer",customerService.obtenerCustomer());	//podremos ver la lista ya sea que este cargada o no con los datos.
 		return model;
 	}
 	
-	//eliminar y modificar
+	//ELIMINAR Y MODIFICAR
 	
-	@GetMapping("/cliente/editar/{customerNumber}")
-	public ModelAndView getCustomerEditPage(@PathVariable(value = "customerNumber")Long customerNumber) {
+	@GetMapping("/cliente/editar/{customerNumber}") //variable customerNumber .
+	public ModelAndView getCustomerEditPage(@PathVariable(value = "customerNumber")Long customerNumber) { //el valor de la variable y su tipo.
 		LOGGER.info("METODO - - EDITAR CUSTOMER");
-		ModelAndView model = new ModelAndView("alta_customer");
-		Optional <Customer> customer = customerService.getCustomerPorId(customerNumber);
-		
-		model.addObject("customer", customer);
-		
+		ModelAndView model = new ModelAndView("alta_customer");//html al cual modificar.
+		Optional <Customer> customer = customerService.getCustomerPorId(customerNumber);//recupera Al customer por su id en este caso "customerNumber".
+		model.addObject("customer", customer);//enviara al formulario alta customer.
 		model.addObject("employees", employeeService.obtenerEmployees());
-		
-		return model;
+		return model; //retorna el model.
 	}
 	
 	@GetMapping("/cliente/eliminar/{customerNumber}")
-	public ModelAndView getCustomerDeletePage(@PathVariable(value = "customerNumber")Long customerNumber) {
-		ModelAndView model = new ModelAndView("redirect:/cliente/listado");
-		
-		customerService.eliminarCustomer(customerNumber);
-		
+	public ModelAndView getCustomerDeletePage(@PathVariable(value = "customerNumber")Long customerNumber) { //valor y el tipo.
+		ModelAndView model = new ModelAndView("redirect:/cliente/listado"); //una vez eliminado volveremos a la lista .
+		customerService.eliminarCustomer(customerNumber);//envia el parametro para borrar.
 		model.addObject("customer",customerService.obtenerCustomer());
-		return model;
+		return model;  //retorno del model.
 	}
 	 
 	 

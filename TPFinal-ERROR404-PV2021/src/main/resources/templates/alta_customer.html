@@ -5,7 +5,7 @@
 		<title>Registro Nuevo S</title>
 		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
 		<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0-1/css/bootstrap.min.css}">
-		<link rel="stylesheet" th:href="@{/css/atn.css}">
+		<link rel="stylesheet" th:href="@{/css/atn.css}"> <!-- El CSS de estilo -->
 		<link rel="shortcut icon" href="/image/iconos/c5.png"><!-- icono de la pestaña -->
 	</head>
 	
@@ -20,10 +20,11 @@
 					<h1 style="font-family: century gothic">Alta de un nuevo cliente</h1>
 					
 					
-					
-					<form  th:action="@{/cliente/guardar}" method="post" th:object="${customer}">
+					<!--linea 24 Asociación con el controlador :acción que respondera -->
+                     <form  th:action="@{/cliente/guardar}" method="post" th:object="${customer}">
 					
 							<input type="hidden" th:field="*{customerNumber}"> 
+
 				<!--    	 <input type="hidden" th:field="*{cuenta.customerNumber}"> -->	
 						 
 					<!-- 	<div class="form-group row">
@@ -120,45 +121,28 @@
 							    </div>
 <!-- en caso de error de V. -->		<div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></div>								    
 							</div>
-							<!--  
-							<div class="form-group row">
-							    <label for="salesRepEmployeeNumber" class="col-sm-2 col-form-label">Número de Empleado del Representante de Ventas</label>
-							    <div class="col-sm-10">
-							      <input type="text" class="form-control" id="salesRepEmployeeNumber" th:field="*{salesRepEmployeeNumber}">
-							    </div>
-							</div>
+						
 							
 							
 							
 							
 							
-							<!-- Ingreso Producto -->
+							<!-- Ingreso  del numero del Empleado-->
 						<div class="form-group ">
+
 							<label for="salesRepEmployeeNumber" class="col-sm-2 col-form-label">Vendedor ID </label>
+
 						    <select id="salesRepEmployeeNumber" th:field="*{salesRepEmployeeNumber.employeeNumber}">
+						    <!-- Se nos enviara la lista de  employee-->
 						      <option th:each = "e : ${employees}" selected
 						      th:value="${e.employeeNumber}"
 						      th:text="${e.employeeNumber }+ ' - ' + ${e.lastName}"
 						      th:selected="false"
-						      />
+						      /> 	
 						    </select>
 						</div>
 						
-			<!--  		<div class="form-group ">
-								<label for="officeCode" class="col-sm-2 col-form-label">Oficina</label>
-							    <select id="officeCode" th:field="*{office.officeCode}">
-							      <option th:each = "off : ${offices}" selected
-							      th:value="${off.officeCode}"
-							      th:text="${off.city} + ' - ' + ${off.state} + ' - ' + ${off.country}"
-							      th:selected="false"
-							      />
-							    </select>
-							   
-							</div> -->	
-						
-						
-						
-							
+		
 							
 							<div class="form-group row">
 							    <label for="creditLimit" class="col-sm-2 col-form-label">Limite de Credito</label>
