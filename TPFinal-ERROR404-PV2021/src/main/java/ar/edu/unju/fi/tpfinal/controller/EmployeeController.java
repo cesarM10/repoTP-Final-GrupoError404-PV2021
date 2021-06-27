@@ -39,8 +39,8 @@ public class EmployeeController {
 	
 	@GetMapping("/employee/nuevo")
 	public String getNuevoEmployeePage(Model model) {
-		model.addAttribute("employee", employee);
-		model.addAttribute("employeeB", employeeService.getEmployee());
+		model.addAttribute("employee", employeeService.getEmployee());
+		//model.addAttribute("employeeB", employeeService.getEmployee());
 		model.addAttribute("offices", officeService.obtenerOffices());
 		model.addAttribute("employeeSeleccionado", employeeService.listaEmployeeSeleccionado());
 		return "alta-employee";
@@ -55,7 +55,7 @@ public class EmployeeController {
 			//employee.setReportsTo(employeeService.getEmployee());
 		//}else {
 		//RESOLVER QUE NO CAPTURA EL officeCode EN employee.
-		LOGGER.info("AQUI AQUI AQUI AQUI AQUI AQUI AQUI" + employee);
+		LOGGER.info("AQUI AQUI AQUI AQUI AQUI" + employee);
 		Optional<Office> officeOp= officeService.getOfficePorCodigo(1L);
 		employee.setOffice(officeOp.get());	
 		employee.setReportsTo(employeeService.listaEmployeeSeleccionado().get(0));

@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.tpfinal.service.imp;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +14,8 @@ import ar.edu.unju.fi.tpfinal.service.ICustomerService;
 @Service("customerServiceMysql")
 public class CustomerServiceMysqlImp implements ICustomerService{
 
+	public List<Customer> customerSeleccionado = new ArrayList<Customer>();
+	
 	@Autowired
 	private Customer customer;
 	
@@ -56,6 +59,23 @@ public class CustomerServiceMysqlImp implements ICustomerService{
 	public void eliminarCustomer(Long customerNumber) {
 		// TODO Auto-generated method stub
 		customerRepository.deleteById(customerNumber);
+	}
+
+	@Override
+	public List<Customer> listaCustomerSeleccionado() {
+		
+		return customerSeleccionado;
+	}
+
+	@Override
+	public List<Customer> buscarCustomerPorCustomerNumber(Long customerNumber) {
+		if(customerNumber == null) {
+					
+		}else {
+			customerSeleccionado = customerRepository.findByCustomerNumber(customerNumber);
+			
+		}
+		return customerSeleccionado;
 	}
 
 }

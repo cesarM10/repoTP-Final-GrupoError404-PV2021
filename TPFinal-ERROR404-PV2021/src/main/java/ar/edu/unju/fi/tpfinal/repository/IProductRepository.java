@@ -3,6 +3,8 @@
  */
 package ar.edu.unju.fi.tpfinal.repository;
 
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
 
 import ar.edu.unju.fi.tpfinal.model.Product;
@@ -13,6 +15,7 @@ import ar.edu.unju.fi.tpfinal.model.Product;
  *
  */
 public interface IProductRepository  extends CrudRepository<Product, Long>{
-	public Product findByProductCode(Long productCode);
+	
+	public List<Product> findByProductCode(Long productCode);
 	
 }

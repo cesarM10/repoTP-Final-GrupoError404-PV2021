@@ -77,7 +77,9 @@ public class CustomerController {
 */		
 		if (resultadoValidacion.hasErrors()) { //En la validacion Si Encontro errores
 			model = new ModelAndView("alta_customer");
-			
+			//model.addObject("customer",customerService.getCustomer());
+
+			model.addObject("employees",employeeService.obtenerEmployees());
 		//	model.addObject("lista_employee", employeeService.obtenerEmployees());//datos de employees
 			
 			return  model;
@@ -93,7 +95,8 @@ public class CustomerController {
 			customerService.agregarCustomer(customer);
 		//	model.addObject("customer", customerService.getCustomer());//
 		//	model.addObject("customer", customerService.obtenerCustomer());
-			model.addObject("alta_customer", customerService.obtenerCustomer());
+			model.addObject("customer", customerService.obtenerCustomer());
+			
 	//		LOGGER.info(employeeService.obtenerEmployees());
 				return model;
 		}

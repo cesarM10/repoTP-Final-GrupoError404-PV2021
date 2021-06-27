@@ -21,7 +21,7 @@
 					<h1 style="font-family: century gothic">Alta de un nuevo empleado</h1>
 						
 							<div class="col-md-8 justify-content-left">
-								<form th:action="@{/employee/busqueda}" th:object="${employeeB}" method="GET" >
+								<form th:action="@{/employee/busqueda}" th:object="${employee}" method="GET" >
 									
 									<div class="form-group row">
 										<label for="employeeNumber" class="col-sm-3 col-form-label">A cargo de: </label>
@@ -130,7 +130,7 @@
 							    
 							</div>
 							
-							 
+						   
 							<div class="form-group ">
 								<label for="office" class="col-sm-2 col-form-label">Oficina</label>
 							    <select id="office" name= "office" th:field="*{office.officeCode}">
@@ -141,7 +141,7 @@
 							      />
 							    </select>
 							   
-							</div>  
+							</div>
 							
 							
 							

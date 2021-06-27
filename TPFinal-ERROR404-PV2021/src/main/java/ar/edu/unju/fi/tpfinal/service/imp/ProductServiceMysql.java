@@ -3,9 +3,12 @@
  */
 package ar.edu.unju.fi.tpfinal.service.imp;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
  
@@ -20,6 +23,10 @@ import ar.edu.unju.fi.tpfinal.service.IProductService;
 @Service("productServiceMysql")
 public class ProductServiceMysql implements IProductService {
 
+	private static final Log LOGGER = LogFactory.getLog(ProductServiceMysql.class);
+	
+	private List<Product> listaProductos = new ArrayList<Product>();
+	
 	@Autowired
 	private Product product;
 	
@@ -62,6 +69,29 @@ public class ProductServiceMysql implements IProductService {
 	public void eliminarProduct(Long id) {
 		// TODO Auto-generated method stub
 		productRepository.deleteById(id);
+	}
+
+	@Override
+	public List<Product> listaDeProductos() {
+		
+		return listaProductos;
+	}
+
+	@Override
+	public void agregarListaDeProductos(Product product) {
+		listaProductos.add(product);
+
+	}
+
+	@Override
+	public List<Product> buscarProductPorProductCode(Long productCode) {
+		if(productCode == null) {
+			
+		}else {
+			listaProductos = productRepository.findByProductCode(productCode);
+			LOGGER.info("ENTRO POR VALOR INGRESADO");
+		}
+		return listaProductos;
 	}
 
 }

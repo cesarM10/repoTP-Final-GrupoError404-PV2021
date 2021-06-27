@@ -26,13 +26,13 @@
 							<input type="hidden" th:field="*{customerNumber}"> 
 				<!--    	 <input type="hidden" th:field="*{cuenta.customerNumber}"> -->	
 						 
-							<div class="form-group row">
+					<!-- 	<div class="form-group row">
 							    <label for="customerNumber" class="col-sm-2 col-form-label">Numero de Cliente</label>
 							    <div class="col-sm-10">
 							      <input type="number" class="form-control" id="customerNumber" th:field="*{customerNumber}"placeholder="Ingrese numero del cliente...">
 							    </div>
-<!-- en caso de error de V. -->		<div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('customerNumber')}" th:errors="*{customerNumber}"></div>			    
-							</div>	
+<!-- en caso de error de V. 	<div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('customerNumber')}" th:errors="*{customerNumber}"></div>			    
+							</div> -->		
 							
 							<div class="form-group row">
 							    <label for="customerName" class="col-sm-2 col-form-label">Nombre de Cliente</label>
@@ -134,7 +134,7 @@
 							
 							<!-- Ingreso Producto -->
 						<div class="form-group ">
-							<label for="salesRepEmployeeNumber" class="col-sm-2 col-form-label">Número de </label>
+							<label for="salesRepEmployeeNumber" class="col-sm-2 col-form-label">Vendedor ID </label>
 						    <select id="salesRepEmployeeNumber" th:field="*{salesRepEmployeeNumber.employeeNumber}">
 						      <option th:each = "e : ${employees}" selected
 						      th:value="${e.employeeNumber}"
