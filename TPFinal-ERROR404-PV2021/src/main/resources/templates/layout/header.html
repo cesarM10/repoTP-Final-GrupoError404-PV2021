@@ -29,16 +29,17 @@
 						   
 						  nav a  img:hover{
 							transform:scale(1.2);
-							background-color: #dadd08; 
+							background-color: #e61700; 
 							 opacity: none;
 							  border-radius: 50px;
 
 						    }
 						    
-							#f img{
-							 float:right;
-							 background-color:none;
-							}
+						#f img{
+						 float:right;
+						 background-color:none;
+						 border-radius: 10px
+						}
 					</style>
 			   
 			   <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: black;  opacity: .8;">
@@ -101,23 +102,18 @@
 					      <a class="dropdown-item" th:href="@{/office/listado}">Lista Oficinas</a>
 					    </div>
 					  </li>
-					  
-					  <!-- 
-					  <li> 
-					  	<a class="navbar-brand" th:href="@{/beneficios/lista}">Beneficios</a>
-					  </li>  -->
 				      
 				   </ul>
 				   
 				     </div>
 				  </div>
 				  
-				      <div id="f">
-					    <a class="navbar-brand" href="#info404">
-					      <img src="/image/iconos/error-404.png" alt="" width="75" height="70" >
-					      
+				       <div id="f">
+					    <a class="navbar-brand" th:href="@{/logout}" >salida<br>
+					       <img src="/image/iconos/salida.png" alt="#" width="75" height="70" ><br>
 					    </a>
-					  </div>
+				  </div>
+				  
 				</nav> 
 			  </div>
 			</div>

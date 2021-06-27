@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="shortcut icon" href="/image/iconos/c5.png"><!-- icono de la pestaña -->
+  </head>
+  <body>
+
+    <header>
+      <a href="#" class="brand">ERROR404</a>
+      <div class="menu-btn"></div>
+      <div class="navigation">
+        <div class="navigation-items">
+          <a th:href="@{/registro}">registrar</a>
+          <a th:href="@{/login}">iniciar</a>
+          
+        </div>
+      </div>
+    </header>
+
+    <section class="home">
+      <video class="video-slide active" src="/vi/video1.mp4" autoplay muted loop></video>
+      <video class="video-slide" src="/vi/video3.mp4" autoplay muted loop></video>
+      
+      <div class="content active">
+        <h1>Motors Sensei.<br><span></span></h1>
+        <p>Hola bienvenidos a la primera empresa de venta  autos de la franquicia de de Karate Kid & Kobra kai actualmente recidimos en Argentina y hacemos envios en todo el pais constando ademas con una alta gama de autos clasicos y modernos ¿Quieres volver al pasado para luego volver al presente? Tenemos una DeLorean DMC-12 a la venta.</p>
+        <a href="#">Leer mas</a>
+      </div>
+      <div class="content">
+        <h1>Motors Sensei.<br><span></span></h1>
+        <p>Hola bienvenidos a la primera empresa de venta  autos de la franquicia de de Karate Kid & Kobra kai actualmente recidimos en Argentina y hacemos envios en todo el pais constando ademas con una alta gama de autos clasicos y modernos ¿Quieres volver al pasado para luego volver al presente? Tenemos una DeLorean DMC-12 a la venta.</p>
+        <a href="#">Leer mas</a>
+      </div>
+
+      <div class="media-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+      </div>
+      <div class="slider-navigation">
+        <div class="nav-btn active"></div>
+         <div class="nav-btn "></div>
+
+
+      </div>
+    </section>
+
+    <script type="text/javascript">
+    //Javacript for responsive navigation menu
+    const menuBtn = document.querySelector(".menu-btn");
+    const navigation = document.querySelector(".navigation");
+
+    menuBtn.addEventListener("click", () => {
+      menuBtn.classList.toggle("active");
+      navigation.classList.toggle("active");
+    });
+
+    //Javacript for video slider navigation
+    const btns = document.querySelectorAll(".nav-btn");
+    const slides = document.querySelectorAll(".video-slide");
+    const contents = document.querySelectorAll(".content");
+
+    var sliderNav = function(manual){
+      btns.forEach((btn) => {
+        btn.classList.remove("active");
+      });
+
+      slides.forEach((slide) => {
+        slide.classList.remove("active");
+      });
+
+      contents.forEach((content) => {
+        content.classList.remove("active");
+      });
+
+      btns[manual].classList.add("active");
+      slides[manual].classList.add("active");
+      contents[manual].classList.add("active");
+    }
+
+    btns.forEach((btn, i) => {
+      btn.addEventListener("click", () => {
+        sliderNav(i);
+      });
+    });
+    
+    
+    
+    
+    
+    
+    
+    /*
+    dsc
+    
+     Javascript for image slider autoplay navigation
+    var repeat = function(activeClass){
+      let active = document.getElementsByClassName('active');
+      let i = 1;
+      
+      var repeater = () => {
+        setTimeout(function(){
+          [...active].forEach((activeSlide) => {
+            activeSlide.classList.remove('active');
+          });
+
+        slides[i].classList.add('active');
+        btns[i].classList.add('active');
+        i++;
+
+        if(slides.length == i){
+          i = 0;
+        }
+        if(i >= slides.length){
+          return;
+        }
+        repeater();
+      }, 10000);
+      }
+      repeater();
+    }
+    repeat();  
+    */
+    
+    
+    
+    
+    </script>
+
+  </body>
+</html>
+      
