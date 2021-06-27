@@ -1,151 +1,4 @@
-@charset "utf-8";
-
-/*
-body {
-background: -prefix-linear-gradient(left, black, yellow);
-background: linear-gradient(to right, yellow, black);
-
-
-background: radial-gradient(ellipse farthest-corner, red, yellow 05%, yellow, black);
-
- margin: 0;
-  padding: 0;
- 
-  background-size: cover;
-  font-family: sans-serif;
-  height: 100vh;
-}
-
-*/
-.login-box {
-  width: 320px;
-  height: 420px;
-  background: #000;
-  color: #fff;
-  top: 50%;
-  left: 50%;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  box-sizing: border-box;
-  padding: 70px 30px;
-  border-radius: 15px;
-   opacity: .75;
-}
-
-.login-box .avatar {
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  position: absolute;
-  top: -65px;
-  left: calc(45% - 50px);
-}
-
-/*estilo que estan dentro del formulario con h1 */
-.login-box h1 {
-	color:#FFC300 ;
-  margin: 0;
-  padding: 0 0 20px;
-  text-align: center;
-  font-size: 22px;
-  
-}
-
-/* estilo de letra dentro del label*/
-.login-box label {
-	color:#FFC300 ;
-  margin: 0;
-  padding: 0;
-  font-weight: bold;
-  display: block;
-}
-
-.login-box input {
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.login-box input[type="text"], .login-box input[type="password"] {
-  border: none;
-  border-bottom: 1px solid #fff;
-  background: transparent;
-  outline: none;
-  height: 40px;
-  color: #fff;
-  font-size: 16px;
-}
-
-.login-box input[type="submit"] {
-  border: none;
-  outline: none;
-  height: 40px;
-  background: #FF0101;
-  color: #fff;
-  font-size: 18px;
-  border-radius: 20px;
-}
-
-.login-box input[type="submit"]:hover {
-  cursor: pointer;
-  background: #ffc107;
-  color: #000;
-}
-
-.login-box a {
-  text-decoration: none;
-  font-size: 12px;
-  line-height: 20px;
-  color: darkgrey;
-}
-
-.login-box a:hover {
-  color: #f4f93e;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
 
 *{
   margin: 0;
@@ -242,6 +95,62 @@ section{
 .home .content.active{
   display: block;
 }
+/*  titulo motors sensei*/
+.home .content h1{
+	
+  font-size: 4em;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  line-height: 75px;
+  margin-bottom: 40px;
+}
+
+.home .content h1 span{
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.home .content p{
+  margin-bottom: 65px;
+}
+
+/* estilo para el boton de mas información*/
+.home .content a{
+  background: #FFC300;
+  padding: 15px 35px;
+  color: #000000;
+  font-size: 1.1em;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 25px;
+}
+
+.home .media-icons{
+  z-index: 988;
+  position: absolute;
+  right: 50px;
+  margin-top:320px;
+  padding-left:110px;
+  padding:10px;
+  padding-right:10px;
+  transition: 0.5s ease;
+}
+
+/* contorno de color de iconos*/
+.home .media-icons a{
+  color: #FFC300;
+  font-size: 1.6em;
+  transition: 0.3s ease;
+}
+
+.home .media-icons a:not(:last-child){
+  margin-bottom: 20px;
+}
+
+.home .media-icons a:hover{
+  transform: scale(1.3);
+}
 
 .home video{
   z-index: 000;
@@ -263,11 +172,32 @@ section{
   margin-bottom: 12px;
 }
 
+.slider-navigation .nav-btn{
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+  transition: 0.3s ease;
+}
+/* color de lo botones de radio*/
+.slider-navigation .nav-btn.active{
+  background: #FFC300 ;
+}
+
+.slider-navigation .nav-btn:not(:last-child){
+  margin-right: 20px;
+}
+/* tamaño del boton d enavegación*/
+.slider-navigation .nav-btn:hover{
+  transform: scale(1.2);
+}
 /* efecto del video */
 .video-slide{
   position: absolute;
   width: 100%;
-  clip-path: polygon(100% 0, 100% 25%, 100% 51%, 100% 66%, 100% 100%, 78% 100%, 0 100%, 0% 70%, 0% 35%, 0 0);
+  clip-path: polygon(0 0, 0 100%, 0 40%);
 }
 
 .video-slide.active{
