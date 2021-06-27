@@ -55,12 +55,30 @@ public class CustomerController {
 		ModelAndView model;
 		
 		if (resultadoValidacion.hasErrors()) { //En la validacion Si Encontro errores
-			model = new ModelAndView("alta_customer");//muestra el html alta_customer
+
+			model = new ModelAndView("alta_customer");
+			//model.addObject("customer",customerService.getCustomer());
+
+			model.addObject("employees",employeeService.obtenerEmployees());
+		//	model.addObject("lista_employee", employeeService.obtenerEmployees());//datos de employees
+			
 			return  model;
 		}else {//En la validacion no encontro errores
-			model = new ModelAndView("lista_customer");	
-			customerService.agregarCustomer(customer);	//agrega el objeto customer a la lista.
-			model.addObject("alta_customer", customerService.obtenerCustomer());//recupera la lista del  array list.
+			model = new ModelAndView("lista_customer");
+			
+			
+	//		Employee employee = employeeService.updateNuemeroDeEmpleado(customer.getCustomerNumber());
+	//		customer.setSalesRepEmployeeNumber(employee);
+			
+	//		LOGGER.info("PASA O NO PASA --"+employee);
+			
+			customerService.agregarCustomer(customer);
+		//	model.addObject("customer", customerService.getCustomer());//
+		//	model.addObject("customer", customerService.obtenerCustomer());
+			model.addObject("customer", customerService.obtenerCustomer());
+			
+	//		LOGGER.info(employeeService.obtenerEmployees());
+
 				return model;
 		}
 	

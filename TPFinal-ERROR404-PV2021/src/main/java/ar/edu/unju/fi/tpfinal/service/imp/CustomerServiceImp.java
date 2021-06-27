@@ -67,6 +67,18 @@ public class CustomerServiceImp implements ICustomerService {
 		
 	}
 
+	@Override
+	public List<Customer> listaCustomerSeleccionado() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Customer> buscarCustomerPorCustomerNumber(Long customerNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 }

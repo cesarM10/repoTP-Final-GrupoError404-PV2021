@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>Registro Compra</title>
+		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
+		<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0-1/css/bootstrap.min.css}">
+		<link rel="stylesheet" th:href="@{/css/style.css}">
+		<link rel="stylesheet" th:href="@{/css/atn.css}">
+		<link rel="shortcut icon" href="/image/infectado.png">
+	</head>
+	
+	<body>
+		<header th:replace="layout/header :: header"></header>
+			
+		
+		<div class="container">
+			<div class="row col-sm-12 col-md">
+		
+				<div class="col-sm-12 col-md" style="border: solid;">
+					<h1 style="font-family: century gothic">Nueva Compra</h1>
+							
+							
+							<div class="col-md-8 justify-content-left">
+								<form th:action="@{/compra/busqueda}" th:object="${product}" method="GET" >
+									
+									<div class="form-group row">
+										<label for="product" class="col-sm-3 col-form-label">ID Producto </label>
+										<div class="col-sm-5">
+											<input type="number" class="form-control" id="productCode" th:field="*{productCode}">
+										</div>
+										
+										<button type="submit" class="btn btn-success">Buscar</button>
+									</div> 
+																		
+									
+								</form>
+							</div>
+							
+			
+							
+							<div class="col-sm-12 col-md-10"> 
+								<div class="scrollme">
+								<table class="table table-hover" style="text-align: center; background-color: gray; color: white;">
+									<thead style="background-color: black;"> 
+										<tr id="miTablaEncabezado">
+											<th>ID Producto</th>
+											<th>Nombre Producto</th>
+											<th>Marca</th>
+											<th>Categoria</th>
+											<th>Escala</th>
+											<th>Precio Unitario</th>
+																					
+											<th>Acciones </th>
+											
+										</tr>
+									</thead>
+									<tbody>
+										<tr id="miTablaContenido" th:each = "prods:${productosSeleccionados}">
+											<td th:text="${prods.productCode}"></td>
+											<td th:text="${prods.productName}"></td>
+											<td th:text="${prods.productVendor}"></td>
+											<td th:text="${prods.productline.textDescription}"></td>
+											<td th:text="${prods.productScale}"></td>
+											<td th:text="'$' + ${prods.MSRP}"></td>
+										
+											<td>
+												<a th:href="@{/compra/quitaropcion/}+${prods.productCode}" class="btn btn-danger">Quitar</a>
+											</td>
+										</tr> 
+									</tbody>
+								
+								</table>
+								</div>
+							</div>
+					
+					
+					
+					
+						<form th:action="@{/compra/guardar}" method="post" th:object="${orderDetail}">
+							
+							<!--  <input type="hidden" th:field="*{id}"> -->  
+							<!--  <input type="hidden" th:field="*{cuenta.id}"> -->
+							
+							<div class="form-group row">
+							    <label for="quantityOrdered" class="col-sm-2 col-form-label">Cantidad</label>
+							    <div class="col-sm-10">
+							      <input type="number" class="form-control" id="quantityOrdered" th:field="*{quantityOrdered}" >
+							    </div>
+							    
+							    <div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('quantityOrdered')}" th:errors="*{quantityOrdered}"></div>
+							    
+							</div>
+							
+							<button type="submit" class="btn btn-primary btn-sm">Añadir</button>
+							<a th:href="@{/home}" class="btn btn-danger">Comprar</a>
+						</form>
+				</div>
+					
+				<div class="Col col-md-2">
+					<aside th:replace="layout/publicidad :: publicidad"></aside>
+				</div>
+			</div>	
+		</div><br>
+		<footer th:replace="layout/footer :: footer"></footer>
+	
+		<script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+		<script type="text/javascript" th:src="@{/webjars/popper.js/1.16.1-lts/popper.min.js}"></script>
+		<script type="text/javascript" th:src="@{/webjars/bootstrap/4.6.0-1/js/bootstrap.min.js}"></script>
+	</body>
+</html>

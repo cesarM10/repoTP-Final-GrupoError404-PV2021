@@ -22,13 +22,17 @@ public interface IProductService {
 	public List<Product> obtenerProductos();//
 	
 	public Product getProduct();
-	 
 	
 	public Optional <Product> getProductPorId(Long id);
 	
 	public void eliminarProduct(Long id); 
 	
-	 
+	public List<Product> listaDeProductos();
+	
+	public void agregarListaDeProductos(Product product);
+	
+	public List<Product> buscarProductPorProductCode(Long productCode);
+	
 	/*Object obtenerProductos();
 
 	void agregarProducto(Product product);

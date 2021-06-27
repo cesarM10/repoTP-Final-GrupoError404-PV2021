@@ -72,4 +72,22 @@ public class ProductServiceImp implements IProductService {
 		
 	}
 
+	@Override
+	public List<Product> listaDeProductos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void agregarListaDeProductos(Product product) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Product> buscarProductPorProductCode(Long productCode) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

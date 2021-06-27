@@ -63,6 +63,14 @@
 					  </li>
 					  
 					  <li class="nav-item dropdown active">
+					    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Categoria</a>
+					    <div class="dropdown-menu" style="font-family: century gothic;">
+					      <a class="dropdown-item" th:href="@{/productoline/nuevo}">Nueva Categoria</a>
+					      <a class="dropdown-item" th:href="@{/productoline/listado}">Lista de Categorias</a>
+					    </div>
+					  </li>
+					  
+					  <li class="nav-item dropdown active">
 					    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Cliente</a>
 					    <div class="dropdown-menu" style="font-family: century gothic;">
 					      <a class="dropdown-item" th:href="@{/cliente/nuevo}">Nuevo Cliente</a>
@@ -73,7 +81,7 @@
 					  <li class="nav-item dropdown active">
 					    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Compra</a>
 					    <div class="dropdown-menu" style="font-family: century gothic;" >
-					      <a class="dropdown-item" th:href="@{/compra/nuevo}">Nueva Compra</a>
+					      <a class="dropdown-item" th:href="@{/compra/nueva/orden}">Nueva Compra</a>
 					      <a class="dropdown-item" th:href="@{/compra/listado}">Lista Compras</a>
 					    </div>
 					  </li>
