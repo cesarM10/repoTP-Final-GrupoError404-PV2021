@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 
 import org.springframework.stereotype.Component;
 
@@ -25,12 +26,15 @@ public class OrderDetail implements Serializable{  //410
 	@EmbeddedId
 	private OrderDetailsID id;
 	
+	@Min(value = 1, message = "El campo 'Cantidad' no debe ser negativo ni cero.")
 	@Column(name = "ord_quantityOrdered")
 	private   int quantityOrdered;
 	
+	//@Min(value = 1, message = "El campo 'Precio Unitario' no debe ser negativo ni cero.")
 	@Column(name = "ord_priceEach")
 	private   double priceEach;
 	
+	//@Min(value = 1, message = "El campo 'Numero de Orden' no debe ser negativo ni cero.")
 	@Column(name = "ord_order_line_number")
 	private   int orderLineNumber;
 	

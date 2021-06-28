@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -25,21 +28,27 @@ public class Order {
 	@Column(name = "ord_order_number")
 	private Long orderNumber;
 	
+	//@NotNull(message = "El campo 'Fecha de Orden' no debe ser nulo.")
 	@Column(name = "ord_orderDate", nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate orderDate;
 	
+	//@NotNull(message = "El campo 'Fecha de Pedido' no debe ser nulo.")
 	@Column(name = "ord_requiredDate", nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate requiredDate;
 	
+	@NotNull(message = "El campo 'Fecha de Entrega' no debe ser nulo.")
 	@Column(name = "ord_shippedDate")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate shippedDate;
 	
+	@NotEmpty(message="Seleccione una opcion.")
 	@Column(name = "ord_status", nullable = false)
 	private String status;
 	
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 5, max = 150,  message = "El campo 'Comentario' debe tener como minimo 5 caracteres.")
 	@Column(name = "ord_comments")
 	private String comments;
 	

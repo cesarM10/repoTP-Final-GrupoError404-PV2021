@@ -79,7 +79,7 @@
 					
 						<form th:action="@{/compra/guardar/order}" method="post" th:object="${order}">
 							
-							<input type="hidden" th:field="*{orderNumber}">  
+							<!--  <input type="hidden" th:field="*{orderNumber}"> -->  
 							<!--  <input type="hidden" th:field="*{cuenta.id}"> -->
 							
 							<div class="form-group row">
@@ -87,8 +87,8 @@
 							    <div class="col-sm-10">
 							      <input type="date" class="form-control" id="shippedDate" th:field="*{shippedDate}">
 							    </div>
-							    
-							    <!--  <div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('shippedDate')}" th:errors="*{shippedDate}"></div> -->
+							    <!-- validacion Fecha de Entrega -->
+							    <div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('shippedDate')}" th:errors="*{shippedDate}"></div>
 							    
 							</div>
 							
@@ -99,8 +99,8 @@
 							      <option value="Entregado">Entrega inmediata</option>
 							      <option value="Pendiente de entrega">Pendiente de entrega</option>
 							    </select>
-							    
-							   <!--   <div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></div> -->
+							   <!-- validacion Estado --> 
+							   <div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></div>
 							    
 							</div>
 							
@@ -109,8 +109,8 @@
 							    <div class="col-sm-10">
 							      <input type="text" class="form-control" id="comments" th:field="*{comments}" >
 							    </div>
-							    
-							   <!--   <div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('quantityOrdered')}" th:errors="*{quantityOrdered}"></div> -->
+							   <!-- validacion Comentarios --> 
+							   <div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('comments')}" th:errors="*{comments}"></div>
 							    
 							</div>
 							

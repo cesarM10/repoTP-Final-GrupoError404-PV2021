@@ -17,7 +17,7 @@
 		<div class="container">
 			<div class="row col-sm-12 col-md">
 		
-				<div class="col-sm-12 col-md" style="border: solid;">
+				<div id=alfa1 class="col-sm-12 col-md" style="border: solid;">
 					<h1 style="font-family: century gothic">Nueva Compra</h1>
 							
 							
@@ -51,7 +51,7 @@
 											<th>Escala</th>
 											<th>Precio Unitario</th>
 																					
-											<th>Acciones </th>
+											<!-- <th>Acciones </th>  -->
 											
 										</tr>
 									</thead>
@@ -63,10 +63,11 @@
 											<td th:text="${prods.productline.textDescription}"></td>
 											<td th:text="${prods.productScale}"></td>
 											<td th:text="'$' + ${prods.MSRP}"></td>
-										
+											
+											<!--  
 											<td>
 												<a th:href="@{/compra/quitaropcion/}+${prods.productCode}" class="btn btn-danger">Quitar</a>
-											</td>
+											</td> -->
 										</tr> 
 									</tbody>
 								
@@ -87,7 +88,7 @@
 							    <div class="col-sm-10">
 							      <input type="number" class="form-control" id="quantityOrdered" th:field="*{quantityOrdered}" >
 							    </div>
-							    
+							    <!-- validacion Cantidad -->
 							    <div class = "form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('quantityOrdered')}" th:errors="*{quantityOrdered}"></div>
 							    
 							</div>
@@ -95,6 +96,7 @@
 							<button type="submit" class="btn btn-primary btn-sm">Añadir</button>
 							<a th:href="@{/compra/carrito}" class="btn btn-danger">Comprar</a>
 						</form>
+						<a th:text="${mensaje}" style="color: green;"></a>
 				</div>
 					
 				<div class="Col col-md-2">
