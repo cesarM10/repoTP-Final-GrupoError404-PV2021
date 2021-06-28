@@ -31,10 +31,7 @@ public class LoginController {
 	
 	
 	
-	
-	
-	
-	
+
 	
 	@GetMapping("/registro")
 	public String getRegistroPage(Model model) {

@@ -57,7 +57,7 @@ public class CustomerServiceMysqlImp implements ICustomerService{
 	}
 
 	/**
-	 * Metodo para recuperar al empleado.
+	 * Metodo para recuperar al customer.
 	 */
 	@Override
 	public Optional<Customer> getCustomerPorId(Long customerNumber) { //metodo que recupera al empleado.
@@ -66,7 +66,7 @@ public class CustomerServiceMysqlImp implements ICustomerService{
 	}
 
 	/**
-	 * Metodo para eliminar al customer.
+	 * Metodo para eliminar al Customer.
 	 */
 	@Override
 	public void eliminarCustomer(Long customerNumber) { 
