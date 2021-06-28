@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import ar.edu.unju.fi.tpfinal.model.Usuario;
 import ar.edu.unju.fi.tpfinal.repository.IUsuarioRepository;
 import ar.edu.unju.fi.tpfinal.service.IUsuarioService;
-@Service("empleadoService")//mmm
+@Service("empleadoService")//
 public class UsuarioServiceImp implements IUsuarioService{
 	
 	private List<Usuario> usuarioList = new ArrayList<Usuario>();
@@ -20,16 +20,16 @@ public class UsuarioServiceImp implements IUsuarioService{
 	@Autowired
 	IUsuarioRepository usuarioRepository;
 	
-	@Autowired //F1
-	Usuario usuario;//F1
+	@Autowired 
+	Usuario usuario;
 
 	@Override
 	public void guardarUsuario(Usuario usuario) {
 		// Encriptador
 		
-		String pw = usuario.getPassword();//aqui diferescias
+		String pw = usuario.getPassword();
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
-		usuario.setPassword(bCryptPasswordEncoder.encode(pw));//aqui diferescias
+		usuario.setPassword(bCryptPasswordEncoder.encode(pw));
 		
 		usuarioRepository.save(usuario);
 	}
@@ -40,6 +40,9 @@ public class UsuarioServiceImp implements IUsuarioService{
 		return null;
 	}
 
+	
+	//
+	
 	@Override
 	public void agregarUsuario(Usuario usuario) {
 		// TODO Auto-generated method stub
@@ -49,7 +52,7 @@ public class UsuarioServiceImp implements IUsuarioService{
 
 	
 	
-	//no se
+	
 	@Override
 	public List<Usuario> obtenerUsuarios() {
 		// TODO Auto-generated method stub
