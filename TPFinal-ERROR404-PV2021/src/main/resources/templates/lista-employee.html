@@ -33,7 +33,8 @@
 									<th>Extension</th>
 									<th>Email</th>
 									<th>Titulo</th>
-									<th>A cargo de</th>
+									<th>ID Encargado</th>
+									<th>Encargado</th>
 									<th>Oficina</th>
 									<th>Acciones </th>
 																	
@@ -49,6 +50,7 @@
 									<td th:text="${emps.email}"> </td>
 									<td th:text="${emps.jobTitle}"> </td>
 									<td th:text="${emps.reportsTo.employeeNumber}"> </td>
+									<td th:text="${emps.reportsTo.lastName} + ' ' + ${emps.reportsTo.firstName}"> </td>
 									<td th:text="${emps.office.officeCode}"> </td> 														
 									
 									 

@@ -3,12 +3,15 @@ package ar.edu.unju.fi.tpfinal.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.tpfinal.model.Employee;
-import ar.edu.unju.fi.tpfinal.model.Office;
+
 import ar.edu.unju.fi.tpfinal.service.IEmployeeService;
 import ar.edu.unju.fi.tpfinal.service.IOfficeService;
 import ar.edu.unju.fi.tpfinal.service.imp.EmployeeServiceMysql;
@@ -47,38 +50,35 @@ public class EmployeeController {
 	}
 	
 	@PostMapping("/employee/guardar")
-	public ModelAndView agregarEmployeePage(@ModelAttribute("employee")Employee employee) {
+	public ModelAndView agregarEmployeePage(@Valid @ModelAttribute("employee")Employee employee, BindingResult resultadoValidacion) {
 		LOGGER.info("ENTRO A GUARDAR");
-		ModelAndView modelv = new ModelAndView("lista-employee");
+		//ModelAndView model = new ModelAndView("lista-employee");
+		ModelAndView model;
 		
-		//if(employeeService.listaEmployeeSeleccionado().isEmpty()) {
-			//employee.setReportsTo(employeeService.getEmployee());
-		//}else {
-		//RESOLVER QUE NO CAPTURA EL officeCode EN employee.
-		LOGGER.info("AQUI AQUI AQUI AQUI AQUI" + employee);
-		Optional<Office> officeOp= officeService.getOfficePorCodigo(1L);
-		employee.setOffice(officeOp.get());	
-		employee.setReportsTo(employeeService.listaEmployeeSeleccionado().get(0));
+		if(resultadoValidacion.hasErrors()) {
+			model = new ModelAndView("alta-employee");
 			
-		//}
-		LOGGER.info("PASO EL IF");
-		//Employee employee1 = new Employee();
+			//model.addObject("employee", employeeService.getEmployee());
+			model.addObject("offices", officeService.obtenerOffices());
+			model.addObject("employeeSeleccionado", employeeService.listaEmployeeSeleccionado());
+			
+			return model;
+		}else {
+			model = new ModelAndView("lista-employee");
+			
+			LOGGER.info("AQUI AQUI AQUI AQUI AQUI" + employee);
+			//Optional<Office> officeOp= officeService.getOfficePorCodigo(1L);
+			//employee.setOffice(officeOp.get());	
+			employee.setReportsTo(employeeService.listaEmployeeSeleccionado().get(0));
+				
+			LOGGER.info("PASO EL IF");
+			
+			employeeService.agregarEmployee(employee);
+			LOGGER.info("PASO EL GUARDAR");
+			model.addObject("employees", employeeService.obtenerEmployees());
+			return model;
+		}
 		
-		//employee1 = employee;
-		//LOGGER.info("LO QUE VA A GUARDAR" + employee1);
-		/*for (Office office : officeService.obtenerOffices()) {
-			if(office.getOfficeCode() == employee.getOffice().getOfficeCode()) {
-				employee.setOffice(office);
-			}
-		}*/
-		
-		
-		
-		//employee.setOffice(officeService.obtenerOffices().get(0));
-		employeeService.agregarEmployee(employee);
-		LOGGER.info("PASO EL GUARDAR");
-		modelv.addObject("employees", employeeService.obtenerEmployees());
-		return modelv;
 	}
 	
 	@GetMapping("/employee/listado")
@@ -94,6 +94,7 @@ public class EmployeeController {
 		LOGGER.info("METODO - - BUSCAR");
 		model.addAttribute("employee", employee); 
 		model.addAttribute("employeeB", employeeService.getEmployee());
+		
 		model.addAttribute("employeeSeleccionado", employeeService.buscarEmployeePorEmployeeNumber(employeeNumber));
 		LOGGER.info("METODO - - BUSCAR - - PASO");
 		

@@ -9,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Component;
 
@@ -21,32 +24,44 @@ public class Office {
 	@Column(name = "off_office_code")
 	private Long officeCode;
 	
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 3, max = 150,  message = "El campo 'Ciudad' debe tener como minimo 3 caracteres.")
 	@Column(name = "off_city", nullable = false)
 	private String city;
 	
-	@Column(name = "off_phone")
+	@Min(value = 1, message = "El campo no debe ser negativo")
+	@Column(name = "off_phone", nullable = false)
 	private int phone;
 	
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 3, max = 150,  message = "El campo debe tener como minimo 3 caracteres.")
 	@Column(name = "off_addressLine1", nullable = false)
 	private String addressLine1;
 	
-	@Column(name = "off_addressLine2")
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 3, max = 150,  message = "El campo debe tener como minimo 3 caracteres.")
+	@Column(name = "off_addressLine2", nullable = false)
 	private String addressLine2;
 	
-	@Column(name = "off_state")
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 3, max = 150,  message = "El campo 'Provincia 'debe tener como minimo 3 caracteres.")
+	@Column(name = "off_state", nullable = false)
 	private String state;
 	
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 3, max = 150,  message = "El campo 'Pais' debe tener como minimo 3 caracteres.")
 	@Column(name = "off_country", nullable = false)
 	private String country;
 	
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 3, max = 150,  message = "El campo debe tener como minimo 3 caracteres.")
 	@Column(name = "off_postalCode", nullable = false)
 	private String postalCode;
 	
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 3, max = 150,  message = "El campo 'Departamento' debe tener como minimo 3 caracteres.")
 	@Column(name = "off_territory", nullable = false)
 	private String territory;
-	
-	//@OneToMany(mappedBy = "office")
-	//private List<Employee> employees = new ArrayList<Employee>();
 	
 	
 	public Office() {

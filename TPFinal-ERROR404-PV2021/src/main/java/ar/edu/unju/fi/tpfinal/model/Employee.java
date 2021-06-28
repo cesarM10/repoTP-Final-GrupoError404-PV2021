@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -30,15 +33,22 @@ public class Employee {
 	@Column(name = "emp_employee_number")
 	private Long employeeNumber;
 	
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 3, max = 150,  message = "El campo 'Apellido' debe tener como minimo 3 caracteres.")
 	@Column(name = "emp_lastName", nullable = false)
 	private String lastName;
 	
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 3, max = 150,  message = "El campo 'Nombre' debe tener como minimo 3 caracteres.")
 	@Column(name = "emp_firstName", nullable = false)
 	private String firstName;
 	
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 3, max = 150,  message = "El campo 'Extension' debe tener como minimo 3 caracteres.")
 	@Column(name = "emp_extension", nullable = false)
 	private String extension;
 	
+	@Email(message = "Ingrese un formato de email valido.")
 	@Column(name = "emp_email", nullable = false)
 	private String email;
 	
@@ -47,6 +57,8 @@ public class Employee {
 	@JoinColumn(name = "emp_reportsTo")
 	private Employee reportsTo;
 	
+	@NotEmpty(message = "El campo no debe estar vacio.")
+	@Size(min = 3, max = 150,  message = "El campo 'Titulo' debe tener como minimo 3 caracteres.")
 	@Column(name = "emp_jobTitle", nullable = false)
 	private String jobTitle;
 	

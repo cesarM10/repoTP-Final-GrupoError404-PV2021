@@ -57,7 +57,7 @@ public class EmployeeServiceMysql implements IEmployeeService{
 	@Override
 	public List<Employee> buscarEmployeePorEmployeeNumber(Long employeeNumber) {
 		if(employeeNumber == null) {
-			
+			employeeSeleccionado.add(employee);
 		}else {
 			employeeSeleccionado = employeeRepository.findByEmployeeNumber(employeeNumber);
 			LOGGER.info("ENTRO POR VALOR INGRESADO");
