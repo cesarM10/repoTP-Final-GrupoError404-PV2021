@@ -36,24 +36,32 @@ public class CompraController {
 	
 	@Autowired
 	@Qualifier("orderDetailServiceMysql")
-	private IOrderDetailService orderDetailService;
+	private IOrderDetailService orderDetailService; //inyeccion OrderDetailService con metodos que trabaja con la base de datos.
 	
 	@Autowired
 	@Qualifier("orderServiceMysql")
-	private IOrderService orderService;
+	private IOrderService orderService; //inyeccion OrdereService con metodos que trabaja con la base de datos.
 	
 	@Autowired
 	@Qualifier("productServiceMysql")
-	private IProductService productService;
+	private IProductService productService; //inyeccion ProductService con metodos que trabaja con la base de datos.
 	
 	@Autowired
 	@Qualifier("customerServiceMysql")
-	private ICustomerService customerService;
+	private ICustomerService customerService; //inyeccion CustomerService con metodos que trabaja con la base de datos.
 	
 	@Autowired
 	@Qualifier("paymentServiceMysql")
-	private IPaymentService paymentService;
+	private IPaymentService paymentService; //inyeccion PaymentService con metodos que trabaja con la base de datos.
 	
+	
+	/**
+	 * Metodo que envia un objeto order para realizar el alta de una nueva order.
+	 * customer para realizar la busqueda de un cliente.
+	 * customers para cargar el producto encontrado resultante de la busqueda.
+	 * @param model
+	 * @return Dirige a alta_order.
+	 */
 	@GetMapping("/compra/nueva/orden")
 	public String getNuevaCompraPage(Model model) {
 		
@@ -64,7 +72,12 @@ public class CompraController {
 		return "alta_order";
 	}
 	
-	//busca el cliente que realiza la compra
+	/**
+	 * Metodo que realiza la busqueda de un cliente mediante el parametro customerNumber.
+	 * @param customerNumber
+	 * @param model
+	 * @return Dirige a alta_order con el cliente cargado.
+	 */
 	@GetMapping("/compra/busqueda/customer")
 	public String getBuscarCustomerConFiltro(@RequestParam(value = "customerNumber")Long customerNumber, Model model) {
 		LOGGER.info("METODO - - BUSCAR");
@@ -76,6 +89,14 @@ public class CompraController {
 		return "alta_order";
 	}
 	
+	/**
+	 * Metodo que guarda una order solo si el resultadoValidacion no contiene ningun error.
+	 * Settea algunos valores automaticos de order y el cliente seleccionado. 
+	 * @param order
+	 * @param resultadoValidacion
+	 * @return En caso de error del resultadoValidacion, dirige a alta_order sino
+	 * dirige a alta_compra.
+	 */
 	@PostMapping("/compra/guardar/order")
 	public ModelAndView agregarCompraPage(@Valid @ModelAttribute("order")Order order, BindingResult resultadoValidacion) {
 		//ModelAndView model = new ModelAndView("alta_compra");
@@ -106,6 +127,18 @@ public class CompraController {
 		
 	}
 	
+	/**
+	 * Metodo que guarda un OrderDetail.
+	 * Instancia un objeto OrderDetailID que funciona como una primaryKey combinada de Product
+	 * y Order y se settea como id a OrderDetail.
+	 * Se settea priceEach del producto seleccionado en orderDetail.
+	 * Guarda el OrderDetail en la base de datos y retorna al mismo formulario con 
+	 * mensaje de confirmacion de operacion.
+	 * 
+	 * @param orderDetail
+	 * @param resultadoValidacion
+	 * @return
+	 */
 	@PostMapping("/compra/guardar")
 	public ModelAndView agregarProductoAOrderPage(@Valid @ModelAttribute("orderDetail")OrderDetail orderDetail, BindingResult resultadoValidacion) {
 		//ModelAndView model = new ModelAndView("alta_compra");
@@ -143,6 +176,12 @@ public class CompraController {
 		
 	}
 	
+	/**
+	 * Metodo que permite la busqueda de un producto mediante productCode.
+	 * @param productCode
+	 * @param model
+	 * @return Dirige a alta_compra.
+	 */
 	@GetMapping("/compra/busqueda")
 	public String getBuscarProductoConFiltro(@RequestParam(value = "productCode")Long productCode, Model model) {
 		LOGGER.info("METODO - - BUSCAR");
@@ -154,6 +193,12 @@ public class CompraController {
 		return "alta_compra";
 	}
 	
+	/**
+	 * Metodo que recupera en una lista los productos pertenecientes a la ultima OrderDetail
+	 * Se calcula el subtotal de la compra por cada producto y el monto total de la misma.
+	 * @param model
+	 * @return Dirige a carrito_compra.
+	 */
 	@GetMapping("/compra/carrito")
 	public String mostrarCarritoDeCompra(Model model) {
 		List<OrderDetail> listaEnCarrito = orderDetailService.buscarProductosPorOrderNumber(orderDetailService.obtenerOrderDetails().get(orderDetailService.obtenerOrderDetails().size()-1).getOrderLineNumber());

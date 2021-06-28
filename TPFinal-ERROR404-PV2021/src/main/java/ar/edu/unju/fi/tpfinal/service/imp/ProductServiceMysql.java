@@ -94,4 +94,14 @@ public class ProductServiceMysql implements IProductService {
 		return listaProductos;
 	}
 
+	@Override
+	public Product updateStockPorProductCode(Long productCode, int cantidad) {
+		Product producto = productRepository.findByProductCode(productCode).get(0);
+		
+		producto.setQuantityInStock(producto.getQuantityInStock()-cantidad);
+		productRepository.save(producto);
+	
+		return producto;
+	}
+
 }

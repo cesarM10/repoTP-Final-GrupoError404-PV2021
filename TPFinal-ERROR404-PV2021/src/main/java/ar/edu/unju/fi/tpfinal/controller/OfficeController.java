@@ -23,8 +23,13 @@ public class OfficeController {
 	
 	@Autowired
 	@Qualifier("officeServiceMysql")
-	private IOfficeService officeService; 
+	private IOfficeService officeService; //inyeccion OfficeService con metodos que trabaja con la base de datos.
 
+	/**
+	 * Metodo que agrega un objeto office necesario para el alta de un empleado.
+	 * @param model
+	 * @return Nos dirige al html alta_office
+	 */
 	@GetMapping("/office/nuevo")
 	public String getNuevaOficinaPage(Model model) {
 		model.addAttribute("office", officeService.getOffice());
@@ -32,6 +37,15 @@ public class OfficeController {
 		return "alta_office";
 	}
 	
+	/**
+	 *Metodo que recibe un office con los datos cargados en el hmtl de alta
+	 *y los resultados de validaciones.
+	 *Si tiene errores el resultadoValidacion nos retornara a alta_office, sino
+	 *procede a guardar el office en la base de datos.
+	 * @param office
+	 * @param resultadoValidacion
+	 * @return 
+	 */
 	@PostMapping("/office/guardar")
 	public ModelAndView agregarOficinaPage(@Valid @ModelAttribute("office")Office office, BindingResult resultadoValidacion) {
 		//ModelAndView model = new ModelAndView("lista_office");
@@ -56,6 +70,12 @@ public class OfficeController {
 		
 	}
 	
+	/**
+	 * Metodo que nos agrega a la vista de lista_office una lista cargada
+	 * las oficinas que tenemos en la base de datos.
+	 * @param model
+	 * @return Dirige a lista_office.
+	 */
 	@GetMapping("/office/listado")
 	public String getOficinasPage(Model model) {
 		
@@ -63,6 +83,12 @@ public class OfficeController {
 		return "lista_office";
 	}
 	
+	/**
+	 * Metodo que nos permite la buscar mediante officeCode una oficina en la 
+	 * base de datos para modificar sus valores.
+	 * @param officeCode
+	 * @return Dirige a alta_office con los datos recuperados en los campos.
+	 */
 	@GetMapping("/office/editar/{officeCode}")
 	public ModelAndView getCustomerEditPage(@PathVariable(value = "officeCode")Long officeCode) {
 		
@@ -74,6 +100,12 @@ public class OfficeController {
 		return model;
 	}
 	
+	/**
+	 * Metodo que mediante un officeCode permite eliminar un office de la 
+	 * base de datos.
+	 * @param officeCode
+	 * @return Redirige a la direccion /office/listado.
+	 */
 	@GetMapping("/office/eliminar/{officeCode}")
 	public ModelAndView getCustomerDeletePage(@PathVariable(value = "officeCode")Long officeCode) {
 		ModelAndView model = new ModelAndView("redirect:/office/listado");

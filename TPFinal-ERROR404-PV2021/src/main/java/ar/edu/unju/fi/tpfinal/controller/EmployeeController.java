@@ -31,15 +31,22 @@ public class EmployeeController {
 	
 	@Autowired
 	@Qualifier("employeeServiceMysql")
-	private IEmployeeService employeeService;
+	private IEmployeeService employeeService; //inyeccion EmployeeService con metodos que trabaja con la base de datos.
 	
 	@Autowired
-	private Employee employee;
+	private Employee employee; //inyeccion objeto employee
 	
 	@Autowired
 	@Qualifier("officeServiceMysql")
-	private IOfficeService officeService;
+	private IOfficeService officeService; //inyeccion OfficeService con metodos que trabaja con la base de datos
 	
+	/**
+	 * Metodo que agrega un objeto employee, lista de oficinas, lista de un empleado selecionado
+	 *  necesario para el alta de un Empleado.
+	 * 
+	 * @param model
+	 * @return dirige al alta-employee.html
+	 */
 	@GetMapping("/employee/nuevo")
 	public String getNuevoEmployeePage(Model model) {
 		model.addAttribute("employee", employeeService.getEmployee());
@@ -49,6 +56,16 @@ public class EmployeeController {
 		return "alta-employee";
 	}
 	
+	/**
+	 * Metodo que recibe un employee con los datos cargados en el html de alta
+	 * y un BindingResult que trae el resultado de las validaciones correspondientes a cada campo 
+	 * que se cargo. Comprueba que no haya errores en la carga de los campos, si hay errores, volvera
+	 * al html de alta y mostrara los campos en los que se ingreso datos erroneos, sino se procede a 
+	 * agregar el employee a la base de datos.
+	 * @param employee
+	 * @param resultadoValidacion
+	 * @return 
+	 */
 	@PostMapping("/employee/guardar")
 	public ModelAndView agregarEmployeePage(@Valid @ModelAttribute("employee")Employee employee, BindingResult resultadoValidacion) {
 		LOGGER.info("ENTRO A GUARDAR");
@@ -81,6 +98,11 @@ public class EmployeeController {
 		
 	}
 	
+	/**
+	 * Metodo que nos agrega a la vista de lista-employee una lista cargada con los
+	 * empleados que tenemos en la base de datos
+	 * @return 
+	 */
 	@GetMapping("/employee/listado")
 	public ModelAndView getEmployeesPage() {
 		ModelAndView model = new ModelAndView("lista-employee");
@@ -89,6 +111,13 @@ public class EmployeeController {
 		return model;
 	}
 	
+	/**
+	 * Metodo que que recibe como parametro employeeNumber para realizar la busqueda de
+	 * un empleado encargado del nuevo empleado.
+	 * @param employeeNumber
+	 * @param model
+	 * @return  Nos devuelve al html de alta-employee
+	 */
 	@GetMapping("/employee/busqueda")
 	public String getBuscarEmployeeConFiltro(@RequestParam(value = "employeeNumber")Long employeeNumber, Model model) {
 		LOGGER.info("METODO - - BUSCAR");
@@ -102,6 +131,12 @@ public class EmployeeController {
 		return "alta-employee";
 	}
 	
+	/**
+	 * Metodo que quita el empleado seleccionado como encargado en el metodo getBuscarEmployeeConFiltro.
+	 * 
+	 * @param employeeNumber
+	 * @return Retornamos al hmtl de alta-employee.
+	 */
 	@GetMapping("/employee/quitaropcion/{employeeNumber}")
 	public ModelAndView quitarOpcionListaEmployeeSeleccionado(@PathVariable(name = "employeeNumber")Long employeeNumber) {
 		ModelAndView model = new ModelAndView("alta-employee");
@@ -116,6 +151,12 @@ public class EmployeeController {
 		return model;
 	}
 	
+	/**
+	 * Metodo que nos permite editar los datos de un empleado. Mediante el employeeNumber permite la
+	 * busqueda en la base de datos para traer los datos a los campos en alta-employe.
+	 * @param employeeNumber
+	 * @return alta-employee con los datos del empleado a editar
+	 */
 	@GetMapping("/employee/editar/{employeeNumber}")
 	public ModelAndView getCustomerEditPage(@PathVariable(value = "employeeNumber")Long employeeNumber) {
 		LOGGER.info("METODO - - EDITAR EMPLOYEE");
@@ -135,6 +176,12 @@ public class EmployeeController {
 		return model;
 	}
 	
+	/**
+	 * Metodo que mediante employeeNumber permite eliminar el empleado de la base de datos que coincida.
+	 * 
+	 * @param employeeNumber
+	 * @return Redirige a la direccion /employee/listado.
+	 */
 	@GetMapping("/employee/eliminar/{employeeNumber}")
 	public ModelAndView getCustomerDeletePage(@PathVariable(value = "employeeNumber")Long employeeNumber) {
 		ModelAndView model = new ModelAndView("redirect:/employee/listado");

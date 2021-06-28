@@ -90,4 +90,10 @@ public class ProductServiceImp implements IProductService {
 		return null;
 	}
 
+	@Override
+	public Product updateStockPorProductCode(Long productCode, int cantidad) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
