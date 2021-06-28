@@ -20,6 +20,19 @@ public class LoginController {
 		return "logout";
 	}
 	
+	
+	@GetMapping("/index")
+	public String getIndexPage() {
+		return "index";
+	}
+	
+	
+	
+	
+	
+	
+
+	
 	@GetMapping("/registro")
 	public String getRegistroPage(Model model) {
 		
@@ -28,8 +41,5 @@ public class LoginController {
 	
 
 	
-	@GetMapping("/index")
-	public String getIndexPage() {
-		return "index";
-	}
+
 }
