@@ -14,18 +14,18 @@
 		<div class="container">
 						
 			<div > 
-				<h1 style="font-family: century gothic">Lista de Linea de Productos</h1>
+				<h1 style="font-family: century gothic">Lista de Categorias</h1>
 			</div>
 			
 			<div class="row">
 					<div class="col-sm-12 col-md-10"> 
 						<div class="scrollme">
-						<table class="table table-responsive table-hover" style="text-align: center; background-color: gray; color: white;">
+						<table class="table table-hover" style="text-align: center; background-color: gray; color: white;">
 							<thead style="background-color: black;"> 
 								<tr id="miTablaEncabezado">
-									<th>linea de producto</th>
-									<th>texto de descripcion</th>
-									<th>html Descripcion </th>
+									<th>ID Categoria</th>
+									<th>Texto de descripcion</th>
+									<th>HTML Descripcion </th>
 									<th>Imagen</th> 
 									<th>Accion</th>							
 								</tr>
@@ -40,7 +40,7 @@
 									
 	<!-- card domde saldra la imagen  -->		<img class="img-thumbnail rounded float-left" 
 			th:src="@{'/image/'+${pli.image}}"
-			th:alt="${pli.image}" style="max-width:75%;"><!-- direccionamiento de la imagen y tamaño   -->
+			th:alt="${pli.image}" style="max-width:100%;"><!-- direccionamiento de la imagen y tamaño   -->
 									</td>
 									
 									<td>
