@@ -11,8 +11,11 @@ import ar.edu.unju.fi.tpfinal.service.IPaymentService;
 public class PaymentServiceMysql implements IPaymentService{
 
 	@Autowired
-	private IPaymentRepository paymentRepository;
+	private IPaymentRepository paymentRepository; //inyecion de metodos que implementa la base de datos.
 	
+	/**
+	 * Agrega un objeto del tipo Payment a la base de datos.
+	 */
 	@Override
 	public void agregarPayment(Payment payment) {
 		paymentRepository.save(payment);

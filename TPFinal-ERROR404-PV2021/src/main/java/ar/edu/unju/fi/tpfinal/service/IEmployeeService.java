@@ -12,7 +12,7 @@ public interface IEmployeeService {
 	
 	public List<Employee> obtenerEmployees();
 	
-	public void eliminarEmployee(Long empoyeeNumber);
+	public void eliminarEmployee(Long employeeNumber);
 	
 	public List<Employee> listaEmployeeSeleccionado();
 	

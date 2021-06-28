@@ -18,24 +18,25 @@ public class Payment implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@EmbeddedId
-	private PaymentsID id ;
+	private PaymentsID id ; //clave primaria combiada con un cliente y una cadenad de caracteres en PaymentsID
 	
 	@Column(name = "pay_paymentDate", nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate paymentDate;
+	private LocalDate paymentDate; //atributo fecha de pago.
 	
 	@Column(name = "pay_amount", nullable = false)
-	private double amount;
+	private double amount; //atributo monto pagado.
 	
 	
 	
 	/**
-	 * 
+	 * Constructor por defecto de Payment
 	 */
 	public Payment() { 
 		// TODO Auto-generated constructor stub
 	}
 	/**
+	 * Constructor Especializado de Payment
 	 * @param paymentDate
 	 * @param amount
 	 */

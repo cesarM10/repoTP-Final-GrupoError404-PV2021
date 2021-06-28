@@ -13,37 +13,62 @@ public class PaymentsID implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "cus_customerNumber")
-	private Customer customerNumber;
+	private Customer customerNumber; //atributo numero de cliente
 
 	@Column(name = "checkNumber")
-	private String checkNumber;
+	private String checkNumber; //atributo cadena de caracteres.
 	
+	
+	/**
+	 * Constructor por defecto de PaymentsID
+	 */
 	public PaymentsID() {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Constructor Especializado de PaymentsID
+	 * @param customerNumber
+	 * @param checkNumber
+	 */
 	public PaymentsID(Customer customerNumber, String checkNumber) {
 		super();
 		this.customerNumber = customerNumber;
 		this.checkNumber = checkNumber;
 	}
 
+
+	/**
+	 * @return the customerNumber
+	 */
 	public Customer getCustomerNumber() {
 		return customerNumber;
 	}
 
+	/**
+	 * @param customerNumber the customerNumber to set
+	 */
 	public void setCustomerNumber(Customer customerNumber) {
 		this.customerNumber = customerNumber;
 	}
 
+	/**
+	 * @return the checkNumber
+	 */
 	public String getCheckNumber() {
 		return checkNumber;
 	}
 
+	/**
+	 * @param checkNumber the checkNumber to set
+	 */
 	public void setCheckNumber(String checkNumber) {
 		this.checkNumber = checkNumber;
 	}
 
+	/**
+	 * @return the serialversionuid
+	 */
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
