@@ -17,7 +17,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.tpfinal.model.Office;
 import ar.edu.unju.fi.tpfinal.service.IOfficeService;
-
+/**
+ * @author 
+ * Integrantes del Grupo Error404:
+	 * Gaspar, Alvaro Emanuel
+	 * Mercado, Cesar David
+	 * Rodriguez, Enrique Sebastian
+	 * Salas, Ivan Arnaldo
+ */
 @Controller
 public class OfficeController {
 	

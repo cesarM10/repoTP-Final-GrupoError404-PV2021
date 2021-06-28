@@ -21,7 +21,14 @@ import ar.edu.unju.fi.tpfinal.model.Customer;
 import ar.edu.unju.fi.tpfinal.service.ICustomerService;
 import ar.edu.unju.fi.tpfinal.service.IEmployeeService;
 import ar.edu.unju.fi.tpfinal.service.imp.CustomerServiceImp;
-
+/**
+ * @author 
+ * Integrantes del Grupo Error404:
+	 * Gaspar, Alvaro Emanuel
+	 * Mercado, Cesar David
+	 * Rodriguez, Enrique Sebastian
+	 * Salas, Ivan Arnaldo
+ */
 @Controller //anotacion especial Controller
 public class CustomerController {
 	

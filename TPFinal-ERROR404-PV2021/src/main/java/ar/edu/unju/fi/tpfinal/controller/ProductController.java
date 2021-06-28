@@ -22,7 +22,14 @@ import ar.edu.unju.fi.tpfinal.model.Productline;
 import ar.edu.unju.fi.tpfinal.service.IProductService;
 import ar.edu.unju.fi.tpfinal.service.IProductlineService;
 import ar.edu.unju.fi.tpfinal.service.imp.ProductServiceMysql;
-
+/**
+ * @author 
+ * Integrantes del Grupo Error404:
+	 * Gaspar, Alvaro Emanuel
+	 * Mercado, Cesar David
+	 * Rodriguez, Enrique Sebastian
+	 * Salas, Ivan Arnaldo
+ */
 @Controller
 public class ProductController {
 	private static final Log LOGGER = LogFactory.getLog(ProductServiceMysql.class);	
@@ -39,15 +46,15 @@ public class ProductController {
 	*/
 	@Autowired
 	@Qualifier("productObject")
-	private Product product;
+	private Product product; //ineccion del objeto produc
 	
 	@Autowired
 	@Qualifier("productServiceMysql")
-	private IProductService productService;
+	private IProductService productService;//inyeccon del serviceproduct
 	
 	@Autowired
 	@Qualifier("productlineServiceMysql")
-	private IProductlineService productlineService;
+	private IProductlineService productlineService;//inyeccon del serviceproductline
 	/*
 	 * crea un nuevo producto
 	 */

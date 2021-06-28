@@ -24,7 +24,14 @@ import ar.edu.unju.fi.tpfinal.model.Employee;
 import ar.edu.unju.fi.tpfinal.service.IEmployeeService;
 import ar.edu.unju.fi.tpfinal.service.IOfficeService;
 import ar.edu.unju.fi.tpfinal.service.imp.EmployeeServiceMysql;
-
+/**
+ * @author 
+ * Integrantes del Grupo Error404:
+	 * Gaspar, Alvaro Emanuel
+	 * Mercado, Cesar David
+	 * Rodriguez, Enrique Sebastian
+	 * Salas, Ivan Arnaldo
+ */
 @Controller
 public class EmployeeController {
 	private static final Log LOGGER = LogFactory.getLog(EmployeeServiceMysql.class);

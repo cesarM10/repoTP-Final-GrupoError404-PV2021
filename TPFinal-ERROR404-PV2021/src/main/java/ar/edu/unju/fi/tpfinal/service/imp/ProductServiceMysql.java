@@ -38,7 +38,7 @@ public class ProductServiceMysql implements IProductService {
 		// TODO Auto-generated method stub
 
 	}
-
+// agrega un  producto  
 	@Override
 	public void agregarProducto(Product product) {
 		// TODO Auto-generated method stub
@@ -64,19 +64,19 @@ public class ProductServiceMysql implements IProductService {
 		Optional<Product> product = productRepository.findById(id);
 		return product;
 	}
-
+//eliminacion de un producto de la lista
 	@Override
 	public void eliminarProduct(Long id) {
 		// TODO Auto-generated method stub
 		productRepository.deleteById(id);
 	}
-
+//mustra un listado de los productos
 	@Override
 	public List<Product> listaDeProductos() {
 		
 		return listaProductos;
 	}
-
+//agrega un producto a la lista
 	@Override
 	public void agregarListaDeProductos(Product product) {
 		listaProductos.add(product);

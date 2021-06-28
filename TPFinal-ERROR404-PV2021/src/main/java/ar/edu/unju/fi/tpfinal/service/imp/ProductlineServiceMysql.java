@@ -31,7 +31,7 @@ public class ProductlineServiceMysql implements IProductlineService {
 		// TODO Auto-generated method stub
 		
 	}
-
+//agrega una categoria a la lista
 	@Override
 	public void agregarProductoline(Productline productline) {
 		// TODO Auto-generated method stub
@@ -57,7 +57,7 @@ public class ProductlineServiceMysql implements IProductlineService {
 		Optional<Productline> productline = productlineRepository.findById(id);
 		return productline;
 	}
-
+//eliminar una categoria
 	@Override
 	public void eliminarProductline(Long id) {
 		// TODO Auto-generated method stub
