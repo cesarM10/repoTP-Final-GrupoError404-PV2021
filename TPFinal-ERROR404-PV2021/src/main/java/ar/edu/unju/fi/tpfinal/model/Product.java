@@ -33,9 +33,9 @@ public class Product {
 	@Column(name = "pro_product_code")
 	private Long productCode;
 	
-	@NotEmpty(message = "El campo no debe estar vacio.")
-	@Size(min = 3, max = 150,  message = "El campo de Nombre del Producto debe tener como minimo 3 caracteres.")
-	@Column(name = "pro_productName", nullable = false)
+	@NotEmpty(message = "El campo no debe estar vacio.")//valida q el campo no este vacio
+	@Size(min = 3, max = 150,  message = "El campo de Nombre del Producto debe tener como minimo 3 caracteres.")//restrincion de tamaños
+	@Column(name = "pro_productName", nullable = false)//nombre de la columna en la BD
 	private String productName;
 	
 	//@Valid  // validacion del campo relacioado

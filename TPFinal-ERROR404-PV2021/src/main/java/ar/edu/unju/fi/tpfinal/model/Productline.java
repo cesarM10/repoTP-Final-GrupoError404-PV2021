@@ -34,13 +34,13 @@ public class Productline {  //7658
 	@Column(name = "pli_product_line")
 	private  Long productLine;
 	
-	@NotEmpty(message = "El campo no debe estar vacio.")
-	@Size(min = 3, max = 150,  message = "El campo de la Descripcion debe tener como minimo 3 caracteres.")
-	@Column(name = "pli_textDescription")
+	@NotEmpty(message = "El campo no debe estar vacio.")//valida q el campo no este vacio
+	@Size(min = 3, max = 150,  message = "El campo de la Descripcion debe tener como minimo 3 caracteres.")//restrincion de tamaño
+	@Column(name = "pli_textDescription")//nombre de la columna en la BD
 	private  String textDescription;
 	
 	@NotEmpty(message = "El campo no debe estar vacio.")
-	@Size(min = 30, max = 150,  message = "El campo del HTML debe tener como minimo 30 caracteres.")
+	@Size(min = 10, max = 150,  message = "El campo del HTML debe tener como minimo 10 caracteres.")
 	@Column(name = "pli_htmlDescription")
 	private  String htmlDescription;
 	
