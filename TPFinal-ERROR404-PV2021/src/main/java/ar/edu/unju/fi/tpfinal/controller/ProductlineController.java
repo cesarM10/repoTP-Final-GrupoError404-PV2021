@@ -3,6 +3,10 @@
  */
 package ar.edu.unju.fi.tpfinal.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -18,6 +22,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.tpfinal.model.Productline;
@@ -45,7 +51,8 @@ public class ProductlineController {
 	}
 	
 	@PostMapping("/productoline/guardar")
-	public ModelAndView agregarProductolinePage(@Valid @ModelAttribute("productline")Productline productline, BindingResult resultadoValidacion) {
+	public ModelAndView agregarProductolinePage(@Valid @ModelAttribute("productline")Productline productline, 
+			@RequestParam("file") MultipartFile imagen,BindingResult resultadoValidacion) {
 
 		/*if (productService.obtenerProductos() == null) {
 			productService.generarTablaProducto();
@@ -63,7 +70,20 @@ public class ProductlineController {
 			return model;
 		}else { //no encontró errores.
 			model = new ModelAndView("lista_productline");
-			
+	////////newjk
+				if(!imagen.isEmpty()) {
+					Path directorioImagenes= Paths.get("src//main//resources//static/image");
+					String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();
+					try {
+						byte[]bytesImg=imagen.getBytes();
+						Path rutaCompleta= Paths.get(rutaAbsoluta+"//"+imagen.getOriginalFilename());
+						Files.write(rutaCompleta, bytesImg);
+						productline.setImage(imagen.getOriginalFilename());
+					}catch(IOException e) {
+						e.printStackTrace();
+					}
+				}
+				////////
 			productlineService.agregarProductoline(productline);
 			
 			model.addObject("productline", productlineService.obtenerProductosline());

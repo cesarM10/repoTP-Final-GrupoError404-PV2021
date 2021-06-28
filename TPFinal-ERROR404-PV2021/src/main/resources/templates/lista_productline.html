@@ -36,7 +36,12 @@
 									<td th:text="${pli.textDescription}"></td>
 									<td th:text="${pli.htmlDescription}"></td> 
 									<!--td th:text="${pli.image}"></td--> 
-									<td><img  th:alt="${pli.image}" src="${pli.image}" alt="image" class="img-thumbnail"></td>
+									<td><!--  img  th:alt="${pli.image}" src="${pli.image}" alt="image" class="img-thumbnail"-->
+									
+	<!-- card dode saldra la imagen  -->		<img class="img-thumbnail rounded float-left" 
+			th:src="@{'/image/'+${pli.image}}"
+			th:alt="${pli.image}" style="max-width:75%;"><!-- direccionamiento de la imagen y tamaño   -->
+									</td>
 									
 									<td>
 										<a th:href="@{/productoline/editar/}+${pli.productLine}" class="btn btn-warning">Editar</a>
