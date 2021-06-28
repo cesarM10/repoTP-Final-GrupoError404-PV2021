@@ -20,6 +20,19 @@ public class LoginController {
 		return "logout";
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@GetMapping("/registro")
 	public String getRegistroPage(Model model) {
 		
