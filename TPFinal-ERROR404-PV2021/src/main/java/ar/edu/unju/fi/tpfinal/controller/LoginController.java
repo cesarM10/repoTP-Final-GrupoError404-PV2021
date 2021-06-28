@@ -21,7 +21,10 @@ public class LoginController {
 	}
 	
 	
-	
+	@GetMapping("/index")
+	public String getIndexPage() {
+		return "index";
+	}
 	
 	
 	
@@ -41,8 +44,5 @@ public class LoginController {
 	
 
 	
-	@GetMapping("/index")
-	public String getIndexPage() {
-		return "index";
-	}
+
 }

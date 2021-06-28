@@ -30,33 +30,48 @@ public class CustomerServiceMysqlImp implements ICustomerService{
 		
 	}
    
+	/**
+	 * Metodo pasa salvar al customer
+	 */
 	@Override
-	public void agregarCustomer(Customer customer) {//metodo para guardar el empleado
-		customerRepository.save(customer);//guarda el objeto de la clase customer.
+	public void agregarCustomer(Customer customer) {
+		customerRepository.save(customer);
 	}
 
+	/**
+	 * Metodo  lista de los customer
+	 */
 	@Override
-	public List<Customer> obtenerCustomer() { //metodo que permitia cargar la lista customer.
+	public List<Customer> obtenerCustomer() { 
 		// TODO Auto-generated method stub
 		List<Customer> customers = (List<Customer>) customerRepository.findAll();//lista de customer.
-		return customers; //retorna la lista.
+		return customers; 
 	}
 
+	/**
+	 * Motodo que retorna al customer
+	 */
 	@Override
 	public Customer getCustomer() {
-		return customer;//retorna al customer.
+		return customer;
 	}
 
+	/**
+	 * Metodo para recuperar al empleado.
+	 */
 	@Override
 	public Optional<Customer> getCustomerPorId(Long customerNumber) { //metodo que recupera al empleado.
 		Optional<Customer> customers = customerRepository.findById(customerNumber);
 		return customers;//retorna al customer.
 	}
 
+	/**
+	 * Metodo para eliminar al customer.
+	 */
 	@Override
-	public void eliminarCustomer(Long customerNumber) { //metodo para eliminar.
+	public void eliminarCustomer(Long customerNumber) { 
 		// TODO Auto-generated method stub
-		customerRepository.deleteById(customerNumber);//recibe  customerNumber para eliminar 
+		customerRepository.deleteById(customerNumber);
 	}
 	
 	@Override
@@ -65,6 +80,10 @@ public class CustomerServiceMysqlImp implements ICustomerService{
 		return customerSeleccionado;
 	}
 
+	
+	
+	
+	
 	@Override
 	public List<Customer> buscarCustomerPorCustomerNumber(Long customerNumber) {
 		if(customerNumber == null) {
