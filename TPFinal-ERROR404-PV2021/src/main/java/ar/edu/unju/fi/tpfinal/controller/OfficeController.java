@@ -2,10 +2,13 @@ package ar.edu.unju.fi.tpfinal.controller;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,14 +33,27 @@ public class OfficeController {
 	}
 	
 	@PostMapping("/office/guardar")
-	public ModelAndView agregarOficinaPage(@ModelAttribute("office")Office office) {
-		ModelAndView model = new ModelAndView("lista_office");
+	public ModelAndView agregarOficinaPage(@Valid @ModelAttribute("office")Office office, BindingResult resultadoValidacion) {
+		//ModelAndView model = new ModelAndView("lista_office");
+		ModelAndView model;
 		
-		officeService.agregarOffice(office);
+		if(resultadoValidacion.hasErrors()) {
+			model = new ModelAndView("alta_office");
+			
+			//model.addObject("office", officeService.getOffice());
+			
+			return model;
+		}else {
+			model = new ModelAndView("lista_office");
+			
+			officeService.agregarOffice(office);
+			
+			model.addObject("offices", officeService.obtenerOffices());
+			
+			return model;
+		}
 		
-		model.addObject("offices", officeService.obtenerOffices());
 		
-		return model;
 	}
 	
 	@GetMapping("/office/listado")
