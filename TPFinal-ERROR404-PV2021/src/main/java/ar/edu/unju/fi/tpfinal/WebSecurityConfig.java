@@ -49,23 +49,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		    .usernameParameter("username")
 		    .passwordParameter("password")
 	        .and()
-	    .logout()//.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+	    .logout()
 		    .permitAll()
 		    .logoutSuccessUrl("/index");
 		http.csrf().disable();
 	}
 
 	
-	
+	 //encriptador
 	    @Bean
 	    public BCryptPasswordEncoder passwordEncoder() {
 		   BCryptPasswordEncoder	bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
 	        return bCryptPasswordEncoder;
 	    }
-	 
+	
 	   @Autowired
 	    LoginUsuarioServiceImp userDetailsService;
 	   
+	   //Proceso de busqueda del autenticador.
 	   @Autowired
 	    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 	    	auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
