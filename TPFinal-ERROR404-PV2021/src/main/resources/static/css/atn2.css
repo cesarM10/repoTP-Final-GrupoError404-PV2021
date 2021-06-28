@@ -1,23 +1,5 @@
 @charset "utf-8";
 
-/*
-body {
-background: -prefix-linear-gradient(left, black, yellow);
-background: linear-gradient(to right, yellow, black);
-
-
-background: radial-gradient(ellipse farthest-corner, red, yellow 05%, yellow, black);
-
- margin: 0;
-  padding: 0;
- 
-  background-size: cover;
-  font-family: sans-serif;
-  height: 100vh;
-  
-}
-
-*/
 .login-box {
   width: 320px;
   height: 420px;
