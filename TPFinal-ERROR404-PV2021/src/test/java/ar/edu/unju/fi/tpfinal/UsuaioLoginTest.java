@@ -23,9 +23,9 @@ class UsuaioLoginTest {
 	void testUsuario() {
 		//se agregara datos del  usuario.
 	   Usuario us = new Usuario();
-		us.setPassword("12345678");
-		us.setPerfil("CLIENTE");//el rol
-		us.setUsuario("abel");
+		us.setPassword("error404");
+		us.setPerfil("ADMIN");//el rol
+		us.setUsuario("Master");
 		usuarioService.guardarUsuario(us);
 	//	assertEquals("CLIENTE", us.getPerfil());
 		assertTrue(true);

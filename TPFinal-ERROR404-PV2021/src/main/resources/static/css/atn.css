@@ -52,7 +52,7 @@ div ul li a:hover{
 	
 }
 
-.container h1{
+#senseiMotors h1{
 text-align:center;
 color: #fff;
 background: none;
@@ -62,3 +62,48 @@ letter-spacing: 0;
 text-shadow: -3px -3px 3px yellow, 3px -3px 3px #000000, -3px 3px 3px #000000, 3px 3px 3px #efea10;
 }
 
+
+
+
+
+
+
+
+#alfa1{
+		
+		background: #3C3B3A  ;
+		 margin: 0;
+		  padding: 20px; 
+		  background-size: cover;
+		  font-family: sans-serif;
+		  height: 250vh;	  
+}
+
+#alfa1 h1{
+		
+		color: #CCCAC5   ;
+		text-align: center;
+			  
+}
+
+#alfa1 label{
+		
+		color: #CCCAC5   ;
+		
+			  
+}
+
+#alfa1 button:hover{
+		
+		color: #3C3B3A   ;
+		background-color: #FFC300;
+		transform:scale(1.2);  
+		 border: #10100F 3px solid;
+}
+
+#alfa1 button{
+		
+		color: #3C3B3A   ;
+		background-color: #FFC300;
+		border: #10100F 1px solid;
+}
