@@ -29,7 +29,14 @@ import ar.edu.unju.fi.tpfinal.service.IOrderService;
 import ar.edu.unju.fi.tpfinal.service.IPaymentService;
 import ar.edu.unju.fi.tpfinal.service.IProductService;
 import ar.edu.unju.fi.tpfinal.service.imp.ProductServiceMysql;
-
+/**
+ * @author 
+ * Integrantes del Grupo Error404:
+	 * Gaspar, Alvaro Emanuel
+	 * Mercado, Cesar David
+	 * Rodriguez, Enrique Sebastian
+	 * Salas, Ivan Arnaldo
+ */
 @Controller
 public class CompraController {
 	private static final Log LOGGER = LogFactory.getLog(ProductServiceMysql.class);

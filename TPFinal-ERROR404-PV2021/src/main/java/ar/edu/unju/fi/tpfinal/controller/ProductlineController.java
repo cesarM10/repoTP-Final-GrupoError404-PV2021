@@ -31,8 +31,12 @@ import ar.edu.unju.fi.tpfinal.service.IProductlineService;
 import ar.edu.unju.fi.tpfinal.service.imp.ProductlineServiceImp;
 
 /**
- * @author Alvaro
- *
+ * @author 
+ * Integrantes del Grupo Error404:
+	 * Gaspar, Alvaro Emanuel
+	 * Mercado, Cesar David
+	 * Rodriguez, Enrique Sebastian
+	 * Salas, Ivan Arnaldo
  */
 @Controller
 public class ProductlineController {
@@ -41,7 +45,7 @@ public class ProductlineController {
 	
 	@Autowired
 	@Qualifier("productlineServiceMysql")
-	private IProductlineService productlineService;
+	private IProductlineService productlineService;//inyeccion del service con el q se va a trabajar
 	/*
 	 * crear nueva categoria
 	 */
