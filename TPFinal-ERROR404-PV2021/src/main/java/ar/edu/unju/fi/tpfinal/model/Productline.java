@@ -44,11 +44,12 @@ public class Productline {  //7658
 	@Column(name = "pli_htmlDescription")
 	private  String htmlDescription;
 	
-	@NotEmpty(message = "El campo no debe estar vacio.") 
+	/*@NotEmpty(message = "El campo no debe estar vacio.") 
 	@Lob
-	@Column(columnDefinition = "MEDIUMBLOB")
+	@Column(columnDefinition = "MEDIUMBLOB")*/
     //@Column(name = "pli_image")
-	private  byte[] image;//mediumblob
+	//private  byte[] image;//mediumblob
+	private  String image;
 	
 	@OneToMany(mappedBy ="productline", cascade= CascadeType.ALL, orphanRemoval=true)//controlar
 	private List <Product> products = new ArrayList<Product>();//controlar
@@ -59,7 +60,7 @@ public class Productline {  //7658
 	}
 
 
-	public Productline(Long productLine, String textDescription, String htmlDescription, byte[] image) {
+	public Productline(Long productLine, String textDescription, String htmlDescription, String image) {
 		super();
 		this.productLine = productLine;
 		this.textDescription = textDescription;
@@ -98,12 +99,12 @@ public class Productline {  //7658
 	}
 
 
-	public byte[] getImage() {
+	public String getImage() {
 		return image;
 	}
 
 
-	public void setImage(byte[] image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 
@@ -111,7 +112,7 @@ public class Productline {  //7658
 	@Override
 	public String toString() {
 		return "Productline [productLine=" + productLine + ", textDescription=" + textDescription + ", htmlDescription="
-				+ htmlDescription + ", image=" + Arrays.toString(image) + "]";
+				+ htmlDescription + ", image=" + "]";//Arrays.toString(image) + "]";
 	}
 	
 	
