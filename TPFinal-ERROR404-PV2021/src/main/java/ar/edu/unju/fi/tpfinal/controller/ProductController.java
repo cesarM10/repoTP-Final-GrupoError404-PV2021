@@ -48,7 +48,9 @@ public class ProductController {
 	@Autowired
 	@Qualifier("productlineServiceMysql")
 	private IProductlineService productlineService;
-	
+	/*
+	 * crea un nuevo producto
+	 */
 	@GetMapping("/producto/nuevo")
 	public String getNuevoProductPage(Model model) {
 		//model.addAttribute(product);
@@ -56,7 +58,9 @@ public class ProductController {
 		model.addAttribute("productLines", productlineService.obtenerProductosline());
 		return "alta_product";
 	}
-	
+	/*
+	 * gurda un producto una ves validado los campos 
+	 */
 	@PostMapping("/producto/guardar")
 	public ModelAndView agregarProductoPage(@Valid @ModelAttribute("product")Product product, BindingResult resultadoValidacion) {
 		/*if (productService.obtenerProductos() == null) {
@@ -70,7 +74,7 @@ public class ProductController {
 		return model;*/
 		//LOGGER.info("Metodo: guardando... --");
 		ModelAndView model;
-				
+				//validacion
 		if(resultadoValidacion.hasErrors()) { //encontró errores.
 			model = new ModelAndView("alta_product");
 			//model.addObject("product", productService.getProduct());	
@@ -87,7 +91,9 @@ public class ProductController {
 			return model;
 		}
 	} 
-	
+	/*
+	 * genera lista de productos
+	 */
 	@GetMapping("/producto/listado")
 	public ModelAndView getProductosPage(){
 		ModelAndView model = new ModelAndView("lista_product");
@@ -100,8 +106,11 @@ public class ProductController {
 	}
 	
 	///////////
+	/*
+	 * edita un producto de la lista
+	 */
 	@GetMapping("/producto/editar/{id}")
-	public ModelAndView getClienteEditPage(@PathVariable(value = "id")Long id) {
+	public ModelAndView getProductoEditPage(@PathVariable(value = "id")Long id) {
 		//LOGGER.info("METODO - - EDITAR Product");
 		ModelAndView model = new ModelAndView("alta_product");
 		Optional <Product> product = productService.getProductPorId(id);
@@ -110,9 +119,11 @@ public class ProductController {
 		model.addObject("productLines", productlineService.obtenerProductosline());
 		return model;
 	}
-	
+	/*
+	 * elimina un producto de la lista
+	 */
 	@GetMapping("/producto/eliminar/{id}")
-	public ModelAndView getClienteDeletePage(@PathVariable(value = "id")Long id) {
+	public ModelAndView getProductoDeletePage(@PathVariable(value = "id")Long id) {
 		ModelAndView model = new ModelAndView("redirect:/producto/listado");
 		productService.eliminarProduct(id);
 		

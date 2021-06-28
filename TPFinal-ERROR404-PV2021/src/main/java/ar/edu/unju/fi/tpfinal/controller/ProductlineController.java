@@ -42,14 +42,18 @@ public class ProductlineController {
 	@Autowired
 	@Qualifier("productlineServiceMysql")
 	private IProductlineService productlineService;
-	
+	/*
+	 * crear nueva categoria
+	 */
 	@GetMapping("/productoline/nuevo")
 	public String getNuevoProductPage(Model model) {
 		//model.addAttribute(product);
 		model.addAttribute("productline", productlineService.getProductline());//.getCliente());
 		return "alta_productline";
 	}
-	
+	/*
+	 * guarda los datos de la categoria cuando son validos
+	 */
 	@PostMapping("/productoline/guardar")
 	public ModelAndView agregarProductolinePage(@Valid @ModelAttribute("productline")Productline productline, 
 			@RequestParam("file") MultipartFile imagen,BindingResult resultadoValidacion) {
@@ -70,15 +74,15 @@ public class ProductlineController {
 			return model;
 		}else { //no encontró errores.
 			model = new ModelAndView("lista_productline");
-	////////newjk
+	////////valida q se este recibiendo un ahivo q no este vacio
 				if(!imagen.isEmpty()) {
-					Path directorioImagenes= Paths.get("src//main//resources//static/image");
-					String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();
+					Path directorioImagenes= Paths.get("src//main//resources//static/image");//obtener ruta relativa
+					String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();//ruta absoluta
 					try {
-						byte[]bytesImg=imagen.getBytes();
-						Path rutaCompleta= Paths.get(rutaAbsoluta+"//"+imagen.getOriginalFilename());
+						byte[]bytesImg=imagen.getBytes();//oteet o leer la imagen
+						Path rutaCompleta= Paths.get(rutaAbsoluta+"//"+imagen.getOriginalFilename());//para obtener url completa de la ubicacion
 						Files.write(rutaCompleta, bytesImg);
-						productline.setImage(imagen.getOriginalFilename());
+						productline.setImage(imagen.getOriginalFilename());//se envia el atributo de la imagen
 					}catch(IOException e) {
 						e.printStackTrace();
 					}
@@ -90,7 +94,9 @@ public class ProductlineController {
 			return model;
 		}
 	} 
-	
+	/*
+	 * muestra la lista de categorias creadas
+	 */
 	@GetMapping("/productoline/listado")
 	public ModelAndView getProductoslinePage(){
 		ModelAndView model = new ModelAndView("lista_productline");
@@ -103,6 +109,9 @@ public class ProductlineController {
 	}
 	
 	///////////
+	/*
+	 * edicion de categoria
+	 */
 	@GetMapping("/productoline/editar/{id}")
 	public ModelAndView getProductolineEditPage(@PathVariable(value = "id")Long id) {
 		//LOGGER.info("METODO - - EDITAR Product");
@@ -112,7 +121,9 @@ public class ProductlineController {
 		model.addObject("productline", productline);
 		return model;
 	}
-	
+	/*
+	 * elimina una categoria de la lista
+	 */
 	@GetMapping("/productoline/eliminar/{id}")
 	public ModelAndView getProductolineDeletePage(@PathVariable(value = "id")Long id) {
 		ModelAndView model = new ModelAndView("redirect:/productoline/listado");
