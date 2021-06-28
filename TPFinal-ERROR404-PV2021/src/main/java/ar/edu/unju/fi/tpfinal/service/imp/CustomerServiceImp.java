@@ -30,7 +30,6 @@ public class CustomerServiceImp implements ICustomerService {
 	public void generarTablaCustomer() {
 		
 		customerList= TablaCustomer.listaCustomer;
-		
 		LOGGER.info("METHOD: generarTablaCustomer - creo primer customer por defecto" + customerList.get(customerList.size()-1));
 	}
 
@@ -66,19 +65,21 @@ public class CustomerServiceImp implements ICustomerService {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	
+	//Metodos usados por CompraController
 	@Override
 	public List<Customer> listaCustomerSeleccionado() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	
 	@Override
 	public List<Customer> buscarCustomerPorCustomerNumber(Long customerNumber) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 
 }

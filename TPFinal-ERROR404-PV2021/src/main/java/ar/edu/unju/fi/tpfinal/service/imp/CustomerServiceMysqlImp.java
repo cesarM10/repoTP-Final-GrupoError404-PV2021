@@ -58,7 +58,7 @@ public class CustomerServiceMysqlImp implements ICustomerService{
 		// TODO Auto-generated method stub
 		customerRepository.deleteById(customerNumber);//recibe  customerNumber para eliminar 
 	}
-
+	
 	@Override
 	public List<Customer> listaCustomerSeleccionado() {
 		

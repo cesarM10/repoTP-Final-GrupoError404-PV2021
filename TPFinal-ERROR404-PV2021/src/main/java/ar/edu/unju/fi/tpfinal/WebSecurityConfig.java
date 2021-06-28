@@ -12,37 +12,46 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import ar.edu.unju.fi.tpfinal.service.imp.LoginUsuarioServiceImp;
 
+/**
+ * 
+ * @author Error404
+ *
+ */
 
-
-@EnableWebSecurity
+@EnableWebSecurity//Para habilitar la seguridad web.
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
+//Hacemos la inyeccion.
 	@Autowired
 	AutSeccessHandler accesoHandler;
 	
+	//Accede a las carpeta de estilos atraves de un arreglo  String.
 	String[] resources = new String[]{
             "/include/**","/css/**","/icons/**","/image/**","/js/**","/layer/**","/webjars/**","/vi/**"
     };
 	
+	/**
+	 * http seguridad.
+	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		.authorizeRequests()
-			.antMatchers(resources).permitAll()
-		     .antMatchers("/", "/index","/registro").permitAll()  //paginas que se puede acceder.
-		     .anyRequest().authenticated() //Cualquier otro tiene que estar autenticado.
+			.antMatchers(resources).permitAll()//Peticion a todos los recursos.
+		     .antMatchers("/", "/index","/registro").permitAll()  
+		     .anyRequest().authenticated() 
 		     .and()
 	   .formLogin()
 		    .loginPage("/login").permitAll()
 		    .successHandler(accesoHandler)
 		    .failureUrl("/login?error=true")
-		    .usernameParameter("username")//lo que pasaremos al html
-		    .passwordParameter("password")//lo que pasaremos al html
+		    .usernameParameter("username")
+		    .passwordParameter("password")
 	        .and()
 	    .logout()//.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 		    .permitAll()
-		    .logoutSuccessUrl("/index");//cuando el usuario salga se le dirigira al index.html
+		    .logoutSuccessUrl("/index");
 		http.csrf().disable();
 	}
 
