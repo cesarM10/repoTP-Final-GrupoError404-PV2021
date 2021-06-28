@@ -3,12 +3,15 @@ package ar.edu.unju.fi.tpfinal.controller;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -74,40 +77,70 @@ public class CompraController {
 	}
 	
 	@PostMapping("/compra/guardar/order")
-	public ModelAndView agregarCompraPage(@ModelAttribute("order")Order order) {
-		ModelAndView model = new ModelAndView("alta_compra");
+	public ModelAndView agregarCompraPage(@Valid @ModelAttribute("order")Order order, BindingResult resultadoValidacion) {
+		//ModelAndView model = new ModelAndView("alta_compra");
+		ModelAndView model;
 		
-		order.setCustomer(customerService.listaCustomerSeleccionado().get(0));
-		order.setOrderDate(LocalDate.now());
-		order.setRequiredDate(LocalDate.now());
+		if(resultadoValidacion.hasErrors()){
+			model = new ModelAndView("alta_order");
+			model.addObject("customer", customerService.getCustomer());		
+			model.addObject("customerSeleccionado", customerService.listaCustomerSeleccionado());
+			
+			return model;
+		}else {
+			model = new ModelAndView("alta_compra");
+			
+			order.setCustomer(customerService.listaCustomerSeleccionado().get(0));
+			order.setOrderDate(LocalDate.now());
+			order.setRequiredDate(LocalDate.now());
+			
+			orderService.agregarOrder(order);
+			
+			model.addObject("product", productService.getProduct());
+			model.addObject("productosSeleccionados", productService.listaDeProductos());
+			model.addObject("orderDetail", orderDetailService.getOrderDetail());
+			    
+			return model;
+		}
 		
-		orderService.agregarOrder(order);
 		
-		model.addObject("product", productService.getProduct());
-		model.addObject("productosSeleccionados", productService.listaDeProductos());
-		model.addObject("orderDetail", orderDetailService.getOrderDetail());
-		    
-		return model;
 	}
 	
 	@PostMapping("/compra/guardar")
-	public ModelAndView agregarProductoAOrderPage(@ModelAttribute("orderDetail")OrderDetail orderDetail) {
-		ModelAndView model = new ModelAndView("alta_compra");
-		LOGGER.info("entro a añadir");
-		OrderDetailsID id = new OrderDetailsID(orderService.obtenerOrder().get(orderService.obtenerOrder().size()-1), productService.listaDeProductos().get(0));
-		LOGGER.info("paso la asignacion del ID");
-		orderDetail.setId(id);
-		orderDetail.setPriceEach(productService.listaDeProductos().get(0).getMSRP());
-		int i = Math.toIntExact(orderService.obtenerOrder().get(orderService.obtenerOrder().size()-1).getOrderNumber());
-		orderDetail.setOrderLineNumber(i);
+	public ModelAndView agregarProductoAOrderPage(@Valid @ModelAttribute("orderDetail")OrderDetail orderDetail, BindingResult resultadoValidacion) {
+		//ModelAndView model = new ModelAndView("alta_compra");
+		ModelAndView model;
 		
-		orderDetailService.agregarOrderDetail(orderDetail);
+		if(resultadoValidacion.hasErrors()) {
+			model = new ModelAndView("alta_compra");
+			
+			model.addObject("product", productService.getProduct());
+			model.addObject("productosSeleccionados", productService.listaDeProductos());
 		
-		model.addObject("product", productService.getProduct());
-		model.addObject("productosSeleccionados", productService.listaDeProductos());
-		model.addObject("orderDetail", orderDetailService.getOrderDetail());
-		    
-		return model;
+			return model;
+		}else {
+			model = new ModelAndView("alta_compra");
+			
+			LOGGER.info("entro a añadir");
+			OrderDetailsID id = new OrderDetailsID(orderService.obtenerOrder().get(orderService.obtenerOrder().size()-1), productService.listaDeProductos().get(0));
+			LOGGER.info("paso la asignacion del ID");
+			orderDetail.setId(id);
+			orderDetail.setPriceEach(productService.listaDeProductos().get(0).getMSRP());
+			
+			int i = Math.toIntExact(orderDetail.getId().getOrderNumber().getOrderNumber());
+			orderDetail.setOrderLineNumber(i);
+			
+			orderDetailService.agregarOrderDetail(orderDetail);
+			
+			model.addObject("product", productService.getProduct());
+			model.addObject("productosSeleccionados", productService.listaDeProductos());
+			model.addObject("orderDetail", orderDetailService.getOrderDetail());
+			model.addObject("mensaje", "Se añadio correctamente al carrito");
+			
+			return model;
+		}
+		
+		
 	}
 	
 	@GetMapping("/compra/busqueda")
@@ -133,7 +166,7 @@ public class CompraController {
 		Payment payment = new Payment(id, LocalDate.now(), totalAPagar);
 		paymentService.agregarPayment(payment);
 		
-		model.addAttribute("orderDetail", orderDetailService.buscarProductosPorOrderNumber(orderDetailService.obtenerOrderDetails().get(orderDetailService.obtenerOrderDetails().size()-1).getOrderLineNumber()));
+		model.addAttribute("orderDetail", listaEnCarrito);
 		model.addAttribute("total", totalAPagar);
 		
 		return "carrito_compra";
