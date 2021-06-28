@@ -38,7 +38,7 @@ public class Product {
 	@Column(name = "pro_productName", nullable = false)
 	private String productName;
 	
-	@Valid  // validacion del campo relacioado
+	//@Valid  // validacion del campo relacioado
 	@Autowired
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "pli_product_line")
